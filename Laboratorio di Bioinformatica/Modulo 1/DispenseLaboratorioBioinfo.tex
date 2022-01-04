@@ -370,6 +370,7 @@ Il formato XML (eXtensible Markup Language).
     \item Replica la struttura logica del record nella banca dati
     \item I tag permettono di delimitare e definire campi e sottocampi
 \end{itemize}
+
 \section{NCBI}
 NCBI (National Center for Biotechnology Information) presso il National Institute of Health. Offre accesso a tante risorse di vario tipo:
 \begin{itemize}
@@ -389,11 +390,12 @@ Fornisce accesso a numerosi database attraverso il sistema Entrez:
     \item GEO 
     \item \dots
 \end{itemize}
-Fornisce accesso anche a diversi software bioinformatici.\\
-Una ricerca qualunque dall’home page apre ENTREZ,
-interfaccia per l’accesso ai database presenti in NCBI.\\
+Fornisce accesso anche a diversi software bioinformatici.
+\subsection{Com'è strutturato il database}
+Una ricerca qualunque dall'home page apre ENTREZ,
+interfaccia per l'accesso ai database presenti in NCBI.\\
 \begin{itemize}
-    \item PubMed è l’interfaccia di accesso a
+    \item PubMed è l'interfaccia di accesso a
     MEDLINE.
     Con I suoi
     \subitem{-} 20 milioni di record fino agli anni '50
@@ -436,14 +438,14 @@ EMBL e DDBJ). Le sequenze derivano da diverse fonti e tipi:
     \item EST (Expressed Sequence Tags)
     brevi segmenti di DNA trascritti e sequenz. da cDNA (ottenuto da
     mRNA retrotrascritto)
-    \item STS (sequence tagged site, dove l’informazione genetica è mappata
+    \item STS (sequence tagged site, dove l'informazione genetica è mappata
     fisicamente)
     \item GSS (Genome Survey Sequence, vettori sequenze solo parzialmente sequenziate)
     \item HTGS (High Throughput Genomic Sequence, sequenze prodotte da tecniche di
     seconda generazione per il sequenziamento veloce, messe qui in “preview”)
     \item Sequenze di proteine (sezione nr, non redundant)
 \end{itemize}
-Così tanto materiale ha provocato l’esigenza di ordine: \textbf{RefSeq}.\\
+Così tanto materiale ha provocato l'esigenza di ordine: \textbf{RefSeq}.\\
 RefSeq è stato ideato per far corrispondere a ciascun trascritto
 normalmente prodotto da un gene e a ciascuna proteina una sequenza di
 riferimento, un identificatore (accession number).\\
@@ -457,7 +459,7 @@ Altri esempi di identificatori NON RefSeq sono:
     \item 1KT7 Protein Data Bank structure record
 \end{itemize}
 Refseq fornisce un identificatore per la sequenza di riferimento, curato dal
-personale dell’NCBI.\\
+personale dell'NCBI.\\
 formati principali degli id RefSeq sono:
 \begin{itemize}
     \item Complete genome/chromosome/plasmid N\textbf{C}$\_\#\#\#\#\#\#$
@@ -465,6 +467,178 @@ formati principali degli id RefSeq sono:
     \item mRNA (DNA format) N\textbf{M}$\_\#\#\#\#\#\#$
     \item Protein N\textbf{P}$\_\#\#\#\#\#\#$
 \end{itemize}
+\paragraph{Un primo esempio di ricerca - L'Emoglobina}
+Una delle prime proteine ad essere studiata (anni '30 e '40, da Mulder, Liebing et al.).\\
+È stata la prima proteina ad essere usata negli allineamenti multipli di sequenza:
+voglio fare dei confronti di sequenze (ad esempio per confrontare la stessa proteina prodotta da diverse specie). Con le prime tecniche di sequenziamento abbiamo scoperto che è stata localizzata in due loci, uno sul cromosoma 16 (subunità alfa) e 11 (subunità beta). I due geni sono regolati sia in base all'età che in base ai diversi tessuti.\\
+È quindi un problema complesso che ha poi originato una serie di considerazioni.
+La mioglobina, una globina (struttura globulare a 8 eliche)
+che lega l'ossigeno nei tessuti muscolari, è stata la prima
+proteina la cui struttura tridimensionale è stata risolta
+tramite cristallografia.\\
+L'emoglobina è un tetramero (due catene alfa e due beta negli
+adulti) è il principale trasportatore di ossigeno nei vertebrati.
+Assieme alla mioglobina è stata usata nei primi studi sugli
+allineamenti multipli.\\
+Negli anni '80 con le prime tecniche di sequenziamento è stata
+localizzata in due loci, uno sul cromosoma 16 (subunità alfa) e 11
+(subunità beta). I due geni sono regolati sia in base all'età che in
+base ai diversi tessuti.
+\subsubsection*{Ricerca dell'emoglobina}
+\begin{enumerate}
+    \item Inseriamo "beta globin" nella barra di ricerca
+    \item Seguiamo poi il link a "Gene"
+    \item Entrez Gene (ex LocusLink) è un portale curato che descrive loci genetici
+        \subitem{-} nomenclatura
+        \subitem{-} alias
+        \subitem{-} accession numbers
+        \subitem{-} fenotipi
+        \subitem{-} OMIM (ereditarietà dei caratteri)
+        \subitem{-} HomoloGene
+        \subitem{-} mappatura sul genoma
+        \subitem{-} collegamenti esterni
+    \item In generale ad oggi quesa ricerca trova 126 entries
+    \item Intestazione: Entrez Gene, Noa: "Official Symbol", HBB per la beta globina
+    \item Limitiamoci alla ricerca per Homo Sapiens (selezionando sulla destra da Results by taxon)
+    \item Cliccando la specie si aggiorna automaticmente la stringa di ricerca: {\ttfamily(beta globin) AND "Homo sapiens" [ porgn:\_txid9606 ]}
+    \item Con il limite Homo Sapiend le entries sono solo 41
+    \item Apriamo la prima entry
+    \item Sulla dx in basso troviamo numerosi link a database esterni
+    \item Abbiamo una sezione sulle regioni genomiche, una sulla bibliografia
+    \item Sezione interessante: GeneRif (intended to facilitate access to publications documenting experiments that add to our understanding of a gene and its function)
+    \item E ancora Fenotipi, Variazione Genica, Pathways per Biosistemi e Interazioni note con altri geni.
+    \item Ontologia: (fondamentale per sistemi automatici di apprendimento). Classificazione
+    e organizzazione dei dati in categorie predefinite così da agevolare l'individuazione di
+    analogie e caratteristiche primarie. Può essere di diversi tipi, ma la principale distingue:
+        \subitem{-} Funzione molecolare
+        \subitem{-} Localizzazione cellulare
+        \subitem{-} Processo biologico
+    \item Catalogazione RefSeq (a fine pagina)
+\end{enumerate}
+\subsection{Operatori Booleani}
+\subsubsection{Operatore AND (\&)}
+Restringe il campo di ricerca, inserendo ad es. la stringa:
+{\ttfamily equus caballus AND hemoglobin alpha}\\
+La banca dati ci mostrerà una lista di sequenze proteiche i cui campi di
+descrizione contengono entrambe le parole. Quindi le sequenze proteiche
+del cavallo che non contengono nella descrizione la parola hemoglobin
+non vengono selezionate.
+\subsubsection{Operatore OR (|)}
+Estende il campo di ricerca, digitando ad esempio:
+Restringe il campo di ricerca, inserendo:
+{\ttfamily homo sapiens OR mus musculus}\\
+Otterremo una lista di sequenze i cui campi contengono la parola homo
+sapiens o la parola mus musculus.
+L'operatore allarga l'insieme
+delle sequenze che incontrano le nostre esigenze.
+\subsubsection{Operatore NOT (!)}
+Restringe il campo di ricerca, inserendo:
+{\ttfamily homo sapiens NOT hemoglobin}
+Richiederemo sequenze i cui campi contengono la parola homo sapiens
+ma non la parola hemoglobin.
+\subsubsection{Combinazione di Operatori Booleani}
+Gli operatori booleani si possono combinare, vengono letti da sinistra a
+destra. Per questo sono utili le parentesi. Ad esempio: globin AND promoter OR enhancer produce quasi 5000
+hits. Ma se si scrive globin AND (promoter OR enhancer) se ne
+ottengono circa 70.\\
+Altre possibilità sono:
+\begin{itemize}
+    \item Specificare un organismo (human, nella query:
+    human[ORGN]
+    \item Usare l’asterisco: glob * restituisce tutte le entry che
+    contengono una stringa che inizia per “glob”
+    \item Usare le virgolette “” . La ricerca di “toxin B1” restituirà le
+    entries che contengono esattamente la stringa intera.
+    \item \dots
+\end{itemize}
+\subsection{Nel dettaglio}
+\paragraph{Homologene}
+la risorsa ideale per individuare gruppi
+di geni omologhi negli eucarioti presenti in NCBI
+\paragraph{OMIM}
+Catalogo di geni umani e disordini genetici
+\paragraph{SNP}
+Single Nucleotide Polimorfism
+\newpage
+\section{Proteine - Le banche dati proteiche più usate}
+\paragraph{Uniprot}
+(Universal Protein Resource) raccoglie le informazioni dei database:
+\begin{enumerate}
+    \item Swiss-prot (SIB)
+    \item TrEMBL (EBI) 
+    \item PIR
+\end{enumerate} 
+Offre la possibilità di effettuare Text
+Search o Blast Search. Viene curato anche un database NON RIDONDANTE
+(UniRef).
+\paragraph{Swissprot}
+Molto curato e detagliato, con annotazioni circa funzione, struttura, modificazione e altre informazioni utili.
+\paragraph{TrEMBL}
+È la traduzione in silico di ogni entry codificante del database primario dell'EMBL, non è accurato, ma è ricchissimo.
+\paragraph{PIR}
+È il discendente diretto del database della Dayhoff, è curato a mano e le annotazioni sono molto ricche e precise.
+\subsection{NCBI Protein - non molto ricco}
+Entrez Protein: Contiene diverse informazioni su proteine
+\begin{itemize}
+    \item 147 amminoacidi
+    \item PRI: primates
+    \item $NP\_000509$ (protein accession number)
+    \item $NM\_000518.4$ (mRNA, RefSeq)
+    \item Riferimenti bibliografici
+    \item Sequenze FASTA (Opzione Display)
+    \item Siti di modificazione post-traduzionale (AA94, AA121)
+    \item Riferimenti ad altri database
+    \item Sequenza amminoacidica (1 lettera)
+\end{itemize}
+È un record non molto ricco dal punto di vista dei dati delle proteine.
+\subsection{Uniprot}
+Uniprot è il più completo database centralizzato per le sequenze proteiche.\\
+È organizzato su 3 livelli:
+\begin{enumerate}
+    \item Uniprot Knowledge Base
+        \subitem{-} Swiss-Prot (curato)
+        \subitem{-} TrEMBL (automatico)
+    \item UniProt Reference
+    clusters (UniRef)
+        \subitem{-} Cluster di proteine che
+        condividono il 50\%, 90\%,
+        100\% di identità di
+        sequenza
+    \item UniProt Archive (UniParc)
+        \subitem{-} Archivio di sequenze
+        proteiche stabile, non
+        ridondante, da diverse 58 fonti
+\end{enumerate}
+\subsubsection{Struttura del database}
+Nella homepage abbiamo la classica barra di ricerca e subito sotto i link di accesso alle diverse informazioni contenute in Uniprot.\\
+\paragraph{Un esempio di ricerca}
+\begin{enumerate}
+    \item Inseriamo "{\ttfamily hbb}" nella barra di ricerca.
+    \item Sulla sinistra possiamo selezionare gli organismi a cui restringere la ricerca. Selezioniamo Humans.
+    \item Questo aggiornerà automaticamente la stringa di ricerca: {\ttfamily hbb AND organism: "Homo sapiens (Human) [9605]"}
+    \item Selezioniamo la prima entry.
+    \item Sulla sinistra troviamo la tavola con tutti i contenuti disponibili.
+    \item Tra i più importanti abbiamo: "Function" (che specifica la funzione della proteina), "Pathology \& Biotech", "Expression", "Interaction", "Family \& Domains", \dots
+    \item In "Structure" e altre sezioni troviamo i link a PDB (Protein Data Bank), database di strutture proteiche.
+    \item In "Sequence" troviamo tutta la sequenza proteica, scaricabile in formato FASTA.
+    \item Abbiamo inoltre vari link di collegamento ad altri database di sequenze (EMBL,GeneBank, DDBJ), varianti, \dots
+\end{enumerate}
+\subsection{ExPASy}
+(Expert Protein Analysis System)\\
+È una risorsa curata, espressione del SIB (Swiss Institute of
+Bioinformatics). Principalmente dedicata alle proteine.\\
+La risorsa principale che ha prodotto è SwissProt (confluita in Uniprot). Rimane un punto di riferimento per molti tools. 
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \LARGE
+        \textbf{Lezione 3: Allineamenti di Sequenze - concetti e algoritmi}
+
+    \end{center}
+\end{titlepage}
+
+
 \begin{titlepage}
     \begin{center}
         \vspace*{1cm}
@@ -552,4 +726,34 @@ residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
     corrispondenti (secondo ad es. BLOSUM62)
     \item 
 \end{itemize}
+
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \LARGE
+        \textbf{Domande stile esame}
+
+    \end{center}
+\end{titlepage}
+
+\section{Domande sull'introduzione}
+\Large
+\begin{enumerate}
+    \item Differenza tra omologia e similitudine. È possibile che due proteine abbiano unìidentità di sequenza del 57\% e una similitudine del 21\%? Perchè?
+\end{enumerate}
+
+\section{Domande sulle banche dati}
+\begin{enumerate}
+    \item ) Cos’è Uniprot? Oltre ad una descrizione generale si descrivano i suoi livelli e si elenchino almeno 5 sezioni che si possono trovare nelle pagine delle singole proteine (entry). Si descrivano inoltre brevemente i database PDB e ExPASy. Cosa hanno in comune queste tre risorse?
+    \item Si citino e discutano brevemente 4 banche dati presenti in NCBI. Se possibile escludere NCBI protein.
+    \item Si descrivano le banche dati NCBI Gene, Unigene e Genbank. Inoltre, in che relazione sono tra di esse?
+    \item  Descrivere Uniprot, Pfam, Prosite, CATH e PDB, con particolare attenzione alla più importante tra di esse (qual è?)
+    \item Cos’è Pubmed? Descrivere la banca dati, i suoi contenuti, e gli strumenti messi a disposizione degli utenti (illustrati a lezione), sia per la ricerca che per la gestione dei risultati.
+    \item Descrivere brevemente le caratteristiche del Protein Data Bank ed il contenuto di un file pdb.
+    \item Si descrivano il formato FASTA, il formato ASN.1 e il formato XML nell'ambito della bioinformatica.
+    \item 
+\end{enumerate}
+
+
 \end{document}
