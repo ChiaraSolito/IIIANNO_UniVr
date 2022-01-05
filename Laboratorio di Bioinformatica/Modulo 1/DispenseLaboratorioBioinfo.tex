@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage[font=small,labelfont=bf]{caption}
 \usepackage{booktabs, siunitx}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
@@ -138,7 +139,7 @@ fisiche diverse conferisce una variabilità enorme. Il legame peptidico crea il 
 La struttura di una proteina si organizza in 4 livelli, visibili "srotolando" la
 matassa della luce di natale:
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{Proteine.png}
+    \includegraphics[width=0.5\textwidth]{figures/Proteine.png}
 \end{center}
 \paragraph{La struttura 3D di una proteina è molto complessa} La determinazione della
 struttura 3D di proteine è un settore di ricerca molto attivo,
@@ -545,7 +546,7 @@ Altre possibilità sono:
 \begin{itemize}
     \item Specificare un organismo (human, nella query:
     human[ORGN]
-    \item Usare l’asterisco: glob * restituisce tutte le entry che
+    \item Usare l'asterisco: glob * restituisce tutte le entry che
     contengono una stringa che inizia per “glob”
     \item Usare le virgolette “” . La ricerca di “toxin B1” restituirà le
     entries che contengono esattamente la stringa intera.
@@ -637,7 +638,299 @@ La risorsa principale che ha prodotto è SwissProt (confluita in Uniprot). Riman
 
     \end{center}
 \end{titlepage}
-
+\section{Allineamenti di Sequenze}
+Un primo e precoce allineamento di sequenze si ha nel 1961: H.C. Watson and J.C. Kendrew,
+“Comparison Between the Amino-Acid Sequences of Sperm Whale Myoglobin and of Human Hæmoglobin.” Nature 190:670-672, 1961.\\
+\paragraph{L'allineamento di sequenze a coppie è un'operazione fondamentale in bioinformatica}
+È utilizzato per decidere se due proteine (o geni) sono correlate strutturalmente e funzionalmente.\\
+Viene utilizzato per identificare i domini o motivi che sono
+condivisi tra le proteine. È alla base della ricerca con BLAST (prossime lezioni) e viene utilizzato anche per l'analisi dei genomi.
+\paragraph{Allineamento a coppie: sequenze di proteine possono essere più informative del DNA}
+Le proteine sono più informative del DNA (20 vs 4 caratteri);
+molti aminoacidi condividono proprietà biofisiche.\\
+Ricordiamo che i codoni sono degenerati: i cambiamenti in terza posizione
+spesso non alterano l'amminoacido che ne è specificato
+(mutazioni sinonime). Le sequenze di proteine offrono un più lungo tempo di
+"look-back" e le sequenze di DNA possono essere tradotte in proteine,
+e poi utilizzate negli allineamenti a coppie.
+\subsection{Definizione - \underline{Allineamento a coppie}}
+Il processo che allinea due sequenze per
+raggiungere livelli massimi di identità (e
+conservazione, nel caso di sequenze di
+amminoacidi) al fine di valutare il grado di
+similitudine e la possibilità di omologia.
+\subsection{Altre definizioni}
+\begin{itemize}
+    \item \underline{\textbf{Identità}}
+        \subitem La misura in cui due sequenze (di nucleotidi o aminoacidi) sono
+        invarianti. (es. identità del 32\% => 32 a.a. su 100 sono
+        ordinatamente identici)
+    \item \underline{\textbf{Conservazione}}
+        \subitem In una sequenza, modifiche in una specifica posizione di un
+        amminoacido (o meno comunemente, di un nucleotide) che
+        preservano le proprietà fisico-chimiche del residuo originale.
+    \item \underline{\textbf{Similitudine}}
+        \subitem La misura in cui due sequenze (di nucleotidi o aminoacidi)
+        sono correlate. Si basa su identità + conservazione.
+    \item \underline{\textbf{Omologia}}
+        \subitem Similitudine attribuita a discendenti da un
+        antenato comune.
+        \subitem{!} \textbf{Nota bene:}
+            \subsubitem{-} OMOLOGIA indica che due entità (es. 2 sequenze) hanno
+            una stessa origine filogenetica, cioè derivano da un antenato
+            comune. È un carattere QUALITATIVO.
+            \subsubitem{-} SIMILITUDINE indica che due entità (es. 2 sequenze), in
+            relazione ad un certo criterio comparativo, hanno un certo
+            grado di similitudine. È un carattere QUANTITATIVO
+            (vedremo tra breve come definirla).
+        \subitem{!} \textbf{Osservazioni:}
+            \subsubitem{-} La struttura di una proteina dipende della sua sequenza di a.a. (concetto alla
+            base del Protein Folding).
+            \subsubitem{-} La struttura determina la funzione molecolare della proteina.
+            \subsubitem{-} Se una sequenza proteica è conservata durante l'evoluzione ed è quindi
+            presente in organismi diversi (famiglia di proteine) è ragionevole assumere che le
+            funzioni che svolge siano simili o per lo meno correlate.
+        \subitem{!} \textbf{Passi per predizione di funzione:}
+            \begin{enumerate}
+                \item Identificazione delle proteine di una famiglia (evolute da un
+                progenitore comune $\rightarrow$ sequenza di a.a. abbastanza simile.)
+                \item dentificazione degli a.a. che svolgono un ruolo strutturale o
+                funzionale analogo (allineamento).
+            \end{enumerate}
+\end{itemize}
+\paragraph{Esempio 1:} la catena $\beta$ dell'emoglobina e miogobina «si somigliano» 
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/globine.png}
+    \captionof{figure}{Le zone con indel nelle sequenze sono strutturalmente dissimili}
+\end{center}
+\begin{itemize}
+    \item \underline{\textbf{Ortologhi}}
+        \subitem Sequenze omologhe in diverse specie che derivano,
+        tramite la speciazione, da un gene ancestrale
+        comune. La funzione può essere o non essere
+        simile.
+    \item \underline{\textbf{Paraloghi}}
+        \subitem Sequenze omologhe all'interno di una singola specie
+        sorte dalla duplicazione genica.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/ortpar.png}
+    \captionof{figure}{Ortologhi e paraloghi sono spesso rappresentati in un albero singolo.}
+\end{center}
+\newpage
+Ortologhi: membri di una famiglia di geni (proteine) in vari organismi.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/ortpar2.png}
+    \captionof{figure}{Questo albero mostra gli ortologhi della globina.}
+\end{center}
+Paraloghi: i membri di una famiglia di geni (proteine) all'interno di una specie.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/ortpar3.png}
+    \captionof{figure}{Questo albero mostra i paraloghi della globina umana.}
+\end{center}
+\section{Confrontare due sequenze}
+\paragraph{Come posso trasformare una stringa in un'altra?} 
+Un modo semplice per capirlo è allineare le due stringhe:\\
+ESEMPIO: 1 - LA CASA NUOVA; 2 - LA CASSA VUOTA\\
+\begin{center}
+    1 - L A C A - S A N U O V A\\
+    2 - L A C A S S A V U O T A\\
+    oppure\\
+    1 - L A C A - S A - N U O V A\\
+    2 - L A C A S S A V - U O T A\\
+\end{center}
+Nel secondo caso c'è un'operazione in più. 
+\begin{itemize}
+    \item Il numero minimo di operazioni necessarie per allineare
+    due sequenze ne misura la distanza.
+    \item La Natura dispone di varie operazioni per trasformare un
+    oggetto nell'altro (mutazioni, indel…)
+    \item L'evoluzione sceglie la via piu' breve (principio di
+    massima parsimonia); cio' si manifesta tramite l'analisi
+    dell'allineamento.
+\end{itemize}
+Dobbiamo avere chiari i concetti di match (residui
+appaiati), mismatch (sostituzioni) e gap (indel).
+\subsection{Come identificare le zone di somiglianza locale tra due sequenze?}
+\subsubsection{Matrice a punti - dot plot}
+È un modo relativamente semplice.\\
+Confrontiamo la stringa con se stessa (autoconfronto):
+\begin{enumerate}
+    \item Mettiamo una x per ogni identità
+\end{enumerate}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/autoconfronto.png}
+    \captionof{figure}{\dots piuttosto banale. Cambiamo la seconda stringa.}
+\end{center}
+Effettuiamo un'inversione. Il pattern delle diagonali lo
+mostra chiaramente: la diagonale principale si spezza ma
+porzioni delle stringhe sono identiche.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/inversione.png}
+\end{center}
+Possiamo individuare facilmente alcuni patterns mediante le matrici a punti (la prima stringa in alto resta immutata):
+\begin{itemize}
+    \item Inversione di parole\\
+    \includegraphics[width=0.3\textwidth]{figures/inv2.png}
+    \item Ripetizione di parole\\
+    \includegraphics[width=0.3\textwidth]{figures/rip.png}
+    \item Delezione di caratteri\\
+    \includegraphics[width=0.3\textwidth]{figures/del.png}
+\end{itemize}
+Se però allineamo sequenze di acidi nucleici (solo 4 lettere) il “segnale” di similitudine è mascherato dal grande rumore di fondo. Servono FILTRI per ridurre il rumore.
+\paragraph{Una semplice osservazione:}le zone delle sequenze più simili
+localmente si distribuiscono su diagonali; le altre somiglianze puntiformi si distribuiscono casualmente.
+Allora, è meglio confrontare le sequenze non per singole posizioni, ma per interi segmenti (FINESTRE).\\
+Potremmo usare delle finestre scorrevoli.\\
+ESEMPIO: confrontiamo una finestra di 5 residui in una seq
+con una finestra di 5 residui nell'altra. Confronto tutte le
+finestre (facendole scorrere), e metto una * al centro della
+finestra solo se ho un match totale.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/sliding.png}
+\end{center}
+In generale: si fa scorrere una finestra alla volta.
+\paragraph{La procedura}
+\begin{enumerate}
+    \item Definiamo la posizione di una casella $(x,y)$.
+    \item Fissiamo il centro della finestra, di raggio $g$.
+    \item La lunghezza della finestra è dunque: $L= 2g+1$
+    \item Il numero $N$ di residui identici in quella finestra è allora: $N(x,y) = \sum^{+g}_{h=-g} S(x + h, y+h)$
+        \subitem $S=1$ se il carattere in $x+h$ è identico a quello in $y+h$; altrimenti $S=0$
+\end{enumerate}
+Questa regola è però molto restrittiva. A noi interessa anche
+la similitudine, non solo l'identità. Potremmo definire una soglia $s$, per cui:
+\begin{itemize}
+    \item Se $N(x,y)>s$ mette un simbolo nella casella in posizione $x,y$.
+\end{itemize}
+Dobbiamo quindi misurare la similitudine, e.g. tra aa o basi. Un
+esempio di matrice di punteggio (non di punti!!) per seq
+di nucleotidi può essere:
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/mat.png}
+\end{center}
+Misurata la similitudine, possiamo allora attribuire un nuovo punteggio al confronto fra due finestre:
+\begin{itemize}
+    \item Se $N(x,y)$ è il numero dei residui simili, ed è la media dei punteggi
+    delle singole coppie prelevati dalla matrice di punteggio scelta:
+    \item $N(x,y) = \sum^{+g}_{h=-g} {S(x + h, y+h)\over L}$
+\end{itemize}
+$S$ ora dipende da quale matrice di punteggio scegliamo e dalla
+lunghezza della finestra. Possiamo quindi essere un po' più "elastici" pur mantenendo
+la regola:
+\begin{itemize}
+    \item Se $N(x,y)>s$ mette un simbolo nella casella in posizione $x,y$.
+\end{itemize}
+$s$ lo decide la matrice di punteggio (cioè la similitudine).
+\subsubsection{In breve}
+In conclusione, la visualizzazione (ed il calcolo) di una
+matrice a punti dipende da:
+\begin{enumerate}
+    \item La lunghezza $L$ della finestra scorrevole scelta
+    \item Il metodo per misurare la similitudine $S(x,y)$
+    \item La soglia $s$ per “marcare” la casella rispettiva
+\end{enumerate}
+In pratica conviene fissare 2 parametri e variare il terzo per rendere le zone di
+similitudine più evidenti. Molti programmi fanno questo.\\
+Es. DOTTER/Dotlet - assegna un colore dipendentemente da $S$.
+\paragraph{Nota:}Analogamente all’identità di sequenza, che si può
+misurare in percentuale (\%), anche la similitudine, una volta
+quantificata, si può misurare in \%.\\
+$S_1$ e $S_2$ sono due sequenze lunghe, rispettivamente, $L_1$ ed $L_2$.\\
+Scelta $L_1$ come riferimento si ha:
+$$ SequenceIdentity(s.i.) = ({\#matches \over L_1}) * 100 $$
+$$ SequenceSimilarity(s.s.) = ({S_1 vs. S_2 s.c. \over S_1 vs. S_2 i.c.}) * 100 $$
+\textit{s.c. = similarity score, ed è ottenuto allineando $S_1$ con $S_2$, e attribuendo il punteggio ottenuto dalla matrice discore.\\i.c. = identity score ed è ottenuto allineando $S_1$ con sè stessa ed attribuendo il punteggio ottenuto dalla matrice di score}
+\textit{\\Nota:} se sono presenti indel, a denominatore metto la lunghezza
+dell’allineamento (compresi gli indel), e non la lunghezza originale della sequenza.
+\section{Algoritmi dinamici di allineamento}
+I dot plots non tengono in considerazione gli indel. Occorrono altri
+algoritmi che, passo a passo e seguendo una certa direzione, trovino
+l’allineamento con:
+\begin{itemize}
+    \item Maggior numero di simboli identici
+    \item Minor numero di indel (sfavorite evolutivamente)
+\end{itemize}
+Esempio: proviamo tutte le combinazioni da sx a dx, riempiendo una colonna alla volta (qui mostriamo solo i primi 3 residui!!)\\
+Stabiliamo inoltre i punteggi:
+\begin{itemize}
+    \item -1 per indel
+    \item 0 per residui diversi
+    \item +1 per residui identici
+\end{itemize}
+Il numero delle combinazioni possibili è molto grande, specie per
+sequenze lunghe. Nel 1970 NEEDLEMAN e WUNSCH creano un algoritmo, poi
+migliorato ed esteso. Noi analizziamo l’originale.
+\subsection{Il concetto}
+distribuiamo le due sequenze in una matrice. Il possibile
+allineamento tra le due identifica un percorso che unisce le caselle dei
+residui appaiati.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/algo.png}
+\end{center}
+\subsection{Regole pratiche}
+\begin{enumerate}
+    \item Il percorso ha una direzione e procede solo in avanti (NON si torna indietro!)
+    \item Occorre trovare il percorso con il \textbf{maggior} numero di aa identici e il \textbf{minor} numero di indel
+    \item Occorre anche tener conto della similitudine fra amminoacidi (significato evolutivo)
+    \item IMPORTANTE: un allineamento ottimale è sempre
+    composto da suballineamenti ottimali (cioè: togliendo uno
+    ad uno i residui dal fondo, l’allineamento deve restare
+    ottimale, per poter ricostruire il percorso a ritroso)
+\end{enumerate}
+\subsection{Step}
+\begin{enumerate}
+    \item INIZIALIZZAZIONE della matrice: regola molto semplice; 1
+    se identici, 0 altrimenti. N.B. ora $(x,y)$ identifica: (residuo in
+    colonna, residuo in riga) (N.B. dopo aver trattato le matrici
+    di score potremo normalizzare diversamente)\\
+    \includegraphics[width=0.6\textwidth]{figures/init.png}
+    \item Partiamo da (1,1) (in alto a sx:
+    la direzione è importante!!):
+    (1,1) $\rightarrow$ (2,2)
+    L’unico percorso possibile è
+    questo: per “ricordarmelo”
+    sommo il valore della cella
+    (1,1) a quello della cella (2,2)
+    da matrice inizializzata
+    \includegraphics[width=0.3\textwidth]{figures/due.png}
+    \item Prossimo step: verso (2,3). Ci sono due possibili percorsi, corrispondenti a due diversi
+    allineamenti: scelgo quello con punteggio finale maggiore, sempre sommando casella precedente a (2,3)\\
+    \includegraphics[width=0.3\textwidth]{figures/tre.png}
+    \item Procediamo analogamente: ad esempio, verso (4,4)\\
+    \includegraphics[width=0.6\textwidth]{figures/quattro.png}
+    \item e oltre, ad es. verso (4,5): qui il nuovo punteggio sarà 3\\
+    \includegraphics[width=0.6\textwidth]{figures/cinque.png}
+    \item Alla fine arriveremo fino all’ultima casella in basso a dx:\\
+    \includegraphics[width=0.6\textwidth]{figures/sei.png}
+    \item Da essa possiamo spostarci a ritroso poiché abbiamo
+    memorizzato i migliori punteggi dalle caselle precedenti.
+    Abbiamo così determinato il miglior allineamento:\\
+    \includegraphics[width=0.8\textwidth]{figures/sette.png}
+    \subitem \textit{Qui il punteggio totale coincide con il numero di residui
+    identici.\\ ${8 \over 15} = 0.53 = 53\%$ identità di sequenza}
+\end{enumerate}
+\paragraph{In termini formali \dots} La casella (i,j) avrà lo score S(i,j)
+ricalcolato a partire dalla matrice di inizializzazione in questo
+modo:
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/otto.png}
+    $$ S(i,j) = {s(a,b) + max[S(i-1,j-1),S(i-k,j-1),S(i-1,j-l)]}$$
+\end{center}
+Dovremmo però trovare un modo più efficace di inizializzare la
+matrice tenendo conto della similarità fra aa.
+\subsection{Needleman-Wunsch: programmazione dinamica}
+NW garantisce l’ottimalità dell’allineamento, anche se l'algoritmo non
+calcola tutti i possibili allineamenti.
+È un esempio di un algoritmo di programmazione dinamica:
+un percorso ottimale (allineamento) è identificato dall’estensione
+graduale di sottopercorsi localmente ottimali.
+Dunque, una serie di decisioni è effettuata ad ogni passo
+dell’allineamento per trovare la coppia di residui con il miglior
+punteggio per quel passo.\\
+L’algoritmo di Needleman-Wunsch è disponibile presso
+EBI, che ospita molti tools per allineamenti locali e globali di
+sequenze (Pairwise Sequence Alignment).
 
 \begin{titlepage}
     \begin{center}
@@ -745,11 +1038,11 @@ residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
 
 \section{Domande sulle banche dati}
 \begin{enumerate}
-    \item ) Cos’è Uniprot? Oltre ad una descrizione generale si descrivano i suoi livelli e si elenchino almeno 5 sezioni che si possono trovare nelle pagine delle singole proteine (entry). Si descrivano inoltre brevemente i database PDB e ExPASy. Cosa hanno in comune queste tre risorse?
+    \item ) Cos'è Uniprot? Oltre ad una descrizione generale si descrivano i suoi livelli e si elenchino almeno 5 sezioni che si possono trovare nelle pagine delle singole proteine (entry). Si descrivano inoltre brevemente i database PDB e ExPASy. Cosa hanno in comune queste tre risorse?
     \item Si citino e discutano brevemente 4 banche dati presenti in NCBI. Se possibile escludere NCBI protein.
     \item Si descrivano le banche dati NCBI Gene, Unigene e Genbank. Inoltre, in che relazione sono tra di esse?
     \item  Descrivere Uniprot, Pfam, Prosite, CATH e PDB, con particolare attenzione alla più importante tra di esse (qual è?)
-    \item Cos’è Pubmed? Descrivere la banca dati, i suoi contenuti, e gli strumenti messi a disposizione degli utenti (illustrati a lezione), sia per la ricerca che per la gestione dei risultati.
+    \item Cos'è Pubmed? Descrivere la banca dati, i suoi contenuti, e gli strumenti messi a disposizione degli utenti (illustrati a lezione), sia per la ricerca che per la gestione dei risultati.
     \item Descrivere brevemente le caratteristiche del Protein Data Bank ed il contenuto di un file pdb.
     \item Si descrivano il formato FASTA, il formato ASN.1 e il formato XML nell'ambito della bioinformatica.
     \item 
