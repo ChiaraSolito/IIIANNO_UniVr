@@ -12,6 +12,51 @@
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{soulutf8}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\definecolor{boxTitle}{HTML}{fff79a}
+\definecolor{boxBackground}{HTML}{fffce0}
+\definecolor{boxFrame}{HTML}{f1e2b8}
+
+
+\definecolor{boxTitle2}{HTML}{b3ffda}
+\definecolor{boxBackground2}{HTML}{e6f2ff}
+\definecolor{boxFrame2}{HTML}{b3d7ff}
+
+\definecolor{boxTitle3}{HTML}{ff794d}
+\definecolor{boxBackground3}{HTML}{ffe6e6}
+\definecolor{boxFrame3}{HTML}{ffb399}
+
+\tcbset{box1/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground, colframe=boxFrame,
+    coltitle=black, colbacktitle=boxTitle,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box1}[1][]{box1, #1}
+
+\tcbset{box2/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground2, colframe=boxFrame2,
+    coltitle=black, colbacktitle=boxTitle2,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box2}[1][]{box2, #1}
+
+\tcbset{box3/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground3, colframe=boxFrame3,
+    coltitle=black, colbacktitle=boxTitle3,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box3}[1][]{box3, #1}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -59,6 +104,121 @@ Insieme a questo documento in formato PDF viene fornito anche il codice \LaTeX  
 \newpage
 \thispagestyle{empty}
 \section{Introduzione}
-La maggior parte delle varianti, individuate attraverso i GWAS, si trova nella parte non codificante del genoma: ciò suggerisce che tali varianti vadano ad intaccare tratti complessi, alterando l'espressione dei geni vicini, attraverso meccanismi di regolazione, e influenzando in maniera significativa le malattie studiate dai GWAS. 
-Identificare un gene causale è difficile poiché bisogna integrare dati dai GWAS con dati di trascrittomica, proteomica ed epigenomica prendendo in considerazione un'ampia tipologia cellulare o tissutale.In assenza di un portale già esistente che consenta di rispondere sistematicamente a un'ampia gamma di domande biologiche, è stato costruito OTG sulla base della tecnologia più recente per consentire di aggiungere e sfogliare facilmente i dati. 
+\subsection{Lessico e nozioni di base}
+\paragraph{Varianti Causali}Nell'ambito degli studi di associazione, le varianti genetiche responsabili del segnale di associazione in un locus sono indicate nella letteratura come VARIANTI CAUSALI. Esse hanno un effetto biologico sul fenotipo.
+\paragraph{Trait-Associated Loci}\textit{Loci tratto associati}\\Un locus a cui è associao un particolare tratto fenotipico.
+\paragraph{QTL}\textit{Quantitative trait loci}\\
+    Un locus dei caratteri quantitativi (ovvero tratti che possono essere studiati e indagati mediante parametri numerici) è un locus che si correla con la variazione di un tratto quantitativo nel fenotipo di una popolazione di organismi.
+\paragraph{GWAS}\textit{Genome Wide Association Study}\\Un approccio della ricerca genetica per associare, a specifiche variazioni genetiche, particolari malattie.
+\paragraph{Lead Variant}La variante col miglior p-value per combinazioni gene/fenotipo significative.
+\paragraph{P-Value}La probabilità, per un'ipotesi supposta vera (ipotesi nulla), di ottenere risultati ugualmetnte o meno compatibili, di quelli osservati durante i test, con la suddetta ipotesi.
+\paragraph{Tag Variants}Varianti rappresentative in una regione del genoma con un alto linkage disequilibrium.
+\paragraph{Linkage Disequilibrium}
+\paragraph{Fine Mapping}Dal momento che i risultati dei GWAS (che otteniamo) non sempre ci danno una sintesi completa delle statistiche, e avendo a disposizione solo le Variant Lead, dobbiamo apliare alle Variants Tag, in modo da avere un insieme più completo. Il fine mapping è uno dei metodi: è una tecnica dei GWAS per identificare la varianti genetiche che possono influenzare causalmente il tratto esaminato, in particolare cerca di determinare la variante genetica responsabile di ????
+\paragraph{Single Evidence Score}
+\paragraph{Proxy}Un proxy è una misura indiretta del risultato desiderato che è esso stesso fortemente correlato a quel risultato. È comunemente usato quando le misure dirette del risultato non sono osservabili e/o non disponibili.
+
+\section{Open Targets Genetics}
+\subsection{Cos'è Open Target Genetics?}
+Open Target Genetics è l'ultima \textit{release} della piattaforma Open Targets: una \textit{partnership} tra pubblico e privato che utilizza i dati genetici e genomici umani per l'identificazione sistematica e la prioritizzazione dei bersagli farmacologici.\\
+Il portale offre tre caratteristiche al fine di mettere in luce le associazioni tra \textbf{geni, varianti e tratti}:
+\begin{itemize}
+    \item Sfogliare e classificare le associazioni di geni e varianti identificate dalla pipeline di punteggio \textbf{Locus-to-Gene (L2G)}
+    \item Scoprire set credibili per associazioni di varianti e tratti basati sulla pipeline di analisi di \textit{fine mapping}.
+    \item Esplorare e confrontare gli studi della UK BioBank, di FinnGen e del catalogo GWAS utilizzando lo strumento di confronto multi-tratto
+\end{itemize} 
+
+\begin{box3}
+    [title={\textbf{La novità di OTG}}]
+    {La maggior parte delle varianti, individuate attraverso i GWAS, si trova nella parte non codificante del genoma: ciò suggerisce che tali varianti vadano ad intaccare tratti complessi, alterando l'espressione dei geni vicini, attraverso meccanismi di regolazione, e influenzando in maniera significativa le malattie studiate dai GWAS. 
+    Identificare un gene causale è difficile poiché bisogna integrare dati dai GWAS con dati di trascrittomica, proteomica ed epigenomica prendendo in considerazione un'ampia tipologia cellulare o tissutale.In assenza di un portale già esistente che consenta di rispondere sistematicamente a un'ampia gamma di domande biologiche, è stato costruito OTG sulla base della tecnologia più recente per consentire di aggiungere e sfogliare facilmente i dati.}
+\end{box3}
+
+\subsection{L'Obiettivo}
+Identificare bersagli farmacologici per lo sviluppo di medicinali sicuri ed efficaci è una priorità per l'industria farmaceutica; lo sviluppo di farmaci porta spesso a perdite di tempo e risultati fallimentari.
+I \textbf{farmaci con targets} che hanno evidenziato prove genetiche per associazioni a malattie, hanno dimostrato di essere vincenti nello sviluppo clinico. Ecco che, una sistematica valutazione di associazioni genetiche a particolari malattie o tratti può aiutare nella scoperta di targets (genes) per lo sviluppo di farmaci:\\
+l'obiettivo di Open Targets Genetics è quindi di aggregare gli evidenti collegamenti tra VARIANTI e MALATTIE, e VARIANTI e GENI, così che, per una specifica malattia, potenziali bersagli farmaclogici possano essere prioritizzati basandosi su informazione genetica robusta, traducendo i segnali da GWAS e Biobank data in geni target, attraverso centinaia di tratti genome-wide.\\
+
+\begin{box1}
+    [title={\textbf{Obiettivo di Open Targets Genetics}}]
+    {
+    aggregare le prove che collegano 
+    \begin{enumerate}
+        \item Varianti alla malattia 
+        \item Varianti ai geni
+        \item Geni alle malattie 
+    \end{enumerate}
+    in modo che per una specifica malattia i potenziali bersagli farmacologici (drug targets) possano essere prioritizzati sulla base di solide informazioni genetiche. 
+}
+\end{box1}
+
+\subsection{Il Metodo}
+Aggregazione e fusione di:
+\begin{itemize}
+    \item associazioni genetiche curate da letteratura e BioBank (UK)
+    \item dati di genomica funzionale (sempre da UK BioBank)
+        \subitem conformazione della cromatina
+        \subitem interazione della cromatina
+    \item loci dei tratti quantitativi
+        \subitem eQTL
+        \subitem pQTL
+\end{itemize}
+Viene applicata la “fine-mapping” (mappatura) statistica su migliaia di loci associati ai tratti per risolvere i segnali di associazione e colelgare ogni variante ai suoi geni bersaglio, prossimali e distali, usando uno score “single evidence”.
+
+\section{Come funziona?}
+\begin{box2}
+    [title={\textbf{S = Study, Desease Association Information}}]
+    {Informazioni associate alla malattia, sono ottenute dai GWAS (Genome Wide Association Study) che collega lo “status” della malattia alla comune variazione genetica.}
+\end{box2}
+
+\begin{box2}
+    [title={\textbf{$V_L$ = Lead Variant}}]
+    {Dato come sono riportati i GWAS è spesso l'unica variante che si conosce per ogni locus associato. Non può perl essere assunto che la lead variant causi l'associazione.}
+\end{box2}
+
+\begin{box2}
+    [title={\textbf{$V_T$ = Tag Variants}}]
+    {Si espande la lead variant ad includere tutte le tag variants, che crea un set più completo di potenziali varianti causali.\\
+    Metodi:
+    \begin{enumerate}
+        \item fine mapping / credible set analisys
+        \item linkage disequilibrium
+    \end{enumerate}
+    }
+\end{box2}
+
+\begin{box2}
+    [title={\textbf{G = Genes}}]
+    {Dato il set di tag variants, si prosegue assegnandole ai geni, usando la V2G pipeline.}
+\end{box2}
+
+L'informazione sulle malattie e sui tratti associati (\textbf{S = study}) è ottenuta dai GWA Study. 
+In base a come i risultati ottenuti dai GWAS sono riportati, spesso conosciamo solo la \textbf{VL = Variant lead}, a ciascun locus associato. In particolare, mentre alcuni studi offrivano una completa sintesi statistica, altri ne riportavano solo le variant lead. 
+Tuttavia, non si può assumere che la VL stia causando l'associazione $\rightarrow$ si espande la VL  per includere tutte le \textbf{VT  = Variant Tag}, che costituiscono un insieme più completo di varianti potenzialmente causali. 
+L'espansione viene fatta in due modi nei due modi sopra riportati. Questa fase prevede l'utilizzo della pipeline \textbf{V2D}.
+
+
+\section{Pipeline}
+Open Targets Genetics utilizza tre pipeline diverse.
+\subsection{Assigning Variants to Genes (V2G)}
+La pipeline V2G collega Varianti e geni, combinando dati provenienti da 4 fonti. 
+\begin{itemize}
+    \item Esperimenti sui loci dei tratti quantitativi del fenotipo molecolare (eQTL pQTL)
+    \item Esperimenti di interazioni con cromatina
+    \item In silico predizioni funzionali
+    \item Distanza dal sito di inizio della trascrizione canonica
+\end{itemize} 
+Per ciascuna variante, la pipeline prima assegna una prova funzionale della coppia V-G su tutte le fonti, poi applica un algoritmo di punteggio per produrre punteggi V2G aggregati. 
+\subsection{Assigning Variants to Disease (V2D)}
+Open Targets Genetics prende in considerazione le associazioni variante-fenotipo riportate nel catalogo GWAS con p $\leq$ 1e-5. 
+(Attualmente i dati sono derivanti da campioni di origine prevalentemente europea). 
+\subsection{Prioritising causal genes at GWAS loci (L2G)}
+Ovvero la locus to gene, per cui si ha la prioritizzazione dei geni causali ai loci GWAS. Nonostante possa sembrare simile, è diversa da V2G, infatti usa un modello Machine Learning (si tratta di un addestramento di classificatore).\\
+Al fine di consentire un apprendimento automatico supervisionato dei geni causali sono stati curati manualmente una serie di geni, utilizzando una repository di geni gold standard aperta al contributo della comunità (di questa repository si ha un’alta confidenza della funzionalità del gene implicato).\\
+\textit{[i GSP sono i geni gold standard positivi, mentre gli altri sono definiti come GSN, ovvero geni gold negativi]}
+\section{Un esempio di utilizzo}
+
+
+\section{Possibili domande}
+
 \end{document}
