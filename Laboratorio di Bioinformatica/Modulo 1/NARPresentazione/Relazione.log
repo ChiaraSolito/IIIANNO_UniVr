@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.17)  8 JAN 2022 13:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.17)  8 JAN 2022 15:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -556,7 +556,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout6 = `Relazione.toc'.
 
  [1] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 161--164
+Underfull \hbox (badness 10000) in paragraph at lines 162--165
 
  []
 
@@ -566,107 +566,132 @@ File: bc-loupe.mps Graphic file (type mps)
 <figures/4-Study.png, id=35, 1270.7475pt x 288.07625pt>
 File: figures/4-Study.png Graphic file (type png)
 <use figures/4-Study.png>
-Package pdftex.def Info: figures/4-Study.png  used on input line 261.
-(pdftex.def)             Requested size: 484.20988pt x 109.76901pt.
-<figures/5-Study.png, id=37, 955.57pt x 490.83376pt>
+Package pdftex.def Info: figures/4-Study.png  used on input line 262.
+(pdftex.def)             Requested size: 411.58134pt x 93.30278pt.
+ [5]
+<figures/5-Study.png, id=41, 955.57pt x 490.83376pt>
 File: figures/5-Study.png Graphic file (type png)
 <use figures/5-Study.png>
-Package pdftex.def Info: figures/5-Study.png  used on input line 265.
-(pdftex.def)             Requested size: 484.20988pt x 248.71165pt.
- [5 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/4-Study.png>]
-<figures/6-Study.png, id=43, 1235.61626pt x 514.92375pt>
+Package pdftex.def Info: figures/5-Study.png  used on input line 266.
+(pdftex.def)             Requested size: 411.58134pt x 211.4064pt.
+<figures/6-Study.png, id=42, 1235.61626pt x 514.92375pt>
 File: figures/6-Study.png Graphic file (type png)
 <use figures/6-Study.png>
-Package pdftex.def Info: figures/6-Study.png  used on input line 269.
-(pdftex.def)             Requested size: 484.20988pt x 201.78587pt.
-<figures/7-Compare Studies.png, id=44, 1263.72125pt x 625.33624pt>
+Package pdftex.def Info: figures/6-Study.png  used on input line 270.
+(pdftex.def)             Requested size: 411.58134pt x 171.52034pt.
+<figures/7-Compare Studies.png, id=43, 1263.72125pt x 625.33624pt>
 File: figures/7-Compare Studies.png Graphic file (type png)
 <use figures/7-Compare Studies.png>
-Package pdftex.def Info: figures/7-Compare Studies.png  used on input line 275.
-(pdftex.def)             Requested size: 484.20988pt x 239.60541pt.
- [6 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/5-Study.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/6-Study.png>]
+Package pdftex.def Info: figures/7-Compare Studies.png  used on input line 276.
+(pdftex.def)             Requested size: 411.58134pt x 203.66125pt.
+ [6 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/4-Study.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/5-Study.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/6-Study.png>]
 <figures/8-Compare Studies.png, id=51, 1266.7325pt x 588.1975pt>
 File: figures/8-Compare Studies.png Graphic file (type png)
 <use figures/8-Compare Studies.png>
-Package pdftex.def Info: figures/8-Compare Studies.png  used on input line 280.
-(pdftex.def)             Requested size: 484.20988pt x 224.83672pt.
+Package pdftex.def Info: figures/8-Compare Studies.png  used on input line 281.
+(pdftex.def)             Requested size: 411.58134pt x 191.10806pt.
 File: bc-loupe.mps Graphic file (type mps)
  [MP to PDF] (/usr/share/texlive/texmf-dist/tex/latex/bclogo/bc-loupe.mps) [7 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/7-Compare Studies.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/8-Compare Studies.png>]
 <figures/9-Variante.png, id=57, 1280.785pt x 563.10374pt>
 File: figures/9-Variante.png Graphic file (type png)
 <use figures/9-Variante.png>
-Package pdftex.def Info: figures/9-Variante.png  used on input line 296.
-(pdftex.def)             Requested size: 484.20988pt x 212.88184pt.
+Package pdftex.def Info: figures/9-Variante.png  used on input line 297.
+(pdftex.def)             Requested size: 411.58134pt x 180.95299pt.
 <figures/10-Variante.png, id=58, 1284.8pt x 631.35875pt>
 File: figures/10-Variante.png Graphic file (type png)
 <use figures/10-Variante.png>
-Package pdftex.def Info: figures/10-Variante.png  used on input line 300.
-(pdftex.def)             Requested size: 484.20988pt x 237.9439pt.
+Package pdftex.def Info: figures/10-Variante.png  used on input line 301.
+(pdftex.def)             Requested size: 411.58134pt x 202.25087pt.
  [8 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/9-Variante.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/10-Variante.png>]
 <figures/11-Variante.png, id=64, 1200.485pt x 619.31375pt>
 File: figures/11-Variante.png Graphic file (type png)
 <use figures/11-Variante.png>
-Package pdftex.def Info: figures/11-Variante.png  used on input line 307.
-(pdftex.def)             Requested size: 484.20988pt x 249.79065pt.
+Package pdftex.def Info: figures/11-Variante.png  used on input line 308.
+(pdftex.def)             Requested size: 411.58134pt x 212.33102pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
 <figures/13-Variante.png, id=65, 1224.575pt x 560.0925pt>
 File: figures/13-Variante.png Graphic file (type png)
 <use figures/13-Variante.png>
-Package pdftex.def Info: figures/13-Variante.png  used on input line 311.
-(pdftex.def)             Requested size: 484.20988pt x 221.46059pt.
-[9 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/11-Variante.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/13-Variante.png>]
+Package pdftex.def Info: figures/13-Variante.png  used on input line 312.
+(pdftex.def)             Requested size: 411.58134pt x 188.24107pt.
 File: bc-loupe.mps Graphic file (type mps)
- [MP to PDF] (/usr/share/texlive/texmf-dist/tex/latex/bclogo/bc-loupe.mps)
+[MP to PDF] (/usr/share/texlive/texmf-dist/tex/latex/bclogo/bc-loupe.mps) [9 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/11-Variante.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/13-Variante.png>]
 <figures/1-Gene.png, id=71, 1232.605pt x 305.14pt>
 File: figures/1-Gene.png Graphic file (type png)
 <use figures/1-Gene.png>
-Package pdftex.def Info: figures/1-Gene.png  used on input line 327.
-(pdftex.def)             Requested size: 484.20988pt x 119.87013pt.
+Package pdftex.def Info: figures/1-Gene.png  used on input line 328.
+(pdftex.def)             Requested size: 411.58134pt x 101.88844pt.
 <figures/2-Gene.png, id=72, 1233.60875pt x 583.17876pt>
 File: figures/2-Gene.png Graphic file (type png)
 <use figures/2-Gene.png>
-Package pdftex.def Info: figures/2-Gene.png  used on input line 332.
-(pdftex.def)             Requested size: 484.20988pt x 228.90706pt.
- [10 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/1-Gene.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/2-Gene.png>]
-<figures/3-Gene.png, id=78, 1243.64626pt x 610.28pt>
+Package pdftex.def Info: figures/2-Gene.png  used on input line 333.
+(pdftex.def)             Requested size: 411.58134pt x 194.56744pt.
+<figures/3-Gene.png, id=73, 1243.64626pt x 610.28pt>
 File: figures/3-Gene.png Graphic file (type png)
 <use figures/3-Gene.png>
-Package pdftex.def Info: figures/3-Gene.png  used on input line 337.
-(pdftex.def)             Requested size: 484.20988pt x 237.60782pt.
+Package pdftex.def Info: figures/3-Gene.png  used on input line 338.
+(pdftex.def)             Requested size: 411.58134pt x 201.97037pt.
+ [10 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/1-Gene.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/2-Gene.png>]
 <figures/StudyLocus.png, id=79, 1237.62375pt x 294.09875pt>
 File: figures/StudyLocus.png Graphic file (type png)
 <use figures/StudyLocus.png>
-Package pdftex.def Info: figures/StudyLocus.png  used on input line 343.
-(pdftex.def)             Requested size: 484.20988pt x 115.06602pt.
+Package pdftex.def Info: figures/StudyLocus.png  used on input line 345.
+(pdftex.def)             Requested size: 411.58134pt x 97.8068pt.
 <figures/StudyLocus2.png, id=80, 1218.5525pt x 588.1975pt>
 File: figures/StudyLocus2.png Graphic file (type png)
 <use figures/StudyLocus2.png>
-Package pdftex.def Info: figures/StudyLocus2.png  used on input line 347.
-(pdftex.def)             Requested size: 484.20988pt x 233.7311pt.
- [11 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/3-Gene.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus.png>]
-<figures/StudyLocus3.png, id=86, 1205.50375pt x 444.66125pt>
+Package pdftex.def Info: figures/StudyLocus2.png  used on input line 349.
+(pdftex.def)             Requested size: 411.58134pt x 198.66515pt.
+ [11 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/3-Gene.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus2.png>]
+<figures/StudyLocus3.png, id=87, 1205.50375pt x 444.66125pt>
 File: figures/StudyLocus3.png Graphic file (type png)
 <use figures/StudyLocus3.png>
-Package pdftex.def Info: figures/StudyLocus3.png  used on input line 352.
-(pdftex.def)             Requested size: 484.20988pt x 178.6009pt.
- [12 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus2.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus3.png>] (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.aux) ) 
+Package pdftex.def Info: figures/StudyLocus3.png  used on input line 354.
+(pdftex.def)             Requested size: 411.58134pt x 151.81381pt.
+<figures/StudyLocus4.png, id=88, 1215.54124pt x 341.275pt>
+File: figures/StudyLocus4.png Graphic file (type png)
+<use figures/StudyLocus4.png>
+Package pdftex.def Info: figures/StudyLocus4.png  used on input line 359.
+(pdftex.def)             Requested size: 411.58134pt x 115.55287pt.
+<figures/StudyLocus5.png, id=89, 1207.51125pt x 582.175pt>
+File: figures/StudyLocus5.png Graphic file (type png)
+<use figures/StudyLocus5.png>
+Package pdftex.def Info: figures/StudyLocus5.png  used on input line 364.
+(pdftex.def)             Requested size: 411.58134pt x 198.43434pt.
+ [12 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus3.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus4.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus5.png>]
+<figures/StudyLocus6.png, id=97, 1197.47375pt x 536.0025pt>
+File: figures/StudyLocus6.png Graphic file (type png)
+<use figures/StudyLocus6.png>
+Package pdftex.def Info: figures/StudyLocus6.png  used on input line 370.
+(pdftex.def)             Requested size: 411.58134pt x 184.22586pt.
+<figures/16-LocusPlot.png, id=98, 1230.5975pt x 266.9975pt>
+File: figures/16-LocusPlot.png Graphic file (type png)
+<use figures/16-LocusPlot.png>
+Package pdftex.def Info: figures/16-LocusPlot.png  used on input line 375.
+(pdftex.def)             Requested size: 411.58134pt x 89.29906pt.
+<figures/17-LocusPlot.png, id=99, 1194.4625pt x 570.13pt>
+File: figures/17-LocusPlot.png Graphic file (type png)
+<use figures/17-LocusPlot.png>
+Package pdftex.def Info: figures/17-LocusPlot.png  used on input line 379.
+(pdftex.def)             Requested size: 411.58134pt x 196.45148pt.
+ [13 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus6.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/16-LocusPlot.png>] [14 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/17-LocusPlot.png>] (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.aux) ) 
 Here is how much of TeX's memory you used:
- 19403 strings out of 481239
- 427318 string characters out of 5920376
- 674432 words of memory out of 5000000
- 34314 multiletter control sequences out of 15000+600000
+ 19433 strings out of 481239
+ 428075 string characters out of 5920376
+ 674426 words of memory out of 5000000
+ 34339 multiletter control sequences out of 15000+600000
  544953 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,12n,87p,906b,1308s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on "/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.pdf" (13 pages, 1229196 bytes).
+Output written on "/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.pdf" (15 pages, 1467206 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 157 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 

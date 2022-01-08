@@ -83,8 +83,8 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Chiara Solito}
-\lhead{Dispense di Laboratorio di Bioinformatica}
+\rhead{Open Targets Genetics}
+\lhead{Relazione presentazione NAR}
 \rfoot{Pagina \thepage}
 \lfoot{Bioinformatica - A.A. 2021/22}
 \usetikzlibrary{trees}
@@ -120,7 +120,7 @@
             
     \end{center}
 \end{titlepage}
-La presente è una relazione riguardante la presentazione nell'ambito dei database trattati nell'issue di. Per il corso di \textbf{Laboratorio di Bioinformatica} del CdS in Bioinformatica (Università degli Studi di Verona). Per la stesura di questa dispensa si è fatta fede al materiale didattico fornito direttamente dal professore nell'Anno Accademico 2021/2022. Eventuali variazioni al programma successive al suddetto anno non saranno quindi incluse.\\
+La presente è una relazione riguardante la presentazione del database Open Targets Genetics. È stata scritta nell'ambito dei database trattati in \textit{Nucleic Acids Research, 2021, Vol. 49, Database issue D1-D9}, per il corso di \textbf{Laboratorio di Bioinformatica} del CdS in Bioinformatica (Università degli Studi di Verona), A.A. 2021/2022.\\
 Insieme a questo documento in formato PDF viene fornito anche il codice \LaTeX  con cui è stato generato.
 \tableofcontents
 \thispagestyle{empty}
@@ -137,10 +137,11 @@ Insieme a questo documento in formato PDF viene fornito anche il codice \LaTeX  
 \paragraph{P-Value}La probabilità, per un'ipotesi supposta vera (ipotesi nulla), di ottenere risultati ugualmetnte o meno compatibili, di quelli osservati durante i test, con la suddetta ipotesi.
 \paragraph{Tag Variants}Varianti rappresentative in una regione del genoma con un alto linkage disequilibrium.
 \paragraph{Linkage Disequilibrium}
-\paragraph{Fine Mapping}Dal momento che i risultati dei GWAS (che otteniamo) non sempre ci danno una sintesi completa delle statistiche, e avendo a disposizione solo le Variant Lead, dobbiamo apliare alle Variants Tag, in modo da avere un insieme più completo. Il fine mapping è uno dei metodi: è una tecnica dei GWAS per identificare la varianti genetiche che possono influenzare causalmente il tratto esaminato, in particolare cerca di determinare la variante genetica responsabile di ????
+\paragraph{Fine Mapping}Dal momento che i risultati dei GWAS non sempre ci danno una sintesi completa delle statistiche, e avendo a disposizione solo le Variant Lead, dobbiamo ampliare le informazioni con le Variants Tag, in modo da avere un insieme più completo.\\Il fine mapping è uno dei metodi con quei viene eseguita questa operazione: è una tecnica dei GWAS per identificare la varianti genetiche che possono influenzare causalmente il tratto esaminato, in particolare cerca di determinare la variante genetica responsabile di ????
 \paragraph{Single Evidence Score}
 \paragraph{Proxy}Un proxy è una misura indiretta del risultato desiderato che è esso stesso fortemente correlato a quel risultato. È comunemente usato quando le misure dirette del risultato non sono osservabili e/o non disponibili.
-
+\paragraph{Credible Sets}\textit{Set Credibili}\\sono l'insieme più piccolo di varianti, selezionate in modo tale che la loro stima di copertura rettificata soddisfi la copertura del target. Ad esempio: in letteratura, gli autori in genere riferiscono di aver trovato un insieme credibile al 90\% di cui sono fiduciosi almeno al 90\% contenga la vera variante causale.
+\paragraph{PP - Posterior Probability}\textit{Probabilità a posteriori}\\In statistica bayesiana, la probabilità a posteriori di un evento aleatorio o di una proposizione incerta, è la probabilità condizionata che è assegnata dopo che si è tenuto conto dell'informazione rilevante o degli antefatti relativi a tale evento aleatorio o a tale proposizione incerta. Similmente, la distribuzione di probabilità a posteriori è la distribuzione di una quantità incognita, trattata come una variabile casuale, condizionata sull'informazione posta in evidenza da un esperimento o da un processo di raccolta di informazione rilevanti (es. un'ispezione, un'indagine conoscitiva, ecc.).
 \section{Open Targets Genetics}
 \subsection{Cos'è Open Target Genetics?}
 Open Target Genetics è l'ultima \textit{release} della piattaforma Open Targets: una \textit{partnership} tra pubblico e privato che utilizza i dati genetici e genomici umani per l'identificazione sistematica e la prioritizzazione dei bersagli farmacologici.\\
@@ -258,26 +259,26 @@ Si basa su dati di mappatura fine e collocalizzazione:
 \end{box4}
 La prima cosa che visualizziamo sono le informazioni generali relative allo studio (il \textit{\textbf{summary}}), come l'ID di PUBMED, il numero di casi studiati, la grandezza dello studio ecc.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/4-Study.png}
+    \includegraphics[width=0.85\textwidth]{figures/4-Study.png}
 \end{center}
 Subito dopo troviamo il primo plot: i loci associati indipendentemente sono riportati in un Manhattan plot semplificato. Sull'asse delle x vengono riportati i cromosomi, sull'asse delle y invece il p-value (in logaritmo).
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/5-Study.png}
+    \includegraphics[width=0.85\textwidth]{figures/5-Study.png}
 \end{center}
 I dettagli completi di ogni locus sono riassunti nella tabella sotto il Manhattan plot. Il gene con il punteggio più alto è definito come il gene con il maggior peso di prove funzionali tra tutte le fonti e i tipi di cellule che lo collegano al locus specificato direttamente o tramite una Variant Tag. 
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/6-Study.png}
+    \includegraphics[width=0.85\textwidth]{figures/6-Study.png}
 \end{center}
 \subsubsection{Compare Studies}
 Dalla pagina Studio, è possibile confrontare rapidamente più studi per identificare segnali sovrapposti: \textbf{Compare Overlapping Studies}.\\
 Il primo studio verrà caricato nella vista di confronto come root, con i loci riportati a significatività dell'intero genoma, plottati in base alla posizione. Solo gli studi con almeno un locus sovrapposto verranno visualizzati come opzione di confronto. Gli studi nel menù a tendina sono ordinati in maniera decrescente in base al numero di sovrapposizioni con la radice caricata.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/7-Compare Studies.png}
+    \includegraphics[width=0.85\textwidth]{figures/7-Compare Studies.png}
 \end{center}
 Quando viene caricato più di uno studio (come in questo caso), loci intersecanti di tutti gli studi caricati vengono visualizzati in rosso sia sulla barra di intersezione nella parte superiore della vista, sia all'interno di ogni studio. I loci all'interno di ogni studio che si sovrappongono allo studio radice vengono visualizzati in nero. I loci non sovrapposti sono tracciati in grigio.\\
 Sotto la visualizzazione del grafico, ogni locus sovrapposto in tutti gli studi caricati è riassunto in una tabella.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/8-Compare Studies.png}
+    \includegraphics[width=0.85\textwidth]{figures/8-Compare Studies.png}
 \end{center}
 I geni con il punteggio più alto visualizzati sono i geni principali implicati direttamente dalla Lead Variant mostrata e non tengono conto dei geni assegnati a nessuna Tag Variant della Lead. Potrebbe quindi esserci un elemento di mancata corrispondenza tra il gene mostrato qui e il gene funzionale previsto nel locus.
 \subsection{Variant}
@@ -293,22 +294,22 @@ I geni con il punteggio più alto visualizzati sono i geni principali implicati 
 \end{box4}
 Anche in questo caso per prima cosa vedremo le informazioni generali riguardo alla variante, che essa sia Lead o Tag le informazioni variano molto poco.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/9-Variante.png}
+    \includegraphics[width=0.85\textwidth]{figures/9-Variante.png}
 \end{center}
 Subito sotto troviamo la tabella \textbf{Assigned Genes}, che riassume l'entità delle prove con cui la variante interrogata implica vari geni. 
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/10-Variante.png}
+    \includegraphics[width=0.85\textwidth]{figures/10-Variante.png}
 \end{center}
 La visualizzazione predefinita riepiloga le prove combinate per ciascun gene per ciascuna origine dati funzionale, compresse tra i tipi di cellule all'interno dell'origine dati. Il G2V complessivo è una rappresentazione di questa ponderazione combinata delle prove per ciascun gene. 
 La presenza di un \textbf{pallino} nella tabella indica che vi sono prove dalla data fonte di dati che collegano il gene alla variante interrogata, in almeno un tipo di cellula.
 Per visualizzare le prove specifiche del tessuto all'interno di un'origine dati, selezionare l'origine dati dalle schede visibili nella parte superiore del widget della tabella. Verrà aperta una vista equivalente segregata per tipo di cella anziché per origine dati, come sopra per le prove eQTL. Se l'evidenza dell'origine dati in esame può essere interpretata in modo direzionale, i proiettili verranno colorati in base alla direzione dell'effetto.\\
 Subito sotto troviamo la sezione che presenta gli studi che collegano, con la variante in esame, determinati \textbf{PheWAS}. 
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/11-Variante.png}
+    \includegraphics[width=0.85\textwidth]{figures/11-Variante.png}
 \end{center}
 I risultati di PheWAS per la variante selezionata in tutti i fenotipi della BioBank del Regno Unito, vengono visualizzati come un grafico PheWAS segregato per raggruppamento di fenotipi di alto livello e dettagliato in una tabella sottostante.\\
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/13-Variante.png}
+    \includegraphics[width=0.85\textwidth]{figures/13-Variante.png}
 \end{center}
 La direzione della freccia corrisponde alla direzione dell'effetto beta e i punti sono colorati in base al loro fenotipo ampio.
 Infine, vengono visualizzate due tabelle dedicate all'architettura genetica del locus a cui appartiene la variante di interesse - 'GWAS Lead Variants' e 'Tag Variants'. Il primo mostra tutte le varianti di lead GWAS (dal catalogo GWAS o dalla biobanca britannica) a cui la variante interrogata è stata assegnata come proxy (tag) in base a LD o fine-mapping. Se la variante interrogata è essa stessa una variante lead GWAS, la seconda tabella mostra tutte le varianti che le sono state assegnate come proxy. Questa tabella non verrà visualizzata se la variante interrogata non è una variante lead.
@@ -324,35 +325,71 @@ Infine, vengono visualizzate due tabelle dedicate all'architettura genetica del 
 \end{box4}
 La ricerca porta alle principali informazioni sul gene e collega a vari link sulla piattaforma Open Targets Platform:
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/1-Gene.png}
+    \includegraphics[width=0.85\textwidth]{figures/1-Gene.png}
 \end{center}
 accanto ci sono altri link. E sopra il link per collegarsi al Locus Plot, che vedremo in seguito.
 Subito sotto troviamo la sezione \textbf{Associated studies}, tratta dalla \textit{locus-to-gene pipeline}.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/2-Gene.png}
+    \includegraphics[width=0.85\textwidth]{figures/2-Gene.png}
 \end{center}
 La tabella associa gli studi e i fenotipi, da UKB, che sono associati con il gene di cui stiamo visualizzando la pagina. Un gene è connesso a un tratto nei casi in cui il gene è stato funzionalmente assegnato a un locus associato a questo tratto, tramite la Variant Lead o tramite una proxy Variant Tag assegnato. Accanto ci riporta al link \textbf{Gene Priorisation}, che vedremo in seguito.\\
-Subito dopo abbiamo altri Studi associati, ma questa volta tramite la \textit{\textbf{Colocalisation analysis}}, che risponde alla domanda: quali studi hanno evidenze di colocalizazione con qtl molecolari per il gene in questione?
+Subito dopo abbiamo altri Studi associati, ma questa volta tramite la \textit{\textbf{colocalisation analysis}}, che risponde alla domanda: quali studi hanno evidenze di colocalizazione con qtl molecolari per il gene in questione?
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/3-Gene.png}
+    \includegraphics[width=0.85\textwidth]{figures/3-Gene.png}
 \end{center}
 \subsubsection{Gene Priorisation}
-Pagina dello Study-Locus a cui si può accedere da Gene e da Studio. Qui si investiga una specifica Lead Variant e un GWAS study.\\
-Dapprima abbiamo la informazioni di base:  ad esempio tramite l’odds ratio capiamo se l’allele alternativo è associato ad un alto o basso rischio della malattia su cui si concentra lo studio.Tutte le dimensioni degli effetti sono in relazione all’allele alternativo, che è l’allele riportato ultimo nell’ID della variante.
+In questa pagina stiamo studiando la malattia selezionata, nel locus suscettibile, possiamo ad esempio capire se l'allele alternativo è protettivo oppure no.
+Questa pagina è chiamata "Study-Locus" e vi si può accedere da Gene e da Studio. Qui si investiga una specifica Lead Variant e un GWAS study.\\
+Dapprima abbiamo la informazioni di base: ad esempio tramite l’odds ratio capiamo se l’allele alternativo è associato ad un alto o basso rischio della malattia su cui si concentra lo studio.Tutte le dimensioni degli effetti sono in relazione all’allele alternativo, che è l’allele riportato ultimo nell’ID della variante.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/StudyLocus.png}
+    \includegraphics[width=0.85\textwidth]{figures/StudyLocus.png}
 \end{center}
 Subito sotto una tabella riporta i geni prioritizzati tramite la \textbf{Locus To Gene Pipeline}.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/StudyLocus2.png}
+    \includegraphics[width=0.85\textwidth]{figures/StudyLocus2.png}
 \end{center}
 Questi sono ordinati tramite lo score assegnato appunto dalla pipeline, riportando anche tutte le features usate per fare il training del modello che ha effettuato la prioritizzazione (quindi distanza, colocalizzazione dei QTL, ecc.). Alla luce dei dati troviamo anche la risposta alla domanda: \textbf{“L’assegnamento del gene è supportato da evidenze di colocalizzazione?”}
-Subito dopo visualizziamo sempre informazioni riguardanti la prioritizzazione dei geni, ma ottenute tramite la Colocalisation Analysis Pipeline: la colocalizzazione dei geni principali, ottenuti mediante la L2G pipeline, in diversi tessuti è mostrata in una heatmap e in una tabella.
+Subito dopo visualizziamo sempre informazioni riguardanti la prioritizzazione dei geni, ma ottenute tramite la colocalisation Analysis Pipeline: la colocalizzazione dei geni principali, ottenuti mediante la L2G pipeline, in diversi tessuti è mostrata in una heatmap e in una tabella.
 \begin{center}
-    \includegraphics[width=1\textwidth]{figures/StudyLocus3.png}
+    \includegraphics[width=0.85\textwidth]{figures/StudyLocus3.png}
 \end{center}
-Nella tabella la QTL beta è per la variante che stiamo visualizzando, più che per tutte quelle riportate. Questo permette di comparare la direzione degli effetti nei diversi tessuti o geni nei tessuti, così da poter rimanere consistenti attraverso tutti gli studi.
+Nella tabella la QTL beta è per la variante che stiamo visualizzando, più che per tutte quelle riportate. Questo permette di comparare la direzione degli effetti nei diversi tessuti o geni nei tessuti, così da poter rimanere consistenti attraverso tutti gli studi.\\
+Sotto, la tabella \textbf{GWAS Study Colocalisation}, mostra la colocalizzazione tratto-incrociata. Lo "Study beta" è sempre per la variante all'inizio della pagina. 
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/StudyLocus4.png}
+\end{center}
+La sezione finale fornisce l'insieme delle probabili varianti causali (set credibili) a questo
+locus: \textbf{Credible Set Overlap} mostra il fine mapping dei set credibili attraverso più studi. Il primo è lo studio analizzato nella pagina:
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/StudyLocus5.png}
+\end{center}
+Sono evidenziati le varianti che rientrano nel set credibile al 95\% o con una probabilità a posteriori maggiore dello 0.1\%. \\
+Le freccette in basso accanto agli studi consentono agli utenti di visualizzare un grafico regionale di base per le consultare le statistiche di riepilogo. Vengono visualizzate anche le tracce per gli studi che colocalizzano: se due o più studi colocalizzano, è più probabile che condividano una variante causale, quindi confrontando i set credibili per gli studi di colocalizzazione, potremmo essere in grado di perfezionarli.
+Selezionando più tracce, nella tabella sotto l'elenco degli studi, si possono visualizzare le intersezioni di varianti nei set credibili.
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/StudyLocus6.png}
+\end{center}
+\subsection{Locus Plot}
+L'ultima sezione è una delle più interessanti, si tratta del Locus Plot:  accessibile da tutte e 4 le query (Study, Variant Lead, Variant Tag e Gene) e riporta, se si accede da una variante, se è in visualizzazione Lead o Tag.
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/16-LocusPlot.png}
+\end{center}
+È progettato per riassumere efficacemente la complessità dei collegamenti tra numerosi geni (bersagli), tratti e lead variants. Il Locus Plot utilizza un browser track-style per visualizzare un locus che può essere centrato su un gene, una variante o un tratto di interesse (ognuno noto come entità). Tratti di collegamento, varianti e geni sono stringhe di prova che indicano un'associazione o un collegamento funzionale tra le entità.
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/17-LocusPlot.png}
+\end{center}
 
 \section{Possibili domande}
-Se più di un gene viene valutato allo stesso modo in questo locus, vengono visualizzati tutti i geni con il punteggio massimo. Se lo studio selezionato dispone di statistiche complete disponibili, la dimensione del set credibile per ciascun locus viene visualizzata accanto al numero di Variant Tag.
+\paragraph{Qual è la differenza tra GWAS e PheWAS?}
+\paragraph{Come sono definiti gli Overlap nella pagina del Compare Studies?}
+\paragraph{Come si legge il Manhattan Plot?}
+\paragraph{Come si legge il Plot dei PheWAS?}
+\paragraph{A che serve Gene Priorisation?}
+\paragraph{Quali sono le "tecnologie recenti" menzionate nell'approccio innovativo di OTG?}
+Partendo dai GWAS e dai più recenti dati di trascrittomica e proteomica, che appartengono alla BioBank, e quindi dai database più recenti e aggiornati (su cui si appoggia OTG rimanendo costantemente aggiornato), fino ad arrivare alle pipeline usate (di cui parleremo brevemente in seguito perché molto tecniche ed esulano dal portale in sé per sé su cui ci siamo concentrate)
+\paragraph{Come viene creata l’informazione contenuta nel database?}
+Tutte le pipeline sono interne ad OTG, non sono esterne, ma proprie del databse.
+\paragraph{Di che tipo sono i campioni contenuti nel database?}
+OTG si basa principalmente su campioni europei, basandosi sulla UK BioBank. Non è stata trovata al momento una fonte di campioni differenti, che mantenga la stessa qualità, ma la piattaforma sta lavorando per ampliare i campioni e cercarne una adeguata.
+%Se più di un gene viene valutato allo stesso modo in questo locus, vengono visualizzati tutti i geni con il punteggio massimo. Se lo studio selezionato dispone di statistiche complete disponibili, la dimensione del set credibile per ciascun locus viene visualizzata accanto al numero di Variant Tag.
 \end{document}
