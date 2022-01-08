@@ -28,6 +28,11 @@
 \definecolor{boxBackground3}{HTML}{ffe6e6}
 \definecolor{boxFrame3}{HTML}{ffb399}
 
+\definecolor{boxTitle4}{HTML}{d7d7c1}
+\definecolor{boxBackground4}{HTML}{ebebe0}
+\definecolor{boxFrame4}{HTML}{c3c3a2}
+
+
 \tcbset{box1/.style={
     enhanced, fonttitle=\bfseries,
     colback=boxBackground, colframe=boxFrame,
@@ -57,6 +62,24 @@
   }
 }
 \newtcolorbox{box3}[1][]{box3, #1}
+
+\tcbset{box4/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground4, colframe=boxFrame4,
+    coltitle=black, colbacktitle=boxTitle4,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2},
+    boxed title style={
+      before upper=\hspace*{0.5cm}, % reserve space for the image
+      overlay={
+       \node at ([xshift=0.1cm]frame.west)
+         {\includegraphics[scale=0.65]{bc-loupe}};
+      }
+    }
+  }
+}
+
+\newtcolorbox{box4}[1][]{box4, #1}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -214,11 +237,122 @@ Open Targets Genetics prende in considerazione le associazioni variante-fenotipo
 (Attualmente i dati sono derivanti da campioni di origine prevalentemente europea). 
 \subsection{Prioritising causal genes at GWAS loci (L2G)}
 Ovvero la locus to gene, per cui si ha la prioritizzazione dei geni causali ai loci GWAS. Nonostante possa sembrare simile, è diversa da V2G, infatti usa un modello Machine Learning (si tratta di un addestramento di classificatore).\\
-Al fine di consentire un apprendimento automatico supervisionato dei geni causali sono stati curati manualmente una serie di geni, utilizzando una repository di geni gold standard aperta al contributo della comunità (di questa repository si ha un’alta confidenza della funzionalità del gene implicato).\\
+Al fine di consentire un apprendimento automatico supervisionato dei geni causali sono stati curati manualmente una serie di geni, utilizzando una repository di geni gold standard aperta al contributo della comunità (di questa repository si ha un'alta confidenza della funzionalità del gene implicato).\\
 \textit{[i GSP sono i geni gold standard positivi, mentre gli altri sono definiti come GSN, ovvero geni gold negativi]}
+Si basa su dati di mappatura fine e collocalizzazione:
+\begin{itemize}
+    \item COLOCALISATION ANALYSIS: se due tratti condividono una variante causale (sono colocalizzati) ciò aumenta l'evidenza che condividano anche un meccanismo causale. 
+    \item Approccio di gene-prioritisation malattia-specifico 
+    \item Un modello L2G produce un punteggio, compreso tra 0 e 1, che riflette la frazione approssimativa di geni GSP tra tutti i geni vicini a una determinata soglia: i geni con un punteggio L2G di 0,5 hanno una probabilità del 50\% di essere il gene causale nel locus. Tenere presente che il modello L2G è addestrato per identificare i geni GSP e quindi funzionerà bene per i loci molto simili al nostro set di geni GSP, quindi non bisogna limitarsi a tale punteggio che potrebbe essere sbilanciato per certi versi, ma prendere in considerazione anche interazioni QTL e cromatina.  
+\end{itemize}
 \section{Un esempio di utilizzo}
-
+\subsection{Study}
+\begin{box4}
+    [title={\textbf{Ricerca per Studio}}]
+    {Iniziamo la ricerca a partire dallo studio per:
+    \begin{itemize}
+        \item Visualizzare i loci associati a un tratto nello studio selezionato
+        \item Identificare i geni prioritari implicati funzionalmente da ciascun locus
+        \item Visualizzare il 95\% di set credibili (se disponibili) e proxy in ogni locus
+    \end{itemize}}
+\end{box4}
+La prima cosa che visualizziamo sono le informazioni generali relative allo studio (il \textit{\textbf{summary}}), come l'ID di PUBMED, il numero di casi studiati, la grandezza dello studio ecc.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/4-Study.png}
+\end{center}
+Subito dopo troviamo il primo plot: i loci associati indipendentemente sono riportati in un Manhattan plot semplificato. Sull'asse delle x vengono riportati i cromosomi, sull'asse delle y invece il p-value (in logaritmo).
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/5-Study.png}
+\end{center}
+I dettagli completi di ogni locus sono riassunti nella tabella sotto il Manhattan plot. Il gene con il punteggio più alto è definito come il gene con il maggior peso di prove funzionali tra tutte le fonti e i tipi di cellule che lo collegano al locus specificato direttamente o tramite una Variant Tag. 
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/6-Study.png}
+\end{center}
+\subsubsection{Compare Studies}
+Dalla pagina Studio, è possibile confrontare rapidamente più studi per identificare segnali sovrapposti: \textbf{Compare Overlapping Studies}.\\
+Il primo studio verrà caricato nella vista di confronto come root, con i loci riportati a significatività dell'intero genoma, plottati in base alla posizione. Solo gli studi con almeno un locus sovrapposto verranno visualizzati come opzione di confronto. Gli studi nel menù a tendina sono ordinati in maniera decrescente in base al numero di sovrapposizioni con la radice caricata.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/7-Compare Studies.png}
+\end{center}
+Quando viene caricato più di uno studio (come in questo caso), loci intersecanti di tutti gli studi caricati vengono visualizzati in rosso sia sulla barra di intersezione nella parte superiore della vista, sia all'interno di ogni studio. I loci all'interno di ogni studio che si sovrappongono allo studio radice vengono visualizzati in nero. I loci non sovrapposti sono tracciati in grigio.\\
+Sotto la visualizzazione del grafico, ogni locus sovrapposto in tutti gli studi caricati è riassunto in una tabella.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/8-Compare Studies.png}
+\end{center}
+I geni con il punteggio più alto visualizzati sono i geni principali implicati direttamente dalla Lead Variant mostrata e non tengono conto dei geni assegnati a nessuna Tag Variant della Lead. Potrebbe quindi esserci un elemento di mancata corrispondenza tra il gene mostrato qui e il gene funzionale previsto nel locus.
+\subsection{Variant}
+\begin{box4}
+    [title={\textbf{Ricerca per Variante}}]
+    {Iniziamo la ricerca a partire dalla variante per:
+    \begin{itemize}
+        \item Identificare un elenco classificato di geni funzionalmente implicati dalla variante
+        \item Visualizzare e analizzare i dati funzionali mediante i quali i geni sono assegnati a questa variante
+        \item Visualizzare i risultati PheWAS per la variante nella biobanca britannica
+        \item Visualizzare la struttura del collegamento intorno alla variante
+    \end{itemize}}
+\end{box4}
+Anche in questo caso per prima cosa vedremo le informazioni generali riguardo alla variante, che essa sia Lead o Tag le informazioni variano molto poco.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/9-Variante.png}
+\end{center}
+Subito sotto troviamo la tabella \textbf{Assigned Genes}, che riassume l'entità delle prove con cui la variante interrogata implica vari geni. 
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/10-Variante.png}
+\end{center}
+La visualizzazione predefinita riepiloga le prove combinate per ciascun gene per ciascuna origine dati funzionale, compresse tra i tipi di cellule all'interno dell'origine dati. Il G2V complessivo è una rappresentazione di questa ponderazione combinata delle prove per ciascun gene. 
+La presenza di un \textbf{pallino} nella tabella indica che vi sono prove dalla data fonte di dati che collegano il gene alla variante interrogata, in almeno un tipo di cellula.
+Per visualizzare le prove specifiche del tessuto all'interno di un'origine dati, selezionare l'origine dati dalle schede visibili nella parte superiore del widget della tabella. Verrà aperta una vista equivalente segregata per tipo di cella anziché per origine dati, come sopra per le prove eQTL. Se l'evidenza dell'origine dati in esame può essere interpretata in modo direzionale, i proiettili verranno colorati in base alla direzione dell'effetto.\\
+Subito sotto troviamo la sezione che presenta gli studi che collegano, con la variante in esame, determinati \textbf{PheWAS}. 
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/11-Variante.png}
+\end{center}
+I risultati di PheWAS per la variante selezionata in tutti i fenotipi della BioBank del Regno Unito, vengono visualizzati come un grafico PheWAS segregato per raggruppamento di fenotipi di alto livello e dettagliato in una tabella sottostante.\\
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/13-Variante.png}
+\end{center}
+La direzione della freccia corrisponde alla direzione dell'effetto beta e i punti sono colorati in base al loro fenotipo ampio.
+Infine, vengono visualizzate due tabelle dedicate all'architettura genetica del locus a cui appartiene la variante di interesse - 'GWAS Lead Variants' e 'Tag Variants'. Il primo mostra tutte le varianti di lead GWAS (dal catalogo GWAS o dalla biobanca britannica) a cui la variante interrogata è stata assegnata come proxy (tag) in base a LD o fine-mapping. Se la variante interrogata è essa stessa una variante lead GWAS, la seconda tabella mostra tutte le varianti che le sono state assegnate come proxy. Questa tabella non verrà visualizzata se la variante interrogata non è una variante lead.
+\subsection{Gene}
+\begin{box4}
+    [title={\textbf{Ricerca per Gene}}]
+    {Iniziamo la ricerca a partire dal gene per:
+    \begin{itemize}
+        \item Identificare i loci che implicano funzionalmente un gene
+        \item Collegarti a informazioni dettagliate sul gene e sui farmaci che lo prendono di mira
+        \item Identificare in quali tratti questo gene può svolgere un ruolo, in base alle varianti a cui è assegnato
+    \end{itemize}}
+\end{box4}
+La ricerca porta alle principali informazioni sul gene e collega a vari link sulla piattaforma Open Targets Platform:
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/1-Gene.png}
+\end{center}
+accanto ci sono altri link. E sopra il link per collegarsi al Locus Plot, che vedremo in seguito.
+Subito sotto troviamo la sezione \textbf{Associated studies}, tratta dalla \textit{locus-to-gene pipeline}.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/2-Gene.png}
+\end{center}
+La tabella associa gli studi e i fenotipi, da UKB, che sono associati con il gene di cui stiamo visualizzando la pagina. Un gene è connesso a un tratto nei casi in cui il gene è stato funzionalmente assegnato a un locus associato a questo tratto, tramite la Variant Lead o tramite una proxy Variant Tag assegnato. Accanto ci riporta al link \textbf{Gene Priorisation}, che vedremo in seguito.\\
+Subito dopo abbiamo altri Studi associati, ma questa volta tramite la \textit{\textbf{Colocalisation analysis}}, che risponde alla domanda: quali studi hanno evidenze di colocalizazione con qtl molecolari per il gene in questione?
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/3-Gene.png}
+\end{center}
+\subsubsection{Gene Priorisation}
+Pagina dello Study-Locus a cui si può accedere da Gene e da Studio. Qui si investiga una specifica Lead Variant e un GWAS study.\\
+Dapprima abbiamo la informazioni di base:  ad esempio tramite l’odds ratio capiamo se l’allele alternativo è associato ad un alto o basso rischio della malattia su cui si concentra lo studio.Tutte le dimensioni degli effetti sono in relazione all’allele alternativo, che è l’allele riportato ultimo nell’ID della variante.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/StudyLocus.png}
+\end{center}
+Subito sotto una tabella riporta i geni prioritizzati tramite la \textbf{Locus To Gene Pipeline}.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/StudyLocus2.png}
+\end{center}
+Questi sono ordinati tramite lo score assegnato appunto dalla pipeline, riportando anche tutte le features usate per fare il training del modello che ha effettuato la prioritizzazione (quindi distanza, colocalizzazione dei QTL, ecc.). Alla luce dei dati troviamo anche la risposta alla domanda: \textbf{“L’assegnamento del gene è supportato da evidenze di colocalizzazione?”}
+Subito dopo visualizziamo sempre informazioni riguardanti la prioritizzazione dei geni, ma ottenute tramite la Colocalisation Analysis Pipeline: la colocalizzazione dei geni principali, ottenuti mediante la L2G pipeline, in diversi tessuti è mostrata in una heatmap e in una tabella.
+\begin{center}
+    \includegraphics[width=1\textwidth]{figures/StudyLocus3.png}
+\end{center}
+Nella tabella la QTL beta è per la variante che stiamo visualizzando, più che per tutte quelle riportate. Questo permette di comparare la direzione degli effetti nei diversi tessuti o geni nei tessuti, così da poter rimanere consistenti attraverso tutti gli studi.
 
 \section{Possibili domande}
-
+Se più di un gene viene valutato allo stesso modo in questo locus, vengono visualizzati tutti i geni con il punteggio massimo. Se lo studio selezionato dispone di statistiche complete disponibili, la dimensione del set credibile per ciascun locus viene visualizzata accanto al numero di Variant Tag.
 \end{document}

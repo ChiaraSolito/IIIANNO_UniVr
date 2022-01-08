@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.17)  7 JAN 2022 17:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.17)  8 JAN 2022 13:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -474,20 +474,20 @@ File: tikzlibrarytrees.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ) (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.aux)
 \openout1 = `Relazione.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count300
@@ -546,9 +546,9 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 71.
+(Font)              <7> on input line 94.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 71.
+(Font)              <5> on input line 94.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.toc)
@@ -556,24 +556,117 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout6 = `Relazione.toc'.
 
  [1] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 138--141
+Underfull \hbox (badness 10000) in paragraph at lines 161--164
 
  []
 
-[3] [4] [5] (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.aux) ) 
+[3] [4]
+File: bc-loupe.mps Graphic file (type mps)
+ [MP to PDF] (/usr/share/texlive/texmf-dist/tex/latex/bclogo/bc-loupe.mps)
+<figures/4-Study.png, id=35, 1270.7475pt x 288.07625pt>
+File: figures/4-Study.png Graphic file (type png)
+<use figures/4-Study.png>
+Package pdftex.def Info: figures/4-Study.png  used on input line 261.
+(pdftex.def)             Requested size: 484.20988pt x 109.76901pt.
+<figures/5-Study.png, id=37, 955.57pt x 490.83376pt>
+File: figures/5-Study.png Graphic file (type png)
+<use figures/5-Study.png>
+Package pdftex.def Info: figures/5-Study.png  used on input line 265.
+(pdftex.def)             Requested size: 484.20988pt x 248.71165pt.
+ [5 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/4-Study.png>]
+<figures/6-Study.png, id=43, 1235.61626pt x 514.92375pt>
+File: figures/6-Study.png Graphic file (type png)
+<use figures/6-Study.png>
+Package pdftex.def Info: figures/6-Study.png  used on input line 269.
+(pdftex.def)             Requested size: 484.20988pt x 201.78587pt.
+<figures/7-Compare Studies.png, id=44, 1263.72125pt x 625.33624pt>
+File: figures/7-Compare Studies.png Graphic file (type png)
+<use figures/7-Compare Studies.png>
+Package pdftex.def Info: figures/7-Compare Studies.png  used on input line 275.
+(pdftex.def)             Requested size: 484.20988pt x 239.60541pt.
+ [6 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/5-Study.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/6-Study.png>]
+<figures/8-Compare Studies.png, id=51, 1266.7325pt x 588.1975pt>
+File: figures/8-Compare Studies.png Graphic file (type png)
+<use figures/8-Compare Studies.png>
+Package pdftex.def Info: figures/8-Compare Studies.png  used on input line 280.
+(pdftex.def)             Requested size: 484.20988pt x 224.83672pt.
+File: bc-loupe.mps Graphic file (type mps)
+ [MP to PDF] (/usr/share/texlive/texmf-dist/tex/latex/bclogo/bc-loupe.mps) [7 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/7-Compare Studies.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/8-Compare Studies.png>]
+<figures/9-Variante.png, id=57, 1280.785pt x 563.10374pt>
+File: figures/9-Variante.png Graphic file (type png)
+<use figures/9-Variante.png>
+Package pdftex.def Info: figures/9-Variante.png  used on input line 296.
+(pdftex.def)             Requested size: 484.20988pt x 212.88184pt.
+<figures/10-Variante.png, id=58, 1284.8pt x 631.35875pt>
+File: figures/10-Variante.png Graphic file (type png)
+<use figures/10-Variante.png>
+Package pdftex.def Info: figures/10-Variante.png  used on input line 300.
+(pdftex.def)             Requested size: 484.20988pt x 237.9439pt.
+ [8 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/9-Variante.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/10-Variante.png>]
+<figures/11-Variante.png, id=64, 1200.485pt x 619.31375pt>
+File: figures/11-Variante.png Graphic file (type png)
+<use figures/11-Variante.png>
+Package pdftex.def Info: figures/11-Variante.png  used on input line 307.
+(pdftex.def)             Requested size: 484.20988pt x 249.79065pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
+
+ []
+
+<figures/13-Variante.png, id=65, 1224.575pt x 560.0925pt>
+File: figures/13-Variante.png Graphic file (type png)
+<use figures/13-Variante.png>
+Package pdftex.def Info: figures/13-Variante.png  used on input line 311.
+(pdftex.def)             Requested size: 484.20988pt x 221.46059pt.
+[9 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/11-Variante.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/13-Variante.png>]
+File: bc-loupe.mps Graphic file (type mps)
+ [MP to PDF] (/usr/share/texlive/texmf-dist/tex/latex/bclogo/bc-loupe.mps)
+<figures/1-Gene.png, id=71, 1232.605pt x 305.14pt>
+File: figures/1-Gene.png Graphic file (type png)
+<use figures/1-Gene.png>
+Package pdftex.def Info: figures/1-Gene.png  used on input line 327.
+(pdftex.def)             Requested size: 484.20988pt x 119.87013pt.
+<figures/2-Gene.png, id=72, 1233.60875pt x 583.17876pt>
+File: figures/2-Gene.png Graphic file (type png)
+<use figures/2-Gene.png>
+Package pdftex.def Info: figures/2-Gene.png  used on input line 332.
+(pdftex.def)             Requested size: 484.20988pt x 228.90706pt.
+ [10 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/1-Gene.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/2-Gene.png>]
+<figures/3-Gene.png, id=78, 1243.64626pt x 610.28pt>
+File: figures/3-Gene.png Graphic file (type png)
+<use figures/3-Gene.png>
+Package pdftex.def Info: figures/3-Gene.png  used on input line 337.
+(pdftex.def)             Requested size: 484.20988pt x 237.60782pt.
+<figures/StudyLocus.png, id=79, 1237.62375pt x 294.09875pt>
+File: figures/StudyLocus.png Graphic file (type png)
+<use figures/StudyLocus.png>
+Package pdftex.def Info: figures/StudyLocus.png  used on input line 343.
+(pdftex.def)             Requested size: 484.20988pt x 115.06602pt.
+<figures/StudyLocus2.png, id=80, 1218.5525pt x 588.1975pt>
+File: figures/StudyLocus2.png Graphic file (type png)
+<use figures/StudyLocus2.png>
+Package pdftex.def Info: figures/StudyLocus2.png  used on input line 347.
+(pdftex.def)             Requested size: 484.20988pt x 233.7311pt.
+ [11 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/3-Gene.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus.png>]
+<figures/StudyLocus3.png, id=86, 1205.50375pt x 444.66125pt>
+File: figures/StudyLocus3.png Graphic file (type png)
+<use figures/StudyLocus3.png>
+Package pdftex.def Info: figures/StudyLocus3.png  used on input line 352.
+(pdftex.def)             Requested size: 484.20988pt x 178.6009pt.
+ [12 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus2.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/figures/StudyLocus3.png>] (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.aux) ) 
 Here is how much of TeX's memory you used:
- 19211 strings out of 481239
- 423867 string characters out of 5920376
- 673502 words of memory out of 5000000
- 34149 multiletter control sequences out of 15000+600000
- 544252 words of font info for 46 fonts, out of 8000000 for 9000
+ 19403 strings out of 481239
+ 427318 string characters out of 5920376
+ 674432 words of memory out of 5000000
+ 34314 multiletter control sequences out of 15000+600000
+ 544953 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,11n,87p,906b,1177s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on "/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.pdf" (6 pages, 189537 bytes).
+ 60i,12n,87p,906b,1308s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on "/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/NARPresentazione/Relazione.pdf" (13 pages, 1229196 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 141 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

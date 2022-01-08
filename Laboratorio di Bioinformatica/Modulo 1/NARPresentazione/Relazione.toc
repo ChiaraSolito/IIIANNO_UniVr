@@ -21,4 +21,9 @@
 \contentsline {subsection}{\numberline {4.2}Assigning Variants to Disease (V2D)}{4}%
 \contentsline {subsection}{\numberline {4.3}Prioritising causal genes at GWAS loci (L2G)}{5}%
 \contentsline {section}{\numberline {5}Un esempio di utilizzo}{5}%
-\contentsline {section}{\numberline {6}Possibili domande}{5}%
+\contentsline {subsection}{\numberline {5.1}Study}{5}%
+\contentsline {subsubsection}{\numberline {5.1.1}Compare Studies}{6}%
+\contentsline {subsection}{\numberline {5.2}Variant}{8}%
+\contentsline {subsection}{\numberline {5.3}Gene}{10}%
+\contentsline {subsubsection}{\numberline {5.3.1}Gene Priorisation}{11}%
+\contentsline {section}{\numberline {6}Possibili domande}{12}%
