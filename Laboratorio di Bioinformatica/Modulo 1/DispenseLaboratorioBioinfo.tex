@@ -833,7 +833,7 @@ matrice a punti dipende da:
 In pratica conviene fissare 2 parametri e variare il terzo per rendere le zone di
 similitudine più evidenti. Molti programmi fanno questo.\\
 Es. DOTTER/Dotlet - assegna un colore dipendentemente da $S$.
-\paragraph{Nota:}Analogamente all’identità di sequenza, che si può
+\paragraph{Nota:}Analogamente all'identità di sequenza, che si può
 misurare in percentuale (\%), anche la similitudine, una volta
 quantificata, si può misurare in \%.\\
 $S_1$ e $S_2$ sono due sequenze lunghe, rispettivamente, $L_1$ ed $L_2$.\\
@@ -842,11 +842,11 @@ $$ SequenceIdentity(s.i.) = ({\#matches \over L_1}) * 100 $$
 $$ SequenceSimilarity(s.s.) = ({S_1 vs. S_2 s.c. \over S_1 vs. S_2 i.c.}) * 100 $$
 \textit{s.c. = similarity score, ed è ottenuto allineando $S_1$ con $S_2$, e attribuendo il punteggio ottenuto dalla matrice discore.\\i.c. = identity score ed è ottenuto allineando $S_1$ con sè stessa ed attribuendo il punteggio ottenuto dalla matrice di score}
 \textit{\\Nota:} se sono presenti indel, a denominatore metto la lunghezza
-dell’allineamento (compresi gli indel), e non la lunghezza originale della sequenza.
+dell'allineamento (compresi gli indel), e non la lunghezza originale della sequenza.
 \section{Algoritmi dinamici di allineamento}
 I dot plots non tengono in considerazione gli indel. Occorrono altri
 algoritmi che, passo a passo e seguendo una certa direzione, trovino
-l’allineamento con:
+l'allineamento con:
 \begin{itemize}
     \item Maggior numero di simboli identici
     \item Minor numero di indel (sfavorite evolutivamente)
@@ -860,7 +860,7 @@ Stabiliamo inoltre i punteggi:
 \end{itemize}
 Il numero delle combinazioni possibili è molto grande, specie per
 sequenze lunghe. Nel 1970 NEEDLEMAN e WUNSCH creano un algoritmo, poi
-migliorato ed esteso. Noi analizziamo l’originale.
+migliorato ed esteso. Noi analizziamo l'originale.
 \subsection{Il concetto}
 distribuiamo le due sequenze in una matrice. Il possibile
 allineamento tra le due identifica un percorso che unisce le caselle dei
@@ -875,7 +875,7 @@ residui appaiati.
     \item Occorre anche tener conto della similitudine fra amminoacidi (significato evolutivo)
     \item IMPORTANTE: un allineamento ottimale è sempre
     composto da suballineamenti ottimali (cioè: togliendo uno
-    ad uno i residui dal fondo, l’allineamento deve restare
+    ad uno i residui dal fondo, l'allineamento deve restare
     ottimale, per poter ricostruire il percorso a ritroso)
 \end{enumerate}
 \subsection{Step}
@@ -888,7 +888,7 @@ residui appaiati.
     \item Partiamo da (1,1) (in alto a sx:
     la direzione è importante!!):
     (1,1) $\rightarrow$ (2,2)
-    L’unico percorso possibile è
+    L'unico percorso possibile è
     questo: per “ricordarmelo”
     sommo il valore della cella
     (1,1) a quello della cella (2,2)
@@ -901,7 +901,7 @@ residui appaiati.
     \includegraphics[width=0.6\textwidth]{figures/quattro.png}
     \item e oltre, ad es. verso (4,5): qui il nuovo punteggio sarà 3\\
     \includegraphics[width=0.6\textwidth]{figures/cinque.png}
-    \item Alla fine arriveremo fino all’ultima casella in basso a dx:\\
+    \item Alla fine arriveremo fino all'ultima casella in basso a dx:\\
     \includegraphics[width=0.6\textwidth]{figures/sei.png}
     \item Da essa possiamo spostarci a ritroso poiché abbiamo
     memorizzato i migliori punteggi dalle caselle precedenti.
@@ -920,17 +920,371 @@ modo:
 Dovremmo però trovare un modo più efficace di inizializzare la
 matrice tenendo conto della similarità fra aa.
 \subsection{Needleman-Wunsch: programmazione dinamica}
-NW garantisce l’ottimalità dell’allineamento, anche se l'algoritmo non
+NW garantisce l'ottimalità dell'allineamento, anche se l'algoritmo non
 calcola tutti i possibili allineamenti.
 È un esempio di un algoritmo di programmazione dinamica:
-un percorso ottimale (allineamento) è identificato dall’estensione
+un percorso ottimale (allineamento) è identificato dall'estensione
 graduale di sottopercorsi localmente ottimali.
 Dunque, una serie di decisioni è effettuata ad ogni passo
-dell’allineamento per trovare la coppia di residui con il miglior
+dell'allineamento per trovare la coppia di residui con il miglior
 punteggio per quel passo.\\
-L’algoritmo di Needleman-Wunsch è disponibile presso
+L'algoritmo di Needleman-Wunsch è disponibile presso
 EBI, che ospita molti tools per allineamenti locali e globali di
 sequenze (Pairwise Sequence Alignment).
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \LARGE
+        \textbf{Lezione 4: Allineamenti di Sequenze 2\\Matrici di Sostituzione}
+
+    \end{center}
+\end{titlepage}
+\section{Waterman-Smith}
+Un problema dell'algoritmo di Needleman-Wunsch: non si
+tiene conto della penalizzazione delle indel.\\
+L'algoritmo di WATERMAN-SMITH (1976) introduce
+una funzione di penalizzazione delle indel, per migliorare
+l'algoritmo NW, serve un sistema di pesatura delle indel, ad esempio:
+$$ w(k) = g + e(k-1)$$
+Il peso $w$ di una indel di lunghezza $k$ dipende dalla
+penalizzazione per l'apertura di una singola indel ($g$) e
+dalla penalizzazione per l'allungamento ($e$).
+\subsection{L'algoritmo}
+Nella pratica l'algoritmo procede in questo modo:
+\begin{enumerate}
+    \item nserisce una riga e una colonna 0-ime alla matrice
+    di inizializzazione (calcolata ad esempio partire da
+    BLOSUM o PAM che vedremo, ecco perché non ha
+    solo 0 o 1). \\ Nella riga e colonna
+    ombreggiate è
+    sviluppata la funzione di
+    penalizzazione: $w(k) = -12-4(k-1)$\\
+    La riga e la colonna 0-sime contengono il
+    punteggio che la
+    sequenza avrebbe se
+    allineata a una delezione
+    lunga fino alla cella
+    corrispondente.
+    \item Tiene conto dei possibili modi per arrivare alla
+    casella $(i,j)$. Il suo punteggio $S(i,j)$ dipende da essi:
+    \begin{enumerate}
+        \item Mi muovo in diagonale: no indel e
+        punteggio dato da: punteggio
+        della casella di partenza +
+        punteggio della casella $(i,j)$
+        secondo la matrice di
+        inizializzazione (come in NW)
+        \item Mi muovo in verticale o
+        orizzontale: inserisco indel nella
+        sequenza $i$ e $j$. Il punteggio sarà
+        dato da: punteggio della casella
+        di partenza - funzione di
+        penalizzazione $w(k)$ ($k$ è la
+        lunghezza della indel).
+        \item Scelgo alla fine il percorso che dà
+        il punteggio migliore
+    \end{enumerate}
+\end{enumerate}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/nw.png}
+\end{center}
+\section{Allineamento: globale vs locale}
+\paragraph{Allineamento globale} (NW e SW visto finora) si estende da un
+capo all'altro di ogni sequenza.
+\paragraph{Allineamento locale} trova le regioni (sottosequenze) di due
+sequenze che si allineano in modo ottimale.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/gl.png}\\
+    \textit{Qui l'allineamento
+    globale maschera la
+    corrispondenza tra
+    zone somiglianti}
+\end{center}
+SW si può modificare per renderlo capace di calcolare
+allineamenti locali: basta introdurre fra i casi possibili $S(i,j)=0$ nel
+caso in cui nell'allineamento globale fosse negativo
+\paragraph{Esempio:} L'allineamento fra una
+flavoemoproteina (con
+un dominio di tipo
+emoglobinico) e la
+catena A
+dell'emoglobina umana
+\begin{itemize}
+    \item \textbf{globale}: più difficile
+    notare
+    quantitativamente la
+    similitudine
+    \item \textbf{locale:} più apparente
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/es1.png}\\
+\end{center}
+\paragraph{Esempio:} SW locale:dopo aver ricalcolato la matrice
+cerco la cella con il valore massimo assoluto e parto da lì.\\
+Gli stessi due peptidi di prima, allineati con Waterman-Smith
+globale e locale danno luogo a matrici ed allineamenti
+diversi. Partendo dalle caselle con score maggiore il
+percorso a ritroso individua allineamenti differenti (non
+sempre AL è sottoinsieme di AG)
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/es2.png}\\
+\end{center}
+\subsubsection{In conclusione}
+\begin{itemize}
+    \item L'allineamento locale è quasi sempre utilizzato per il ricerche su
+    database (tramite BLAST). E 'utile per trovare domini (o regioni
+    limitate di omologia) all'interno di sequenze.
+    \item Smith e Waterman (1981) hanno risolto il problema
+    dell'allineamento locale ottimale di sequenze.
+    \item Altri metodi (BLAST, FASTA) sono più veloci ma meno accurati.
+    Li vedremo in seguito.
+    \item In ogni caso, qualunque metodo di allineamento si scelga esso
+    fornirà un punteggio S all'allineamento. Ricordiamo sempre che lo
+    score S dipende dal metodo di allineamento e non è assoluto!
+\end{itemize}
+\subsection{Significatività statistica di un allineamento}
+\paragraph{Domanda:}Ho allineato due sequenze A e B, ottenuto il punteggio S.
+Come posso capire se sono omologhe? Che probabilità ho di
+trovare il punteggio S “per caso”?\\
+Il problema è più facilmente risolvibile per gli allineamenti
+locali, e meno per quelli globali.
+\subsubsection{Significatività allineamento globale: lo Z score}
+La seq $A$ è mantenuta fissa; la $B$ è
+“anagrammata” n volte ed ogni volta
+globalmente allineata ad $A$, calcolando
+lo score $S_i$ per l'allineamento $i$.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/sig1.png}\\
+\end{center}
+$S_i$ si distribuisce su una curva di cui si
+calcola la media $\mu$ e la deviazione
+standard $\sigma$, Si definisce allora la
+distanza $Z$ del punteggio $S$
+dell'allineamento dalla media in termini
+di dev. standard:
+$$ Z = { S -\mu \over \sigma}$$
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/sig2.png}\\
+\end{center}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/sig3.png}\\
+\end{center}
+\begin{itemize}
+    \item Uno Z-score 0 = significa che la somiglianza osservata non è migliore
+    rispetto alla media di permutazioni casuali della sequenza, e può anche
+    essere casuale.
+    \item Problema con Z-score: si assume una distribuzione normale, ma ciò
+    può non esser corretto. Perciò Z deve essere considerato come una
+    soglia di significatività.
+\end{itemize}
+\subsubsection{Significatività allineamento locale}
+Teoria abbastanza complessa, sviluppata da Karlin e Altschul partendo da questa
+osservazione:\\
+Date due sequenze casuali, di lunghezza $m$ ed $n$, il numero atteso $E$ di
+sottosequenze allineate localmente senza indel che ottengono un punteggio $S \geq x$ è:
+$$E(S \geq x) = Kmne^{-\lambda x}$$
+\begin{center}
+    $m,n$ : lunghezze delle due sequenze.\\
+    $K$: dipende dalla matrice di punteggio.\\
+    $\lambda$: dipende dalla composizione amminoacidica.
+\end{center}
+Dalla definizione di $E$ si può calcolare la probabilità di osservare un
+allineamento locale con punteggio $S \geq x$:
+$$p(S \geq x) = \ - exp(Kmne^{- \lambda x})$$
+Distribuzione del valore estremo o di Gumbel: è diversa dalla gaussiana
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/E.png}\\
+\end{center}
+In pratica:
+\begin{itemize}
+    \item allineamo localmente due seq
+    \item otteniamo il punteggio $x$
+    \item calcoliamo $p(S \geq x)$, la probabilità di
+    ottenere un punteggio maggiore di $x$
+    nell'ipotesi: le due seq NON sono
+    omologhe
+    \item se $p < $ soglia (es. 0.01 = 1\%) siamo
+    confidenti che siano omologhe.
+    \item SEMPRE: serve significatività
+    BIOLOGICA oltre che statistica
+\end{itemize}
+\section{Matrici di punteggio}
+Abbiamo già visto che per dare un punteggio a un allineamento
+dobbiamo misurare la similitudine fra aa.
+Usiamo perciò matrici di punteggio o di sostituzione: saranno
+matrici $20x20$. Sono matrici simmetriche: $A \rightarrow B = B \rightarrow A$ (non
+sappiamo evolutivamente chi si è trasformato dei due).
+\paragraph{Come quantificare la somiglianza degli amminoacidi}
+Difficile stabilire criteri oggettivi per le somiglianze fisico-chimiche
+degli amino acidi. Non è possibile sapere a priori quali delle varie
+caratteristiche fisico-chimiche sono più importanti per le proteine.\\
+Emile Zuckerkandl e Linus Pauling (1965) considerarono
+frequenze di sostituzione in 18 globine (mioglobine e
+emoglobine da uomo a lampreda).
+\begin{itemize}
+    \item Nero: identità
+    \item Grigio: sostituzione molto conservativa (occorrenza$>40\%$)
+    \item Bianco: sostituzione abbastanza conservativa (occorrenza $> 21 \%$)
+    \item Rosso: non è possibilte osservare sostituzioni
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/matx.png}\\
+\end{center}
+\paragraph{Cosa vogliamo ottenere?} una matrice (PAM250) di score.
+Matrice di calcolo che assegna i
+punteggi e tollera le discordanze.
+Inoltre \dots tutta una serie di matrici di
+punteggio, (fino a PAM10) che
+è via via meno tollerante con i
+disallineamenti.
+\subsection{PAM: Point Accepted Mutation}
+Mutazione puntuale accettata.
+\begin{itemize}
+    \item È l'evento in cui il DNA subisce una mutazione che produce il
+    cambiamento di un aminoacido
+    \item Tale mutazione diviene prevalente in una specie
+\end{itemize}
+Dayhoff ha osservato famiglie di sequenze identiche all'85\%
+(omologhe e molto simili). Le ha allineate e ha creato alberi di
+sequenze in cui ha dedotto le sequenze dei progenitori.
+Piccoli passi evolutivi, per osservare l'evoluzione e dedurne le
+caratteristiche.\\
+Le matrici PAM sono basate su allineamenti globali di
+proteine strettamente correlate. Il PAM1 è la matrice calcolata dal confronto di sequenze con
+non più di 1\% di divergenza. Ad un intervallo evolutivo di
+PAM1, un cambiamento si è verificato su una lunghezza di
+100 aminoacidi.\\
+Altre matrici PAM sono estrapolate da PAM1 ( PAM1 non ha
+utilità pratica ). Per PAM250, 250 sostituzioni si sono verificate
+tra due proteine su una lunghezza di 100 aminoacidi, nel
+passo evolutivo che essa rappresenta.\\
+\textit{Nota bene:}Tutti i dati PAM provengono da proteine
+strettamente correlate ($>$ 85\% di identità degli aminoacidi).
+\newpage
+\paragraph{Dayhoff: 34 superfamiglie di proteine}
+\begin{center}
+    \begin{tabular}{c|c}
+        \toprule
+        \textbf{Proteina} & \textbf{PAMs per 100 milioni di anni}\\
+        \midrule
+        Ig kappa chain & 37 \\
+        Kappa casein & 33 \\
+        luteinizing hormone b & 30 \\
+        lactalbumin & 27 \\
+        complement component 3 & 27 \\
+        epidermal growth factor & 26\\
+        proopiomelanocortin & 21\\
+        pancreatic ribonuclease & 21 \\
+        haptoglobin alpha & 20 \\
+        serum albumin & 19 \\
+        phospholipase A2, group IB & 19 \\
+        prolactin & 17 \\
+        carbonic anhydrase C & 16 \\
+        Hemoglobin $\alpha$ & 12\\
+        Hemoglobin $\beta$ & 12 \\
+        apolipoprotein A-II & 10\\
+        lysozyme & 9.8 \\
+        gastrin & 9.8 \\
+        myoglobin & 8.9 \\
+        nerve growth factor & 8.5 \\
+        myelin basic protein & 7.4 \\
+        thyroid stimulating hormone b & 7.4 \\
+        parathyroid hormone & 7.3 \\
+        parvalbumin & 7.0 \\
+        trypsin & 5.9 \\
+        insulin & 4.4 \\
+        calcitonin & 4.3 \\
+        arginine vasopressin & 3.6 \\
+        adenylate kinase & 3.2 \\
+        triosephosphate isomerase 1 & 2.8 \\
+        vasoactive intestinal peptide & 2.6 \\
+        glyceraldehyde phosph. dehydrogease & 2.2 \\
+        cytochrome c & 2.2 \\
+        collagen & 1.7 \\
+        troponin C, skeletal muscle & 1.5 \\
+        alpha crystallin B chain & 1.5 \\
+        glucagon & 1.2 \\
+        glutamate dehydrogenase & 0.9 \\
+        histone H2B, member Q & 0.9 \\
+        ubiquitin & 0
+    \end{tabular}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/dayhoff2.png}\\
+\end{center}
+\subsection{La mutabilità relativa degli amminoacidi}
+\paragraph{Quanto spesso mutano nelle proteine?}
+Definiamo la Frequenza relativa di mutazione.
+\begin{center}
+    \begin{tabular}{c | c !{\vline width 2pt} c | c }
+        \toprule
+        \textbf{AA} & \textbf{Freq} & \textbf{AA} & \textbf{Freq}\\
+        \midrule
+        Asn & 134 & His & 66 \\
+        Ser & 120 & Arg & 65 \\
+        Asp & 106 & Lys & 56 \\
+        Glu & 102 & Pro & 56 \\
+        Ala & 100 & Gly & 49 \\
+        Thr & 97 & Phe & 41 \\
+        Ile & 96 & Phe & 41 \\
+        Gln & 93 & Cys & 20 \\
+        Val & 74 & Trp & 18 
+    \end{tabular}
+\end{center}
+\paragraph{Frequenze normalizzate}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/norm.png}\\
+\end{center}
+\paragraph{Esempio}
+Prendiamo un allineamento multiplo di sequenze,
+ad esempio della deidrogenasi gliceraldeide 3-fosfato.\\
+\textbf{OSSERVAZIONE:}
+le colonne di residui possono avere conservazione alta o bassa.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/es3.png}\\
+\end{center}
+\subsubsection{Matrice PAM1 (probabilità) di Dayhoff}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pam1.png}\\
+\end{center}
+Ogni elemento della matrice mostra la probabilità che un
+amminoacido (in alto) venga sostituito da un altro aminoacido
+(a lato).
+\section{Matrici di sostituzione}
+Una matrice di sostituzione contiene valori proporzionali
+alla probabilità che l'amminoacido i muti nell' amminoacido $j$
+per tutte le coppie possibili di aminoacidi. Le matrici di sostituzione sono costruite assemblando
+un campione ampio e diversificato di allineamenti a coppie
+(o allineamenti multipli di sequenza) di aminoacidi.\\
+Le matrici di sostituzione dovrebbero riflettere la probabilità
+reale di mutazione in un periodo di evoluzione.
+I due principali tipi di matrici di sostituzione: PAM e BLOSUM.
+\subsection{Moltiplicare le matrici}
+Con (PAM1)$^\wedge$n si può simulare il passaggio di n passi di
+evoluzione.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pamn.png}\\
+\end{center}
+\paragraph{Matrice di sostituzione PAM0 (probabilità)} Ovvero: nulla cambia.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pam0.png}\\
+\end{center}
+Si sono verificati 0 passi di evoluzione: non è cambiato nulla!
+\paragraph{Matrice di sostituzione PAM2000 (probabilità)} PAM1$^\wedge$2000, ovvero: il caso.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pam2000.png}\\
+\end{center}
+Moltiplicando PAM1 per 2000 (passi di
+evoluzione)si arriva ad una situazione in cui la
+probabilità converge alla frequenza osservata
+\paragraph{Matrice di sostituzione PAM250 (probabilità) di mutazione} 
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pam250.png}\\
+\end{center}
+PAM 250 è un caso interessante: ottenuta da PAM1$^\wedge$250 prevede che circa il 20\%
+della sequenza sia conservato. A $ \rightarrow$ A ha probabilità del 13\%. Da notare W e C che
+anche dopo 250 mutazioni hanno il 50\% di probabilità di non mutare.
 
 \begin{titlepage}
     \begin{center}

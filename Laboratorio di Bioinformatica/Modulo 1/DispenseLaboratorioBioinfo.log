@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.17)  5 JAN 2022 16:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.17)  8 JAN 2022 17:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -712,30 +712,124 @@ File: figures/otto.png Graphic file (type png)
 <use figures/otto.png>
 Package pdftex.def Info: figures/otto.png  used on input line 917.
 (pdftex.def)             Requested size: 290.52888pt x 147.57979pt.
- [10 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/sette.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/otto.png>] [1] [1]
-Underfull \hbox (badness 10000) in paragraph at lines 990--993
+ [10 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/sette.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/otto.png>] [1]
+<figures/nw.png, id=165, 328.22626pt x 258.9675pt>
+File: figures/nw.png Graphic file (type png)
+<use figures/nw.png>
+Package pdftex.def Info: figures/nw.png  used on input line 990.
+(pdftex.def)             Requested size: 242.10493pt x 191.02045pt.
+<figures/gl.png, id=166, 333.245pt x 142.5325pt>
+File: figures/gl.png Graphic file (type png)
+<use figures/gl.png>
+Package pdftex.def Info: figures/gl.png  used on input line 998.
+(pdftex.def)             Requested size: 242.10493pt x 103.55197pt.
+ [1 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/nw.png>]
+<figures/es1.png, id=172, 349.305pt x 443.6575pt>
+File: figures/es1.png Graphic file (type png)
+<use figures/es1.png>
+Package pdftex.def Info: figures/es1.png  used on input line 1021.
+(pdftex.def)             Requested size: 242.10493pt x 307.505pt.
+<figures/es2.png, id=173, 598.235pt x 228.855pt>
+File: figures/es2.png Graphic file (type png)
+<use figures/es2.png>
+Package pdftex.def Info: figures/es2.png  used on input line 1031.
+(pdftex.def)             Requested size: 242.10493pt x 92.61942pt.
+ [2 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/gl.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/es1.png>]
+<figures/sig1.png, id=179, 304.13625pt x 164.615pt>
+File: figures/sig1.png Graphic file (type png)
+<use figures/sig1.png>
+Package pdftex.def Info: figures/sig1.png  used on input line 1058.
+(pdftex.def)             Requested size: 242.10493pt x 131.04411pt.
+<figures/sig2.png, id=180, 314.17375pt x 239.89626pt>
+File: figures/sig2.png Graphic file (type png)
+<use figures/sig2.png>
+Package pdftex.def Info: figures/sig2.png  used on input line 1068.
+(pdftex.def)             Requested size: 242.10493pt x 184.86343pt.
+ [3 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/es2.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/sig1.png>]
+<figures/sig3.png, id=186, 238.8925pt x 159.59625pt>
+File: figures/sig3.png Graphic file (type png)
+<use figures/sig3.png>
+Package pdftex.def Info: figures/sig3.png  used on input line 1071.
+(pdftex.def)             Requested size: 242.10493pt x 161.74127pt.
+<figures/E.png, id=187, 253.94875pt x 229.85875pt>
+File: figures/E.png Graphic file (type png)
+<use figures/E.png>
+Package pdftex.def Info: figures/E.png  used on input line 1097.
+(pdftex.def)             Requested size: 242.10493pt x 219.1467pt.
+ [4 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/sig2.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/sig3.png>]
+<figures/matx.png, id=193, 482.80376pt x 450.68375pt>
+File: figures/matx.png Graphic file (type png)
+<use figures/matx.png>
+Package pdftex.def Info: figures/matx.png  used on input line 1132.
+(pdftex.def)             Requested size: 242.10493pt x 225.99461pt.
+ [5 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/E.png>] [6 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/matx.png>]
+<figures/dayhoff2.png, id=202, 613.29124pt x 434.62375pt>
+File: figures/dayhoff2.png Graphic file (type png)
+<use figures/dayhoff2.png>
+Package pdftex.def Info: figures/dayhoff2.png  used on input line 1214.
+(pdftex.def)             Requested size: 242.10493pt x 171.5717pt.
+ [7]
+<figures/norm.png, id=207, 389.455pt x 354.32375pt>
+File: figures/norm.png Graphic file (type png)
+<use figures/norm.png>
+Package pdftex.def Info: figures/norm.png  used on input line 1237.
+(pdftex.def)             Requested size: 242.10493pt x 220.26234pt.
+<figures/es3.png, id=208, 497.86pt x 341.275pt>
+File: figures/es3.png Graphic file (type png)
+<use figures/es3.png>
+Package pdftex.def Info: figures/es3.png  used on input line 1245.
+(pdftex.def)             Requested size: 242.10493pt x 165.9608pt.
+ [8 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/dayhoff2.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/norm.png>]
+<figures/pam1.png, id=214, 626.34pt x 293.095pt>
+File: figures/pam1.png Graphic file (type png)
+<use figures/pam1.png>
+Package pdftex.def Info: figures/pam1.png  used on input line 1249.
+(pdftex.def)             Requested size: 242.10493pt x 113.29138pt.
+<figures/pamn.png, id=215, 287.0725pt x 325.215pt>
+File: figures/pamn.png Graphic file (type png)
+<use figures/pamn.png>
+Package pdftex.def Info: figures/pamn.png  used on input line 1267.
+(pdftex.def)             Requested size: 242.10493pt x 274.28038pt.
+ [9 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/es3.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam1.png>]
+<figures/pam0.png, id=221, 627.34375pt x 229.85875pt>
+File: figures/pam0.png Graphic file (type png)
+<use figures/pam0.png>
+Package pdftex.def Info: figures/pam0.png  used on input line 1271.
+(pdftex.def)             Requested size: 242.10493pt x 88.70807pt.
+<figures/pam2000.png, id=222, 612.2875pt x 258.9675pt>
+File: figures/pam2000.png Graphic file (type png)
+<use figures/pam2000.png>
+Package pdftex.def Info: figures/pam2000.png  used on input line 1276.
+(pdftex.def)             Requested size: 242.10493pt x 102.39574pt.
+<figures/pam250.png, id=223, 637.38126pt x 367.3725pt>
+File: figures/pam250.png Graphic file (type png)
+<use figures/pam250.png>
+Package pdftex.def Info: figures/pam250.png  used on input line 1283.
+(pdftex.def)             Requested size: 242.10493pt x 139.54132pt.
+ [10 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pamn.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam0.png> </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam2000.png>] [11 </home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam250.png>] [1] [1]
+Underfull \hbox (badness 10000) in paragraph at lines 1344--1347
 
  []
 
 [2] [1]
-Overfull \hbox (5.29778pt too wide) in paragraph at lines 1047--1049
+Overfull \hbox (5.29778pt too wide) in paragraph at lines 1401--1403
 []\T1/cmr/m/n/14.4 Si de-scrivano il for-mato FASTA, il for-mato ASN.1 e il for-mato XML nell'ambito
  []
 
 [1] (/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/DispenseLaboratorioBioinfo.aux) ) 
 Here is how much of TeX's memory you used:
- 17673 strings out of 481239
- 370669 string characters out of 5920376
+ 17775 strings out of 481239
+ 372482 string characters out of 5920376
  574904 words of memory out of 5000000
- 32584 multiletter control sequences out of 15000+600000
+ 32669 multiletter control sequences out of 15000+600000
  551730 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,12n,60p,906b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on "/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/DispenseLaboratorioBioinfo.pdf" (34 pages, 2883751 bytes).
+Output written on "/home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/DispenseLaboratorioBioinfo.pdf" (46 pages, 3629638 bytes).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
+ 328 PDF objects out of 1000 (max. 8388607)
+ 180 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 203 words of extra memory for PDF output out of 10000 (max. 10000000)
 
