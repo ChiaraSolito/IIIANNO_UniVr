@@ -83,17 +83,24 @@
 \contentsline {paragraph}{Matrice di sostituzione PAM0 (probabilità)}{10}%
 \contentsline {paragraph}{Matrice di sostituzione PAM2000 (probabilità)}{10}%
 \contentsline {paragraph}{Matrice di sostituzione PAM250 (probabilità) di mutazione}{10}%
-\contentsline {section}{\numberline {15}Allineamento multiplo di sequenze}{1}%
-\contentsline {subsection}{\numberline {15.1}Visione Generale}{1}%
-\contentsline {subsubsection}{\numberline {15.1.1}Una definizione}{1}%
-\contentsline {subsubsection}{\numberline {15.1.2}Alcuni fatti}{1}%
-\contentsline {subsubsection}{\numberline {15.1.3}Caratteristiche utili per realizzzarlo}{1}%
-\contentsline {subsubsection}{\numberline {15.1.4}Utilizzi e Vantaggi}{1}%
-\contentsline {subsection}{\numberline {15.2}Metodi}{2}%
-\contentsline {subsubsection}{\numberline {15.2.1}Metodi Euristici}{2}%
+\contentsline {subsection}{\numberline {14.2}Approccio Dayhoff}{11}%
+\contentsline {paragraph}{per l'assegnazione di punteggi per ogni due residui di aminoacidi allineati}{11}%
+\contentsline {paragraph}{Matrici PAM a confronto}{11}%
+\contentsline {section}{\numberline {15}Matrici BLOSUM}{13}%
+\contentsline {section}{\numberline {16}BLOSUM vs. PAM}{13}%
+\contentsline {subsection}{\numberline {16.1}La "Twilight zone" nell'allineamento di proteine}{14}%
+\contentsline {paragraph}{Quando compariamo due sequenze proteiche simili, quante mutazioni possono accumularsi prima che le differenze le rendano irriconoscibili?}{14}%
+\contentsline {section}{\numberline {17}Allineamento multiplo di sequenze}{1}%
+\contentsline {subsection}{\numberline {17.1}Visione Generale}{1}%
+\contentsline {subsubsection}{\numberline {17.1.1}Una definizione}{1}%
+\contentsline {subsubsection}{\numberline {17.1.2}Alcuni fatti}{1}%
+\contentsline {subsubsection}{\numberline {17.1.3}Caratteristiche utili per realizzzarlo}{1}%
+\contentsline {subsubsection}{\numberline {17.1.4}Utilizzi e Vantaggi}{1}%
+\contentsline {subsection}{\numberline {17.2}Metodi}{2}%
+\contentsline {subsubsection}{\numberline {17.2.1}Metodi Euristici}{2}%
 \contentsline {paragraph}{Il MSA progressivo di Feng-Doolittle (1987) alla base di Clustal (W) avviene in 3 fasi}{2}%
 \contentsline {paragraph}{\hl {Primo step:} a due a due e valutare gli score di ogni possibile allineamento a coppie\\}{2}%
 \contentsline {paragraph}{\hl {Secondo step:} albero guida\\}{2}%
 \contentsline {paragraph}{Il clustering alla base di CLUSTAL(W)}{2}%
-\contentsline {section}{\numberline {16}Domande sull'introduzione}{1}%
-\contentsline {section}{\numberline {17}Domande sulle banche dati}{1}%
+\contentsline {section}{\numberline {18}Domande sull'introduzione}{1}%
+\contentsline {section}{\numberline {19}Domande sulle banche dati}{1}%

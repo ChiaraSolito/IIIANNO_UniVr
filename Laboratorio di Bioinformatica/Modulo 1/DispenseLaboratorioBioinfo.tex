@@ -1285,7 +1285,101 @@ probabilità converge alla frequenza osservata
 PAM 250 è un caso interessante: ottenuta da PAM1$^\wedge$250 prevede che circa il 20\%
 della sequenza sia conservato. A $ \rightarrow$ A ha probabilità del 13\%. Da notare W e C che
 anche dopo 250 mutazioni hanno il 50\% di probabilità di non mutare.
+\subsection{Approccio Dayhoff}
+\paragraph{per l'assegnazione di punteggi per ogni due residui di aminoacidi allineati}
+Dayhoff et al. hanno definito il punteggio (score) per due generici
+residui $i,j$:
+\begin{itemize}
+    \item $q_{i,j} = $ probabilità che l’aminoacido $i$ venga sostituito da $j$\\(probabilità di omologia in base alle sostituzioni osservate)
+    \item $p_{i,j} = $ Probabilità di trovare casualmente l’appaiamento $i,j$\\(prodotto della probabilità di trovare un “$i$” e quella di trovare un “$j$” in una
+    qualunque sequenza, cioè prodotto delle frequenze)
+\end{itemize}
+Il loro rapporto serve a tenere conto che l’evento $q_{i,j}$
+sia casuale.\\
+Il valore è poi convertito al log (per rendere due valori sommabili) e moltiplicato
+per 10 (così che, prendendo la parte intera del valore si conserva la prima cifra
+decimale). Gli score sono utili negli allineamenti a coppie (e in algoritmi di
+ricerca come BLAST)
+$$ s_{i,j} = 10 \times log({q_{i,j}\over p_{i,j}})$$
+$S(trp,trp) = 10 Log({0.55\over 0.010}) = 17,4$ significa che la probabilità di trovare un
+$W$ conservato è 50 volte maggiore della
+probabilità che un $W$ sia a caso nelle due
+posizioni considerate.\\
+Un -10 è un $-1(log)$ quindi ${1\over 10}$ e indica che la probabilità che quell'allineamento si verifichi è ${1\over 10}$ della frequenza di quegli amminoacidi in posizioni corrispondenti.
+\paragraph{Matrici PAM a confronto}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pamconf.png}
+\end{center}
+\newpage
+\begin{center}
+    \includegraphics[width=1.25\textwidth]{figures/prot.png}
+\end{center}
+\newpage
+\section{Matrici BLOSUM}
+Le matrici BLOSUM sono basate su allineamenti locali, tratti
+dal database BLOCKS che raggruppa blocchi (regioni) di
+allineamenti locali di sequenze lontanamente correlate. BLOSUM sta per BLOck SUbstitution Matrix.\\
+BLOSUM62 è una matrice calcolata a partire da sequenze
+con divergenza minore del 62\%. Default per BLAST .
+Il metodo di calcolo degli score è poi simile a quello per le
+PAM, ma si usa $\lambda = 2$ al posto di 10 (infatti per BLOSUM il range è $90-45$ VS $30-250$ per le PAM)
+$$ S_{i,j} = ({1\over \lambda}) log ({p_{i,j}\over q_i * q_j})$$
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/blosum.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/scorblosum.png}\\
+    \Large
+    Punteggio$_{totale} = \sum $ somiglianze $- \sum$ penalità gap
+\end{center}
+\section{BLOSUM vs. PAM}
+PAM si basa su principi evoluzionistici, mentre BLOSUM si basa
+più sull’osservazione di allineamenti reali, senza fare assunzioni di
+omologia.
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/vs.png}
+\end{center}
 
+\begin{minipage}[t]{.4\textwidth}
+    \raggedright
+    \textbf{Più conservativo}\\
+    \underline{es.Globina: topo vs ratto}\\
+    Nella BLOSUM 80 le sequenze
+    identiche per l’80\% finiscono in un
+    unico blocco e gli score sono
+    applicati considerando gli altri
+    allineamenti $\rightarrow$ score adatti per
+    proteine simili (come per la PAM10)
+    \end{minipage}%
+    \begin{minipage}[t]{.5\textwidth}
+        \raggedleft
+        \textbf{Meno conservativo}\\
+        \underline{es.Globina: topo vs batterio}\\
+        Nella BLOSUM 45 le sequenze
+        identiche per il 45\% finiscono un unico
+        blocco e gli score sono applicati
+        considerando gli altri allineamenti $\rightarrow$
+        score adatti per proteine diverse
+        (come per la PAM250)
+    \end{minipage}
+\subsection{La "Twilight zone" nell'allineamento di proteine}
+\paragraph{Quando compariamo due sequenze proteiche simili,
+quante mutazioni possono accumularsi prima che le
+differenze le rendano irriconoscibili?}
+L’identità tra due sequenze ciascuna di 100 aminoacidi cala
+come un esponenziale negativo all’accumularsi delle
+mutazioni.\\
+\begin{itemize}
+    \item A PAM1, due proteine sono al 99\% identiche
+    \item A PAM10.7, ci sono 10 differenze ogni 100 residui
+    \item A PAM80, ci sono 50 differenze ogni 100 residui
+    \item A PAM250, ci sono 80 differenze ogni 100 residui
+\end{itemize}
+Oltre (20-25\% identità) non è più distinguibile una
+similitudine (Allineamenti multipli, modeling)
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/twilight.png}
+\end{center}
 \begin{titlepage}
     \begin{center}
         \vspace*{1cm}

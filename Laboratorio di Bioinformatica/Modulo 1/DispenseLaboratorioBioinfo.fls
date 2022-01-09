@@ -362,6 +362,29 @@ INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinf
 INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam250.png
 INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam250.png
 INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pam250.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pamconf.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pamconf.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/pamconf.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/prot.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/prot.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/prot.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/blosum.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/blosum.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/blosum.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/scorblosum.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/scorblosum.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/scorblosum.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/vs.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/vs.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/vs.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/twilight.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/twilight.png
+INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/figures/twilight.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0900.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti0900.tfm
 INPUT /home/chiara/Documents/Università/Git/IIIANNO_UniVr/Laboratorio di Bioinformatica/Modulo 1/DispenseLaboratorioBioinfo.aux
@@ -371,6 +394,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
