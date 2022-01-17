@@ -1,0 +1,131 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs, siunitx}
+\usepackage[margin=0.90in]{geometry}
+\usepackage{etoolbox,titling}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{soulutf8}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\tcbuselibrary{skins}
+
+\definecolor{boxTitle4}{HTML}{d7d7c1}
+\definecolor{boxBackground4}{HTML}{ebebe0}
+\definecolor{boxFrame4}{HTML}{c3c3a2}
+
+\tcbset{box4/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground4, colframe=boxFrame4,
+    coltitle=black, colbacktitle=boxTitle4,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2},
+    boxed title style={
+      before upper=\hspace*{1.5cm}, % reserve space for the image
+      overlay={
+       \node at ([xshift=0.1cm]frame.west)
+         {\includegraphics[scale=0.65]{bc-loupe}};
+      }
+    }
+  }
+}
+
+\newtcolorbox{box4}[1][]{box4, #1}
+
+
+
+\begin{document}
+\begin{center}
+    \vspace*{1cm}
+    \LARGE
+    \textbf{Presentazione}
+
+\end{center}
+\Large
+\section*{Intro: Cos'è Open Targets Genetics?}
+Open Target Genetics è {l’ultima release della piattaforma Open Targets}: una partnership tra pubblico e privato
+che utilizza i dati genetici e genomici umani per l’identificazione sistematica e la prioritizzazione dei bersagli
+farmacologici.\\
+Ma come lo fa questa piattaforma e perché in maniera così innovativa da risultare in una menzione in NAR?\\
+La maggior parte delle varianti, individuate attraverso i GWAS, si trova nella parte non codificante del
+genoma: ciò suggerisce che tali varianti vadano ad intaccare tratti complessi, alterando l’espressione
+dei geni vicini, attraverso meccanismi di regolazione, e influenzando in maniera significativa le malattie
+studiate dai GWAS. Identificare un gene causale è difficile poiché bisogna integrare dati dai GWAS
+con dati di trascrittomica, proteomica ed epigenomica prendendo in considerazione un’ampia tipologia
+cellulare o tissutale.In assenza di un portale già esistente che consenta di rispondere sistematicamente a
+un’ampia gamma di domande biologiche, è stato costruito OTG sulla base della tecnologia più recente
+per consentire di aggiungere e sfogliare facilmente i dati.
+\section*{Come funziona?}
+Le pagine del database si dividono in 3 pagine di ricerca, che vediamo qui: Studio, Lead e Tag Variants e Gene. Queste si collegano a 2 pagine interne molto importanti, che vedremo poi come sono fatte.
+\normalsize
+\begin{box4}
+    [title={\textbf{Ricerca per Studio}}]
+    {Iniziamo la ricerca a partire dallo studio per:
+    \begin{itemize}
+        \item Visualizzare i loci associati a un tratto nello studio selezionato
+        \item Identificare i geni prioritari implicati funzionalmente da ciascun locus
+        \item Visualizzare il 95\% di set credibili (se disponibili) e proxy in ogni locus
+    \end{itemize}}
+\end{box4}
+\begin{box4}
+    [title={\textbf{Ricerca per Variante}}]
+    {Iniziamo la ricerca a partire dalla variante per:
+    \begin{itemize}
+        \item Identificare un elenco classificato di geni funzionalmente implicati dalla variante
+        \item Visualizzare e analizzare i dati funzionali mediante i quali i geni sono assegnati a questa variante
+        \item Visualizzare i risultati PheWAS per la variante nella biobanca britannica
+        \item Visualizzare la struttura del collegamento intorno alla variante
+    \end{itemize}}
+\end{box4}
+\begin{box4}
+    [title={\textbf{Ricerca per Gene}}]
+    {Iniziamo la ricerca a partire dal gene per:
+    \begin{itemize}
+        \item Identificare i loci che implicano funzionalmente un gene
+        \item Collegarti a informazioni dettagliate sul gene e sui farmaci che lo prendono di mira
+        \item Identificare in quali tratti questo gene può svolgere un ruolo, in base alle varianti a cui è assegnato
+    \end{itemize}}
+\end{box4}
+
+\newpage
+\begin{center}
+    {\color{red} \LARGE Parte di Aurelia sulle Pipeline}
+\end{center}
+\newpage
+
+\begin{center}
+    \vspace*{1cm}
+    \LARGE
+    \textbf{Video}
+
+\end{center}
+\Large
+\section*{Study}
+Cercando tramite lo studio, abbiamo per prima cosa il \textbf{Summary} con info generali (come l'ID e la grandezza dello studio).\\
+La parte più importante però è il \textbf{Manhattan Plot}, che rappresenta i \textbf{\textit{loci associati indipendentemente}} che superano il livello di significatività (la linea rossa) dei GWAS: l'asse delle x sono i \textbf{cromosomi}.\\
+Sotto troviamo la \textbf{tabella riassuntiva}, coni dettagli completi dei locus, in cui ogni riga è una \textbf{variant lead}.
+\section*{Compare Studies}
+Identifichiamo rapidamente i \textbf{loci sovrapposti} (possiamo selezionare anche più studi da confrontare).\\
+I loci condivisi sono segnati in rosso e dettagliati nella tabella sottostante.
+\section*{Variant}
+La ricerca per variante si può fare tramite il suo \textbf{Locus} oppure tramite il suo \textbf{ID Ensembl (nome)}.\\
+La prima tabella \textbf{Assigned Genes}, mi mostra quali sono i geni \underline{funzionalmente implicati} da questa variante.\\
+Sotto abbiamo un \textbf{plot dei PheWAS associati}, in cui ogni triangolo rappresenta l'associazione della variante a un tratto, con uno studio relativo.\\
+Infine ho due tabelle molto importanti:
+\begin{itemize}
+    \item La prima mi dice \textbf{quali lead variant hanno questa variante come Tag}
+    \item La seconda mi dice \textbf{quali varianti tag sono associate a questa variante come lead}
+\end{itemize}
+\section*{Gene}
+Sopra abbiamo sempre le informazioni, a cui subito sotto si aggiungono tutti i \textbf{collegamenti al resto della piattaforma Open Target}.\\
+La prima tabella degli Studi Associati al gene è \textbf{ordinata secondo lo score assegnato dalla pipeline L2G}, mentre sotto l'altra tabella ci mostra quelli \textbf{associati tramite la pipeline di colocalizzazione}.\\
+Entrambe associano quindi lo studio al fenotipo.
+\newpage
+\begin{center}
+    {\color{red} \LARGE Parte di Aurelia sul video}
+\end{center}
+\newpage
+\end{document}

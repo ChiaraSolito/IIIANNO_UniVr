@@ -1,40 +1,49 @@
 \contentsline {section}{\numberline {1}Introduzione}{2}%
 \contentsline {subsection}{\numberline {1.1}Lessico e nozioni di base}{2}%
-\contentsline {paragraph}{Varianti Causali}{2}%
-\contentsline {paragraph}{Trait-Associated Loci}{2}%
-\contentsline {paragraph}{QTL}{2}%
-\contentsline {paragraph}{GWAS}{2}%
-\contentsline {paragraph}{Lead Variant}{2}%
-\contentsline {paragraph}{P-Value}{2}%
-\contentsline {paragraph}{Tag Variants}{2}%
-\contentsline {paragraph}{Linkage Disequilibrium}{2}%
-\contentsline {paragraph}{Fine Mapping}{2}%
 \contentsline {paragraph}{Single Evidence Score}{2}%
 \contentsline {paragraph}{Proxy}{2}%
 \contentsline {paragraph}{Credible Sets}{2}%
 \contentsline {paragraph}{PP - Posterior Probability}{2}%
+\contentsline {paragraph}{P-Value}{2}%
+\contentsline {paragraph}{GWAS}{2}%
+\contentsline {paragraph}{Varianti Causali}{2}%
+\contentsline {paragraph}{Lead Variant}{2}%
+\contentsline {paragraph}{Tag Variants}{2}%
+\contentsline {paragraph}{Trait-Associated Loci}{2}%
+\contentsline {paragraph}{QTL}{2}%
+\contentsline {paragraph}{Linkage Disequilibrium}{2}%
+\contentsline {paragraph}{Fine Mapping}{3}%
+\contentsline {paragraph}{Linkage Disequilibrium Espansione}{3}%
 \contentsline {section}{\numberline {2}Open Targets Genetics}{3}%
-\contentsline {subsection}{\numberline {2.1}Cos'è Open Target Genetics?}{3}%
+\contentsline {subsection}{\numberline {2.1}Cos'è Open Targets Genetics?}{3}%
 \contentsline {subsection}{\numberline {2.2}L'Obiettivo}{3}%
-\contentsline {subsection}{\numberline {2.3}Il Metodo}{3}%
+\contentsline {subsection}{\numberline {2.3}Il Metodo}{4}%
 \contentsline {section}{\numberline {3}Come funziona?}{4}%
-\contentsline {section}{\numberline {4}Pipeline}{4}%
-\contentsline {subsection}{\numberline {4.1}Assigning Variants to Genes (V2G)}{5}%
-\contentsline {subsection}{\numberline {4.2}Assigning Variants to Disease (V2D)}{5}%
-\contentsline {subsection}{\numberline {4.3}Prioritising causal genes at GWAS loci (L2G)}{5}%
-\contentsline {section}{\numberline {5}Un esempio di utilizzo}{5}%
-\contentsline {subsection}{\numberline {5.1}Study}{5}%
-\contentsline {subsubsection}{\numberline {5.1.1}Compare Studies}{6}%
-\contentsline {subsection}{\numberline {5.2}Variant}{8}%
-\contentsline {subsection}{\numberline {5.3}Gene}{10}%
-\contentsline {subsubsection}{\numberline {5.3.1}Gene Priorisation}{11}%
-\contentsline {subsection}{\numberline {5.4}Locus Plot}{13}%
-\contentsline {section}{\numberline {6}Possibili domande}{14}%
-\contentsline {paragraph}{Qual è la differenza tra GWAS e PheWAS?}{14}%
-\contentsline {paragraph}{Come sono definiti gli Overlap nella pagina del Compare Studies?}{14}%
-\contentsline {paragraph}{Come si legge il Manhattan Plot?}{14}%
-\contentsline {paragraph}{Come si legge il Plot dei PheWAS?}{14}%
-\contentsline {paragraph}{A che serve Gene Priorisation?}{14}%
-\contentsline {paragraph}{Quali sono le "tecnologie recenti" menzionate nell'approccio innovativo di OTG?}{14}%
-\contentsline {paragraph}{Come viene creata l’informazione contenuta nel database?}{14}%
-\contentsline {paragraph}{Di che tipo sono i campioni contenuti nel database?}{14}%
+\contentsline {section}{\numberline {4}Pipeline}{5}%
+\contentsline {subsection}{\numberline {4.1}Assigning Variants to Disease (V2D)}{5}%
+\contentsline {subsection}{\numberline {4.2}Assigning Variants to Genes (V2G)}{6}%
+\contentsline {subsection}{\numberline {4.3}Prioritising causal genes at GWAS loci (L2G)}{7}%
+\contentsline {paragraph}{Caratteristiche predittive}{7}%
+\contentsline {paragraph}{Interpretare il punteggio L2G}{7}%
+\contentsline {subsection}{\numberline {4.4}Colocalysasion Analysis}{7}%
+\contentsline {section}{\numberline {5}Un esempio di utilizzo}{8}%
+\contentsline {subsection}{\numberline {5.1}Study}{8}%
+\contentsline {subsubsection}{\numberline {5.1.1}Compare Studies}{9}%
+\contentsline {subsection}{\numberline {5.2}Variant}{10}%
+\contentsline {subsection}{\numberline {5.3}Gene}{12}%
+\contentsline {subsubsection}{\numberline {5.3.1}Gene Priorisation}{13}%
+\contentsline {subsection}{\numberline {5.4}Locus Plot}{16}%
+\contentsline {section}{\numberline {6}Possibili domande}{16}%
+\contentsline {paragraph}{Che differenza c'è tra Varianti Lead e Tag?}{16}%
+\contentsline {paragraph}{Cos'è la Colocalizzazione?}{16}%
+\contentsline {paragraph}{Cos'è la Prioritizzazione?}{17}%
+\contentsline {paragraph}{Qual è la differenza tra GWAS e PheWAS?}{17}%
+\contentsline {paragraph}{Come sono definiti gli Overlap nella pagina del Compare Studies?}{17}%
+\contentsline {paragraph}{Come si legge il Manhattan Plot?}{17}%
+\contentsline {paragraph}{Come si legge il Plot dei PheWAS?}{17}%
+\contentsline {paragraph}{Quali sono le "tecnologie recenti" menzionate nell'approccio innovativo di OTG?}{17}%
+\contentsline {paragraph}{Come viene creata l'informazione contenuta nel database?}{17}%
+\contentsline {paragraph}{Di che tipo sono i campioni contenuti nel database?}{17}%
+\contentsline {paragraph}{Cosa intendete quando parli di dati senza statistiche riassuntive dal catalogo GWAS, curati manualmente? Quali sono le statistiche riassuntive?}{18}%
+\contentsline {paragraph}{Cosa intendi con Linkage Disequilibrium espansione?}{18}%
+\contentsline {paragraph}{Qual è la differenza tra 1$\_$55039974$\_$G$\_$T e rs11591147?}{18}%

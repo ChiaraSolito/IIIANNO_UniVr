@@ -13,6 +13,7 @@
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{soulutf8}
+\usepackage{epigraph} 
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -1290,11 +1291,11 @@ anche dopo 250 mutazioni hanno il 50\% di probabilità di non mutare.
 Dayhoff et al. hanno definito il punteggio (score) per due generici
 residui $i,j$:
 \begin{itemize}
-    \item $q_{i,j} = $ probabilità che l’aminoacido $i$ venga sostituito da $j$\\(probabilità di omologia in base alle sostituzioni osservate)
-    \item $p_{i,j} = $ Probabilità di trovare casualmente l’appaiamento $i,j$\\(prodotto della probabilità di trovare un “$i$” e quella di trovare un “$j$” in una
+    \item $q_{i,j} = $ probabilità che l'aminoacido $i$ venga sostituito da $j$\\(probabilità di omologia in base alle sostituzioni osservate)
+    \item $p_{i,j} = $ Probabilità di trovare casualmente l'appaiamento $i,j$\\(prodotto della probabilità di trovare un “$i$” e quella di trovare un “$j$” in una
     qualunque sequenza, cioè prodotto delle frequenze)
 \end{itemize}
-Il loro rapporto serve a tenere conto che l’evento $q_{i,j}$
+Il loro rapporto serve a tenere conto che l'evento $q_{i,j}$
 sia casuale.\\
 Il valore è poi convertito al log (per rendere due valori sommabili) e moltiplicato
 per 10 (così che, prendendo la parte intera del valore si conserva la prima cifra
@@ -1334,7 +1335,7 @@ $$ S_{i,j} = ({1\over \lambda}) log ({p_{i,j}\over q_i * q_j})$$
 \end{center}
 \section{BLOSUM vs. PAM}
 PAM si basa su principi evoluzionistici, mentre BLOSUM si basa
-più sull’osservazione di allineamenti reali, senza fare assunzioni di
+più sull'osservazione di allineamenti reali, senza fare assunzioni di
 omologia.
 \begin{center}
     \includegraphics[width=0.7\textwidth]{figures/vs.png}
@@ -1345,7 +1346,7 @@ omologia.
     \textbf{Più conservativo}\\
     \underline{es.Globina: topo vs ratto}\\
     Nella BLOSUM 80 le sequenze
-    identiche per l’80\% finiscono in un
+    identiche per l'80\% finiscono in un
     unico blocco e gli score sono
     applicati considerando gli altri
     allineamenti $\rightarrow$ score adatti per
@@ -1366,8 +1367,8 @@ omologia.
 \paragraph{Quando compariamo due sequenze proteiche simili,
 quante mutazioni possono accumularsi prima che le
 differenze le rendano irriconoscibili?}
-L’identità tra due sequenze ciascuna di 100 aminoacidi cala
-come un esponenziale negativo all’accumularsi delle
+L'identità tra due sequenze ciascuna di 100 aminoacidi cala
+come un esponenziale negativo all'accumularsi delle
 mutazioni.\\
 \begin{itemize}
     \item A PAM1, due proteine sono al 99\% identiche
@@ -1379,6 +1380,270 @@ Oltre (20-25\% identità) non è più distinguibile una
 similitudine (Allineamenti multipli, modeling)
 \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/twilight.png}
+\end{center}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \LARGE
+        \textbf{Lezione 5: BLAST\\Basic Local Alignment Search Tool}
+
+    \end{center}
+\end{titlepage}
+\section{BLAST}
+\subsection{Problema con gli algoritmi dinamici}
+Gli algoritmi visti (WS, NW) sono precisi ma lenti.
+Servono metodi euristici: trovano soluzioni
+approssimate ma vicine a quella ottimale in tempi
+brevi.\\
+Spesso la domanda è: \textit{data una sequenza query, quali
+sequenze simili sono note e già presenti nei
+databases?}\\
+Tra i metodi euristici più usati per la ricerca di singole
+sequenze in banche dati troviamo FASTA e BLAST.
+\subsection{Cos'è Blast?}
+BLAST (Basic Local Alignment Search Tool)
+permette un confronto rapido tra una sequenza
+query e il contenuto di un database.
+L'algoritmo di BLAST è:
+\begin{itemize}
+    \item veloce
+    \item accurato
+    \item web-accessibile 
+\end{itemize}
+BLAST è fondamentale per capire la relazione di
+una sequenza query con altre proteine o
+sequenze di DNA note.\\
+I suoi utilizzi comprendono:
+\begin{itemize}
+    \item individuare ortologhi e paraloghi
+    \item scoperta di nuovi geni o proteine
+    \item scoperta di varianti di geni o proteine noti
+    \item lo studio delle expressed sequence tags (EST)
+    \item lo studio di struttura e funzione delle proteine
+\end{itemize}
+\subsection{Ricerca su blast}
+Le quattro fasi di una ricerca BLAST:
+\begin{enumerate}
+    \item Scegliere la sequenza (query)
+    \item Selezionare il tipo di programma BLAST
+    \item Selezionare il database per la ricerca
+    \item Scegliere i parametri opzionali
+    \item Quindi fare clic su "BLAST"
+\end{enumerate}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{figures/blast.png}
+\end{center}
+\paragraph{Passo 1: Scelta della sequenza}
+La sequenza può essere inserita in
+formato FASTA o come accession
+number (RefSeq).\\Esempio:
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/blast1.png}
+\end{center}
+\paragraph{Passo 2: Scegli il programma BLAST}
+\begin{itemize}
+    \item blastn (nucleotide BLAST)
+    \item blastp (protein BLAST)
+    \item blastx (BLAST tradotto n $\rightarrow$ P)
+    \item tblastn (BLAST tradotto p $\rightarrow$ N)
+\end{itemize}
+Ci sono anche altri tools disponibili.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/blast2.png}
+\end{center}
+\paragraph{Passo 3: scegliere il database}
+\begin{itemize}
+    \item \textbf{nr} 
+        \subitem Non ridondante (database più generale,
+        ritorna una sequenza e diversi riferimenti
+        in database in cui la stessa è presente)
+    \item \textbf{refseq}
+        \subitem Solo sequenze con codice refse q
+    \item \textbf{dbest} 
+        \subitem Database di EST
+    \item \textbf{dbsts}
+        \subitem Database di sequenze localizzate
+    \item \textbf{gss}
+        \subitem Genome sequence surveys ( BAC, Yac, ecc )
+    \item \textbf{altri}
+        \subitem Pdb, genomi completi, solo sequenze oggetto
+        di brevetti (pat), \dots
+\end{itemize}
+\paragraph{Fase 4: parametri opzionali}
+Si può:
+\begin{itemize}
+    \item Scegliere l'organismo di ricerca
+    \item Attivare filtri
+    \item Modificare la matrice di punteggio
+    \item Cambiare il valore minimo di affidabilità dei risultati
+    \item Modificare la dimensione della parola W
+\end{itemize}
+Allo stesso modo in blastp e blastn:
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/fase4.png}
+\end{center}
+\paragraph{L'output}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/output.png}
+\end{center}
+\subsection{L'algoritmo}
+\paragraph{BLAST: le basi dell'allineamento di sequenze}
+L'allineamento può essere:
+\begin{enumerate}
+    \item \textbf{Globale}\\
+    (Needleman \& Wunsch)
+    \subitem Usa la programmazione dinamica per trovare i migliori
+    allineamenti tra due sequenze.
+    (Anche se gli allineamenti sono ottimali, la ricerca non è
+    esaustiva). I gap sono ammessi e l'intera lunghezza delle
+    sequenze è allineata (da cui "globale").
+    \item \textbf{Locale}\\
+    (Smith \& Waterman, 1980 -  modifica del primo (per all. globale))
+    \subitem L'allineamento può riguardare solo una parte di una delle
+    sequenze, ed è adatto alla ricerca di caratteristiche locali
+    comuni alle sequenze (domini, siti attivi, ecc).
+\end{enumerate}
+BLAST è una approssimazione euristica per l'allineamento
+locale. Esamina solo una parte dello spazio di ricerca.
+\paragraph{Come funziona una ricerca BLAST?}
+\epigraph{L'idea centrale dell'algoritmo di BLAST è di
+limitare l'attenzione a coppie di segmenti in cui
+si allineano parole di lunghezza w con un
+punteggio di almeno T.}{\textit{Altschul et al. (1990)}}
+\subsubsection{Le 3 fasi}
+\paragraph{Fase 1}compilare una lista di coppie di parole (di
+lunghezza $w = 3$) con un punteggio oltre la soglia $T$.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/fas1.png}
+\end{center}
+Se pongo la soglia $T = 11$, gli allineamenti con punteggio maggiore della soglia sono:
+\begin{itemize}
+    \item GTW $6+5+11 \rightarrow 22$
+    \item GSW $6+1+11 \rightarrow 18$
+    \item ATW $0+5+11 \rightarrow 16$
+    \item NTW $0+5+11 \rightarrow 16$
+    \item GTY $6+5+2 \rightarrow 13$
+\end{itemize}
+Gli allineamenti con punteggio minore della soglia:
+\begin{itemize}
+    \item GNW $\rightarrow 10$
+    \item GAW $\rightarrow 9$
+\end{itemize}
+Dunque saranno esclusi dai passi successivi.
+\paragraph{Fase 2}Scansione del database per le voci che
+corrispondono alla lista compilata (con punteggio
+maggiore della soglia $T$). È un passo veloce e relativamente semplice: i
+database sono indicizzati per la ricerca di parole di
+lunghezza $W$.
+\paragraph{Fase 3}Quando si riesce a trovare una corrispondenza Fase 3 : nella versione originale di BLAST (1990)
+(abbinamento tra una “parola” con punteggio maggiore $T$ al database),
+estendere l’allineamento in entrambe le direzioni.
+\begin{itemize}
+    \item Tenere traccia del punteggio (utilizzando la matrice di
+    punteggio)
+    \item Stop quando il punteggio è inferiore a una certa soglia.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/fase3.png}
+\end{center}
+Nella versione originale di BLAST (1990) ciascun hit è esteso in entrambe le direzioni.\\
+Nella versione migliorata, dal 1997, sono necessari due
+hit vicini (entro una distanza A). In questo modo le
+estensioni avvengono meno frequentemente ma si
+ottiene un notevole risparmio di tempo
+\paragraph{I parametri}
+È possibile personalizzare i parametri di BLAST, sia per le soglie
+menzionate che per le dimensioni delle parole w (default 3 per le
+proteine, 6 negli algoritmi più recenti, e 11 per le sequenze
+nucleotidiche).
+E 'importante valutare la significatività statistica dei risultati
+della ricerca.
+Ecco che effetto ha la scelta di diversi valori della soglia $T$.
+Parole più grandi
+producono meno
+hits, velocizzando
+la ricerca, a scapito
+della sensibilità.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/param.png}
+\end{center}
+\subsection{Come interpretare una ricerca BLAST}
+È importante valutare la significatività statistica dei risultati
+della ricerca. Per gli allineamenti globali, gli aspetti statistici non sono
+molto approfonditi.\\
+Per gli allineamenti locali (compresi i risultati di ricerca
+BLAST), le statistiche sono più solide. I punteggi seguono
+una distribuzione del valore estremo (EVD), piuttosto che
+una distribuzione normale.
+La densità di probabilità del valore estremo
+($u$ valore caratteristico = 0 e costante di decadimento $\lambda$ = 1)
+È spostata a destra rispetto alla distribuzione normale.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/dist.png}
+\end{center}
+\subsubsection{Il valore atteeso E}
+È il numero di allineamenti (high scoring segment pairs o HSP)
+con punteggio maggiore o uguale a un punteggio $S$ che
+dovrebbero verificarsi per caso in quella ricerca sul database.
+Si può pensarlo come un indice di incertezza.
+Un valore $E$ è correlato a un valore di probabilità $p$.\\
+L'equazione fondamentale che descrive un valore $E$ è: 
+$$ E = KMN e^{\lambda S}$$
+Con:
+\begin{itemize}
+    \item $M$, lunghezza della query
+    \item $N$, lunghezza della sequenza nel database
+    \item $S$, score
+    \item $K, \lambda$, parametri che dipendono dallo scoring system ($\lambda$) dal database usato ($K$)
+\end{itemize}
+\paragraph{Alcune proprietà}
+\begin{itemize}
+    \item Il valore di $E$ decresce esponenzialmente con l'aumentare $S$.
+    Valori più elevati di $S$ corrispondono a migliori allineamenti e
+    infatti hanno $E$ values più bassi.
+    \item Ottenere un allineamento con $E = 1$ significa che esiste un
+    altro allineamento con lo stesso score $S$ che è risultato per
+    caso.
+    \item La stessa ricerca, su un database più piccolo o più grande,
+    anche se restituisce lo stesso allineamento deve avere un
+    valore di $E$ diverso (ciò dipende da $K$).
+\end{itemize}
+\paragraph{Punteggio, dallo score grezzo (S) in bit}
+Ci sono due tipi di punteggi:
+\begin{itemize}
+    \item punteggi grezzi (calcolato da una particolare matrice di
+    sostituzione)
+    \item punteggi bit (punteggio normalizzato)
+\end{itemize}
+I punteggi in bit sono paragonabili tra diverse ricerche
+(es. diverse matrici di sostituzione o diverse banche dati)
+perché sono normalizzati, adatti quindi al paragone anche se
+originati tramite diverse matrici di punteggio e database di
+dimensione diversa
+$$ S' = bitScore = {(\lambda S - ln(K))\over ln(2)} $$
+\subsubsection{E-value e p-value}
+Il valore atteso $E$ è il numero di allineamenti con punteggio
+maggiore o uguale a un punteggio $S$ che dovrebbero verificarsi
+per caso in un database di ricerca.\\
+Il \textit{p-value} è un modo diverso (ma equivalente) di rappresentare
+la significatività di un risultato.
+$$ p = 1 -e^{-E}$$
+Per valori molto piccoli E e p sono molto simili. Tuttavia tra 1 e
+10 il valore di E è più chiaro (poichè riflette un numero di hits).
+\begin{center}
+    \begin{tabular}{c|c}
+        E & p \\
+        \midrule
+        10 & 0.99995460\\
+        5 & 0.99326205\\
+        2 & 0.86466472\\
+        1 & 0.63212056\\
+        0.1 & 0.09516258 (circa 0.1)\\
+        0.05 & 0.04877058 (circa 0.05)\\
+        0.001 & 0.00099950 (circa 0.001)\\
+        0.0001 & 0.0001000\\
+    \end{tabular}
 \end{center}
 \begin{titlepage}
     \begin{center}

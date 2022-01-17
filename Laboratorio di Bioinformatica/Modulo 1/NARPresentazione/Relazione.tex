@@ -128,22 +128,30 @@ Insieme a questo documento in formato PDF viene fornito anche il codice \LaTeX  
 \thispagestyle{empty}
 \section{Introduzione}
 \subsection{Lessico e nozioni di base}
-\paragraph{Varianti Causali}Nell'ambito degli studi di associazione, le varianti genetiche responsabili del segnale di associazione in un locus sono indicate nella letteratura come VARIANTI CAUSALI. Esse hanno un effetto biologico sul fenotipo.
-\paragraph{Trait-Associated Loci}\textit{Loci tratto associati}\\Un locus a cui è associao un particolare tratto fenotipico.
-\paragraph{QTL}\textit{Quantitative trait loci}\\
-    Un locus dei caratteri quantitativi (ovvero tratti che possono essere studiati e indagati mediante parametri numerici) è un locus che si correla con la variazione di un tratto quantitativo nel fenotipo di una popolazione di organismi.
-\paragraph{GWAS}\textit{Genome Wide Association Study}\\Un approccio della ricerca genetica per associare, a specifiche variazioni genetiche, particolari malattie.
-\paragraph{Lead Variant}La variante col miglior p-value per combinazioni gene/fenotipo significative.
-\paragraph{P-Value}La probabilità, per un'ipotesi supposta vera (ipotesi nulla), di ottenere risultati ugualmetnte o meno compatibili, di quelli osservati durante i test, con la suddetta ipotesi.
-\paragraph{Tag Variants}Varianti rappresentative in una regione del genoma con un alto linkage disequilibrium.
-\paragraph{Linkage Disequilibrium}
-\paragraph{Fine Mapping}Dal momento che i risultati dei GWAS non sempre ci danno una sintesi completa delle statistiche, e avendo a disposizione solo le Variant Lead, dobbiamo ampliare le informazioni con le Variants Tag, in modo da avere un insieme più completo.\\Il fine mapping è uno dei metodi con quei viene eseguita questa operazione: è una tecnica dei GWAS per identificare la varianti genetiche che possono influenzare causalmente il tratto esaminato, in particolare cerca di determinare la variante genetica responsabile di ????
+\subsection*{Nozioni di Statistica}
 \paragraph{Single Evidence Score}
+Tra i livelli di Evidenza, anche definiti come gerarchia dell'evidenza, assegnati agli studi, basandosi sulla qualità metodologica della loro progettazione, validità e applicabilità alla cura del paziente: è il sesto livello di evidenza - Evidenza da un singolo studio descrittivo o qualitativo.
 \paragraph{Proxy}Un proxy è una misura indiretta del risultato desiderato che è esso stesso fortemente correlato a quel risultato. È comunemente usato quando le misure dirette del risultato non sono osservabili e/o non disponibili.
 \paragraph{Credible Sets}\textit{Set Credibili}\\sono l'insieme più piccolo di varianti, selezionate in modo tale che la loro stima di copertura rettificata soddisfi la copertura del target. Ad esempio: in letteratura, gli autori in genere riferiscono di aver trovato un insieme credibile al 90\% di cui sono fiduciosi almeno al 90\% contenga la vera variante causale.
 \paragraph{PP - Posterior Probability}\textit{Probabilità a posteriori}\\In statistica bayesiana, la probabilità a posteriori di un evento aleatorio o di una proposizione incerta, è la probabilità condizionata che è assegnata dopo che si è tenuto conto dell'informazione rilevante o degli antefatti relativi a tale evento aleatorio o a tale proposizione incerta. Similmente, la distribuzione di probabilità a posteriori è la distribuzione di una quantità incognita, trattata come una variabile casuale, condizionata sull'informazione posta in evidenza da un esperimento o da un processo di raccolta di informazione rilevanti (es. un'ispezione, un'indagine conoscitiva, ecc.).
+\paragraph{P-Value}La probabilità, per un'ipotesi supposta vera (ipotesi nulla), di ottenere risultati ugualmetnte o meno compatibili, di quelli osservati durante i test, con la suddetta ipotesi.
+\par\noindent\rule{\textwidth}{0.4pt}
+\subsection*{Nozioni sui GWAS}
+\paragraph{GWAS}\textit{Genome Wide Association Study}\\Un approccio della ricerca genetica per associare, a specifiche variazioni genetiche, particolari malattie.
+\paragraph{Varianti Causali}Nell'ambito degli studi di associazione, le varianti genetiche responsabili del segnale di associazione in un locus sono indicate nella letteratura come VARIANTI CAUSALI. Esse hanno un effetto biologico sul fenotipo.
+\paragraph{Lead Variant}La variante col miglior p-value per combinazioni gene/fenotipo significative.
+\paragraph{Tag Variants}Varianti rappresentative in una regione del genoma con un alto linkage disequilibrium.
+\paragraph{Trait-Associated Loci}\textit{Loci tratto associati}\\Un locus a cui è associao un particolare tratto fenotipico.
+\paragraph{QTL}\textit{Quantitative trait loci}\\
+    Un locus dei caratteri quantitativi (ovvero tratti che possono essere studiati e indagati mediante parametri numerici) è un locus che si correla con la variazione di un tratto quantitativo nel fenotipo di una popolazione di organismi.
+\paragraph{Linkage Disequilibrium} Linkage disequilibrium (LD) è l'associazione non casuale di alleli di diversi loci. Non esiste una singola statistica migliore che quantifica l'entità di LD. Sono state proposte diverse statistiche utili per scopi diversi.
+\paragraph{Fine Mapping}Dal momento che i risultati dei GWAS non sempre ci danno una sintesi completa delle statistiche, e avendo a disposizione solo le Variant Lead, dobbiamo ampliare le informazioni con le Variants Tag, in modo da avere un insieme più completo.\\Il fine mapping è uno dei metodi con quei viene eseguita questa operazione: è una tecnica dei GWAS per identificare la varianti genetiche che possono influenzare causalmente il tratto esaminato, in particolare cerca di determinare la variante genetica responsabile della malattia o del fenotipo analizzato.
+\paragraph{Linkage Disequilibrium Espansione}
+Sappiamo che il genoma viene ereditato a blocchi e ogni blocco è definito da un aplotipo, che a sua volta è definito da un insieme di SNPs. OTG prende in considerazione l'LD perchè pazienti che hanno ereditato lo stesso segmento cromosomico, definito dal medesimo aplotipo, possono aver ereditato anche la stessa mutazione. L'LD ha persmesso nelle analisi di associazioni, di studiare soo gli SNPs necessari a identificare il blocco di DNS in disequilibrium. 
+
 \section{Open Targets Genetics}
-\subsection{Cos'è Open Target Genetics?}
+
+\subsection{Cos'è Open Targets Genetics?}
 Open Target Genetics è l'ultima \textit{release} della piattaforma Open Targets: una \textit{partnership} tra pubblico e privato che utilizza i dati genetici e genomici umani per l'identificazione sistematica e la prioritizzazione dei bersagli farmacologici.\\
 Il portale offre tre caratteristiche al fine di mettere in luce le associazioni tra \textbf{geni, varianti e tratti}:
 \begin{itemize}
@@ -223,29 +231,99 @@ L'espansione viene fatta in due modi nei due modi sopra riportati. Questa fase p
 
 
 \section{Pipeline}
-Open Targets Genetics utilizza tre pipeline diverse.
+OTG utilizza le sue pipeline interne al fine di aggregare le prove che colleghino variante-malattia, variantegene e gene-malattia, che rispecchiano lo scopo stesso del data base.\\
+Tenendo presente che Open Targets Genetics è solo una risorsa dell'ecosistema Open Targets, che
+completa l'esistente piattaforma Open Targets Platform, vediamo dalla seguente immagine l'importanza
+delle pipeline esistenti in OTG che permettono il raggiungimento di evidenze genetiche, le quali
+comportano una successiva prioritizzazione e identificazione di bersagli farmacologici. I dati di
+prioritizzazione dei geni che usano il punteggio del modello machine learning L2G di OTG, alimentano le
+prove di associazioni genetiche per sopportare le associazioni target-disease nella piattaforma Open
+Targets. 
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/pipelines.png}
+\end{center}
+
+
+\subsection{Assigning Variants to Disease (V2D)}
+Le associazioni variante-fenotipo che troviamo in letteratura sono state identificate tramite il catalogo NHGRI-EBI GWAS: data base curato manualmente di varianti pubblicate che soddisfano determinati criteri di inclusione dettati dal catalogo stesso.
+In particolare, il catalogo GWAS estrae i dettagli sulle associazioni variante-fenotipo a un livello di significatività di $p \leq 1e{-5} (0.00001)$, tenendo presente che il valore p aiuta a capire se la differenza tra il risultato osservato e quello ipotizzato è dovuta alla casualità introdotta dal campionamento, oppure se tale differenza è statisticamente significativa, cioè difficilmente spiegabile mediante la casualità dovuta al campionamento.\\
+\textit{\textbf{Nelle analisi di associazione genetica di tratti complessi, determinare la corretta soglia del valore di
+ P per la significatività statistica è fondamentale per controllare il numero di associazioni di falsi positivi.}}\\
+Il termine p-value sta ad indicare la probabilità che quanto stiamo sostenendo sia corretto con un piccolo margine di errore, oppure esso spiega che la probabilità di sbagliarsi è troppo alta per sostenere la veridicità di quello che ipotizziamo.
+In OTG si includono le associazioni curate dal Catalogo GWAS con $p \leq 5e^{-8} (0.00000005)$.
+I dati del repository delle statistiche di riepilogo del catalogo GWAS sono pertanto stati inclusi nel portale.\\
+Oltre ai dati di derivazione del catalogo GWAS, si hanno a disposizione anche ampi archivi di statistiche riassuntive dai dati disponibili nella biobanca britannica.
+\textbf{Questi dati sono sfruttati per scoprire i locus della malattia.}\\
+Vengono usati due metodi per espandere le varianti associate alla malattia in un insieme più completo di varianti possibilmente causali:
+[ricordando la differenza tra variant lead e variant tag: la VL è la variante].
+\begin{enumerate}
+    \item Espansione del LD utilizzando una popolazione di riferimento: questa viene applicata a tutti gli studi in OTG
+        \subitem Le informazioni sul LD vengono calcolate utilizzando il pannello dell'aplotipo 1000 Genomes Phase 3 come riferimento
+    \item Espansione mediante mappatura fine (analisi del set credibile), utilizzata dove sono disponibili statistiche riassuntive complete (attualmente i tratti della biobanca britannica e quelli inclusi nel riepilogo del catalogo GWAS archivio di statistiche).
+\end{enumerate}
+
+
 \subsection{Assigning Variants to Genes (V2G)}
-La pipeline V2G collega Varianti e geni, combinando dati provenienti da 4 fonti. 
+Tutte le varianti nell'indice delle varianti vengono annotate utilizzando la pipeline di OTG V2G. la pipeline integra le prove V2G che rientrano in diversi tipi di dati principali:
 \begin{itemize}
     \item Esperimenti sui loci dei tratti quantitativi del fenotipo molecolare (eQTL pQTL)
     \item Esperimenti di interazioni con cromatina
     \item In silico predizioni funzionali
     \item Distanza dal sito di inizio della trascrizione canonica
 \end{itemize} 
-Per ciascuna variante, la pipeline prima assegna una prova funzionale della coppia V-G su tutte le fonti, poi applica un algoritmo di punteggio per produrre punteggi V2G aggregati. 
-\subsection{Assigning Variants to Disease (V2D)}
-Open Targets Genetics prende in considerazione le associazioni variante-fenotipo riportate nel catalogo GWAS con p $\leq$ 1e-5. 
-(Attualmente i dati sono derivanti da campioni di origine prevalentemente europea). 
+All'interno di ogni tipo di dato ci sono molteplici fonti di informazioni prodotte da diversi metodi sperimentali.
+Alcune di questi fonti possono essere ulteriormente suddivise tenendo conto di tessuti/cellule.\\
+STEP DA SEGUIRE:
+\begin{enumerate}
+    \item \underline{\textbf{Pre-elaborazione}}
+        \subitem{a.} \textbf{Filtraggio}: i set di dati grezzi vengono elaborati per conformarsi a un formato standard: si produce un file V2G.
+        \subitem{b.} \textbf{Trasformazione del punteggio}: diverse fonti utilizzano metriche diverse per misurare l'associazione V2G: viene estratta quindi una metrica specifica dello studio pertinente seguita dalla trasformazione dei quantili utilizzando una distribuzione uniforme. I punteggi trasformati vengono arrotondati al decile più vicino.
+    \item \underline{\textbf{Annotazione variante-gene}}: ogni coppia (V, G) è annotata con tutte le prove funzionali disponibili.
+    \item \underline{\textbf{Punteggio}}: è stato sviluppato un sistema di punteggio in modo tale che per una data variante V possiamo ottenere un elenco di geni (G1, G2..) classificato in base a:
+            \subsubitem{i.} Il punteggio V2G complessivo
+            \subsubitem{ii.} Un punteggio V2G per sorgente
+        \subitem{a.} \underline{AGGREGARE TRA LE CARATTERISTICHE}: Siccome alcune fonti di dati forniscono associazioni misurate in pi tessuti o linee cellulari, laddove esistono più funzionalità, le aggreghiamo prendendo il punteggio massimo su tutte le funzionalità per ciascun (V, G) coppia. Questa aggregazione fornisce un punteggio V2G per sorgente per ciascuno (V, G) coppia.
+        \subitem{b.} \underline{AGGREGARE TRA LE ORIGINI}: La fase dopo combina le informazioni per produrre un punteggio complessivo V2G. attenzione: poiché alcune fonti possono essere più attendibili di altre, prima dell'aggregazione (con una conoscenza precedente) si ordinano le fonti in base all'attendibilità.
+\end{enumerate}
 \subsection{Prioritising causal genes at GWAS loci (L2G)}
-Ovvero la locus to gene, per cui si ha la prioritizzazione dei geni causali ai loci GWAS. Nonostante possa sembrare simile, è diversa da V2G, infatti usa un modello Machine Learning (si tratta di un addestramento di classificatore).\\
-Al fine di consentire un apprendimento automatico supervisionato dei geni causali sono stati curati manualmente una serie di geni, utilizzando una repository di geni gold standard aperta al contributo della comunità (di questa repository si ha un'alta confidenza della funzionalità del gene implicato).\\
-\textit{[i GSP sono i geni gold standard positivi, mentre gli altri sono definiti come GSN, ovvero geni gold negativi]}
-Si basa su dati di mappatura fine e collocalizzazione:
+\paragraph{Caratteristiche predittive} \textbf{L2G è un modello che da la priorità a probabili geni causali in ciascun locus GWAS in base alle caratteristiche genomiche genetiche e funzionali.} Le principali categorie di caratteristiche predittive sono (tenendo presente che abbiamo 51 caratteristiche predittive dalle 4 categorie qui sotto elencate):
 \begin{itemize}
-    \item COLOCALISATION ANALYSIS: se due tratti condividono una variante causale (sono colocalizzati) ciò aumenta l'evidenza che condividano anche un meccanismo causale. 
-    \item Approccio di gene-prioritisation malattia-specifico 
-    \item Un modello L2G produce un punteggio, compreso tra 0 e 1, che riflette la frazione approssimativa di geni GSP tra tutti i geni vicini a una determinata soglia: i geni con un punteggio L2G di 0,5 hanno una probabilità del 50\% di essere il gene causale nel locus. Tenere presente che il modello L2G è addestrato per identificare i geni GSP e quindi funzionerà bene per i loci molto simili al nostro set di geni GSP, quindi non bisogna limitarsi a tale punteggio che potrebbe essere sbilanciato per certi versi, ma prendere in considerazione anche interazioni QTL e cromatina.  
+    \item Distanza (dalle varianti del set credibile al gene)
+    \item Colocalizzazione molecolare dei QTL
+    \item Interazione della cromatina
+    \item Patogenicità varianti.\\
+    Ogni set di dati di genomica funzionale fornisce punteggi da variante a gene $\rightarrow$ viene convertito il punteggio V-G in punteggi locus to gene, aggregando su varianti credibili identificate attraverso una mappatura fine.
 \end{itemize}
+\textbf{Per gli studi GWAS con statistiche riassuntive disponibili sono utilizzati insiemi credibili dalla mappatura fine approssimata dal fattore di Bayes, altrimenti sono utilizzati insiemi credibili basati su LD.}\\
+Il modello L2G è distinto dalla pipeline V2G in quanto:
+\begin{itemize}
+    \item Utilizza un modello di apprendimento automatico per apprendere il peso di ciascuna fonte di prove basato su un gold standard di geni causali precedentemente identificati.
+    Per consentire l'apprendimento automatico sono stati curati manualmente una serie di geni.
+    \item Si basa su dati di mappatura fine e colocalizzazione.
+\end{itemize}
+Tener presente che alcune caratteristiche sono migliore nel predire il gene: vi è disponibile anche un grafico che indica l'importanza delle caratteristiche.
+\paragraph{Interpretare il punteggio L2G}
+Il modello produce un punteggio tra 0 e 1: questo può essere interpretato per dire che i geni con un punteggio L2G di 0.5 hanno una probabilità del 50\% di essere il gene causale nel locus.\\
+\textbf{Attenzione:} è probabile che l'insieme di geni attualmente identificati come “causali” sia sbilanciato verso quelli che sono più vicini al picco GWAS $\rightarrow$ utile considerare non solo il punteggio, ma anche gli altri parametri disponibili.\\
+Sono disponibili anche dei punteggi parziali: in particolari questi si trovano nella pagina GENE PRIORISATION per un locus. Qui oltre al punteggio complessivo troviamo anche quello parziale: si
+tratta di una sottoanalisi in cui si prende in considerazione solo un insieme parziale di caratteristiche. Anche in questo caso il punteggio è compreso tra 0 e 1.\\
+I punteggi L2G parziali sono utili per capire quanto sia forte l'evidenza per un dato gene basato su un singolo tipo di perditore, tenendo presente che questi modelli utilizzano meno info rispetto al modello completo.
+
+\subsection{Colocalysasion Analysis}
+Utilizzata per verificare se due segnali di associazione indipendenti in un locus sono coerenti con l'avere una variante causale condivisa. Se due tratti condividono una variante causale (= sono colocalizzati) ciò aumenta anche l'evidenza che condividano anche un meccanismo causale.\\
+Si una analisi di colocalizzazione che per due tratti, integra l'evidenza su tutte le varianti al locus per valutare le seguenti ipotesi:
+\begin{itemize}
+    \item H0: Nessuna associazione con nessuno dei due tratti
+    \item H1: Associazione con il tratto 1, non con il tratto 2
+    \item H2: Associazione con il tratto 2, non con il tratto 1
+    \item H3: Associazione con il tratto 1 e il tratto 2, due SNP indipendenti
+    \item H4: Associazione con il tratto 1 e il tratto 2, un SNP condiviso
+\end{itemize}
+In questo quadro, l'evidenza per H4 è considerata evidenza per la colocalizzazione tra due tratti.
+
+
+
+
 \section{Un esempio di utilizzo}
 \subsection{Study}
 \begin{box4}
@@ -340,7 +418,7 @@ Subito dopo abbiamo altri Studi associati, ma questa volta tramite la \textit{\t
 \subsubsection{Gene Priorisation}
 In questa pagina stiamo studiando la malattia selezionata, nel locus suscettibile, possiamo ad esempio capire se l'allele alternativo è protettivo oppure no.
 Questa pagina è chiamata "Study-Locus" e vi si può accedere da Gene e da Studio. Qui si investiga una specifica Lead Variant e un GWAS study.\\
-Dapprima abbiamo la informazioni di base: ad esempio tramite l’odds ratio capiamo se l’allele alternativo è associato ad un alto o basso rischio della malattia su cui si concentra lo studio.Tutte le dimensioni degli effetti sono in relazione all’allele alternativo, che è l’allele riportato ultimo nell’ID della variante.
+Dapprima abbiamo la informazioni di base: ad esempio tramite l'odds ratio capiamo se l'allele alternativo è associato ad un alto o basso rischio della malattia su cui si concentra lo studio.Tutte le dimensioni degli effetti sono in relazione all'allele alternativo, che è l'allele riportato ultimo nell'ID della variante.
 \begin{center}
     \includegraphics[width=0.85\textwidth]{figures/StudyLocus.png}
 \end{center}
@@ -348,7 +426,7 @@ Subito sotto una tabella riporta i geni prioritizzati tramite la \textbf{Locus T
 \begin{center}
     \includegraphics[width=0.85\textwidth]{figures/StudyLocus2.png}
 \end{center}
-Questi sono ordinati tramite lo score assegnato appunto dalla pipeline, riportando anche tutte le features usate per fare il training del modello che ha effettuato la prioritizzazione (quindi distanza, colocalizzazione dei QTL, ecc.). Alla luce dei dati troviamo anche la risposta alla domanda: \textbf{“L’assegnamento del gene è supportato da evidenze di colocalizzazione?”}
+Questi sono ordinati tramite lo score assegnato appunto dalla pipeline, riportando anche tutte le features usate per fare il training del modello che ha effettuato la prioritizzazione (quindi distanza, colocalizzazione dei QTL, ecc.). Alla luce dei dati troviamo anche la risposta alla domanda: \textbf{“L'assegnamento del gene è supportato da evidenze di colocalizzazione?”}
 Subito dopo visualizziamo sempre informazioni riguardanti la prioritizzazione dei geni, ma ottenute tramite la colocalisation Analysis Pipeline: la colocalizzazione dei geni principali, ottenuti mediante la L2G pipeline, in diversi tessuti è mostrata in una heatmap e in una tabella.
 \begin{center}
     \includegraphics[width=0.85\textwidth]{figures/StudyLocus3.png}
@@ -380,16 +458,45 @@ L'ultima sezione è una delle più interessanti, si tratta del Locus Plot:  acce
 \end{center}
 
 \section{Possibili domande}
+\paragraph{Che differenza c'è tra Varianti Lead e Tag?}
+Inanzitutto Open Targets è un portale di genetica concentrato sulle varianti. Le varianti lead si trovano dall'annotazione basata su dati curati manualmente del catalogo GWAS e dati provenienti dalla BioBanca britannica. 
+La variant lead è la variante leader che guida nella ricerca, ma non si può dare per scontato che questa sia la variante causale, ovvero quella responsabile di un effetto biologico sul fenotipo. Per questo motivo si cerca di prendere in considerazione un più ampio set di variabili potenzialmente causali, che chiamiamo tag variants e che otteniamo da due tipologie di espansione: 
+\begin{itemize}
+    \item LD expansion (se la VL è presente nel pannello di riferimento) : sappiamo che il genoma viene ereditato a blocchi e ogni blocco è definito da un aplotipo, che a sua volta è definito da un insieme di SNPs. OTG prende in considerazione il LD perchè pazienti che hanno ereditato lo stesso segmento cromosomico, definito dal medesimo aplotipo, possono aver ereditato anche la stessa mutazione. Il LD ha persmesso nelle analisi di associazioni, si studiare soo gli SNPs necessari a identificare il blocco di DNS in disequilibrium. 
+    \item  Espansione per fine-mapping : identifica quali varianti hanno maggiore probabilità di essere causali ( = responsabili dell’associazione)
+\end{itemize}
+\paragraph{Cos'è la Colocalizzazione?}
+L'analisi di colocalizzazione viene utilizzata per verificare se due segnali di associazione indipendenti in un locus hanno una variante causale condivisa. Se due tratti condividono una variante causale (sono colocalizzati), ciò aumenta l'evidenza che condividono anche un meccanismo causale. 
+ Esempio: se il segnale di una malattia e il livello proteico (pQTL) si colocalizzano, ciò può fornire la prova del ruolo della proteina nel causare la malattia.
+\paragraph{Cos'è la Prioritizzazione?}
+La Prioritizzazione di geni è il processo di assegnazione della probabilità del coinvolgimento del gene nella generazione di un fenotipo di malattia. Questo approccio restringe e organizza in ordine di probabilità nel coinvolgimento della malattia, l'insieme di geni da testare sperimentalmente. 
+La prioritizzazione in OTG permette di dare supporto al portale OTP. 
+
 \paragraph{Qual è la differenza tra GWAS e PheWAS?}
+Sono due tipologie di studio differente:
+\begin{itemize}
+    \item Un PheWAS inizia con una variante genetica di interesse e analizza sistematicamente molti fenotipi (cioè, "a livello di fenotipo") per l'associazione al genotipo. È l'abbreviazione di \textit{studio di associazione sull'intero fenomeno}: uno studio in cui l'associazione tra polimorfismi a singolo nucleotide o altri tipi di varianti del DNA viene testata su un gran numero di fenotipi diversi.
+    \item Come spiegato in precedenza invece uno \textit{studio di associazione sull'intero genoma} (GWAS) è un approccio utilizzato nella ricerca genetica per associare variazioni genetiche specifiche a particolari malattie. Il metodo prevede la scansione dei genomi di molte persone diverse e la ricerca di marcatori genetici che possono essere utilizzati per prevedere la presenza di una malattia.
+\end{itemize}
 \paragraph{Come sono definiti gli Overlap nella pagina del Compare Studies?}
+Per definire la sovrapposizione per una data Lead Variant $x$, le Tag Variants, definite da LD-expansion di $x$ sono incrociate con le Tag Variants di tutte le Lead Variants entro 5 mB da $x$. In ogni caso, quando una Tag Variants di $x$ è condivisa con un'altra Lead Variants, tale Lead è considerata parte dello stesso segnale di $x$. Ogni locus condiviso, quindi, può essere considerato come un insieme di segnali che occupano un aplotipo comune.
 \paragraph{Come si legge il Manhattan Plot?}
+La linea rossa è la linea di significatività genome-wide.\\
+Si può passare il mouse su un locus per visualizzarne i dettagli, incluso il gene più classificato per il locus secondo la pipeline di Open Targets Genetics. Selezionando un cromosoma, dal menù a discesa o facendo clic sul numero del cromosoma sull'asse x, la visualizzazione dei loci situati su quel cromosoma verrà ampliata e ingrandita e verranno limitati i dettagli dei loci visualizzati nella tabella allegata, di seguito. Vengono fornite le opzioni per scaricare il plot come vettore.
 \paragraph{Come si legge il Plot dei PheWAS?}
-\paragraph{A che serve Gene Priorisation?}
+La linea rossa denota il livello di significatività dopo la correzione di Bonferroni per il numero di fenotipi testati, considerandoli prudentemente indipendenti. Ogni fenotipo è rappresentato da un triangolo nel plot: la direzione del traingolo corrisponde alla direzione dell'effetto beta ed è colorato in base al suo "fenotipo ampio". I dettagli dell'associazione di ciascun fenotipo con il tratto di interesse sono visualizzati in una tabella sotto il grafico, che può essere ordinata, filtrata su colonna e scaricata. Per ciascun fenotipo viene fornito anche un collegamento alla vista locus diretta, che caricherà la vista locus con la variante e il tratto UK Biobank preselezionati.
 \paragraph{Quali sono le "tecnologie recenti" menzionate nell'approccio innovativo di OTG?}
 Partendo dai GWAS e dai più recenti dati di trascrittomica e proteomica, che appartengono alla BioBank, e quindi dai database più recenti e aggiornati (su cui si appoggia OTG rimanendo costantemente aggiornato), fino ad arrivare alle pipeline usate (di cui parleremo brevemente in seguito perché molto tecniche ed esulano dal portale in sé per sé su cui ci siamo concentrate)
-\paragraph{Come viene creata l’informazione contenuta nel database?}
+\paragraph{Come viene creata l'informazione contenuta nel database?}
 Tutte le pipeline sono interne ad OTG, non sono esterne, ma proprie del databse.
 \paragraph{Di che tipo sono i campioni contenuti nel database?}
 OTG si basa principalmente su campioni europei, basandosi sulla UK BioBank. Non è stata trovata al momento una fonte di campioni differenti, che mantenga la stessa qualità, ma la piattaforma sta lavorando per ampliare i campioni e cercarne una adeguata.
 %Se più di un gene viene valutato allo stesso modo in questo locus, vengono visualizzati tutti i geni con il punteggio massimo. Se lo studio selezionato dispone di statistiche complete disponibili, la dimensione del set credibile per ciascun locus viene visualizzata accanto al numero di Variant Tag.
+\paragraph{Cosa intendete quando parli di dati senza statistiche riassuntive dal catalogo GWAS, curati manualmente? Quali sono le statistiche riassuntive?}
+Le statistiche riassuntive sono i valori di p aggregati e i dati di associazione per ogni variante analizzata in uno studio di associazione sull’intero genoma.\\
+Non sempre i GWAS forniscono questi dati, è per questo che ottenendo dati senza statistiche aggiuntive è necessario integrarle alle Tag Variants.
+\paragraph{Cosa intendi con Linkage Disequilibrium espansione?}
+Sappiamo che il genoma viene ereditato a blocchi e ogni blocco è definito da un aplotipo, che a sua volta è definito da un insieme di SNPs. OTG prende in considerazione l'LD perchè pazienti che hanno ereditato lo stesso segmento cromosomico, definito dal medesimo aplotipo, possono aver ereditato anche la stessa mutazione. L'LD ha persmesso nelle analisi di associazioni, di studiare soo gli SNPs necessari a identificare il blocco di DNS in disequilibrium. 
+\paragraph{Qual è la differenza tra 1$\_$55039974$\_$G$\_$T e rs11591147?}
+Entrambe le nomenclature fanno riferimento a una variante, mentre la prima ha una forma cromosoma$\_$posizione$\_$riferimento$\_$alternativo, la seconda rappresenta il nome. 
 \end{document}

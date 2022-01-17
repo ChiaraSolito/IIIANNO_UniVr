@@ -1,0 +1,71 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs, siunitx}
+
+\begin{document}
+\section{Traccia}
+In seguito ad una variazione locale di pH la proteina $P_1$ suisce un cambiamento conformazionale che la rende attiva. La forma attiva della proteina ($P_{1a}$)
+è in grado di legare la proteina $P_2$ in modo reversibile con le costanti cinetiche $k_as = 3.4 \times 10^5 M^{-1}s^{-1}$ e $k_dis = 5 \times 10^{-2}s^{-1}$.\\
+Sapendo che le concentrazioni iniziali della protina $P_1$ e della proteina $P_2$ sono rispettivamente $35 \mu M$ e $24 \mu M$ e che la cost6ante cinetica di variazione conformazionale della proteina $P_1$ è $kconf = 7 \times 10^3 M^{-1}s^{-1}$
+simulare il sistema dinamicamente e rispondere ai seguenti quesiti:
+\begin{enumerate}
+   \item Sono sufficienti 0.2 secondi (200 ms) per stabilire l'equilibrio?
+   \item Assumendo che a t=20s il sistema sia all'equilibrio, determinare empiricamente la costante di equilibrio e confrontarla con la costante di equilibrio teorica.
+   \item Supponendo ora che la proteina $P_{1a}$ sia soggetta a degradazione con una costante cinetica $kdeg=1.2 \times 10^{-1} M^{-1}s^{-1}$, per quanto tempo nel sistema si può rilevare la presenza di $P_3$?
+\end{enumerate}
+\section{Soluzione}
+\begin{verbatim}
+*****************MODEL NAME
+
+*****************MODEL NOTES
+
+*****************MODEL STATE INFORMATION
+$P1(0)=25e-6   %M (moli/I)$
+$P2(0)=24e-6   %M (moli/I)$
+
+*****************MODEL PARAMETERS
+k_conf=7e3 \%M^-1 s^-1
+k_as=3.4e5 \%M^-1 s^-1
+k_dis=5e-2 \%s^-1
+k_deg=1.2e-2 %aggiunto successivamente
+                 %all'esercizio 3
+
+*****************MODEL VARIABLES
+
+*****************MODEL REACTIONS
+P1 => P1a : r1
+   vf=k_conf*P1
+P1a + P2 <=> P3: r2
+   vf=k_as*P1a*P2
+   vr=k_dis*P3
+P1a => :r3     %aggiunto successivamente
+   vf=k_deg*P1a    %all'esercizio 3
+
+*****************MODEL FUNCTIONS
+
+*****************MODEL EVENTS
+
+*****************MODEL MATLAB FUNCTIONS
+\end{verbatim}
+\section{Risposte}
+\paragraph{Domanda 1}
+Sono sufficienti per la prima reazione sono sufficienti, ma per la seconda no. Né $P_3$ né $P_{1a}$ hanno raggiunto l'equilibrio. Già dopo 10 secondi invece è visibile l'equilibrio raggiunto da tutte le specie.
+Quindi non sono sufficienti per stabilire l'equilibrio dell'intero sistema.
+\paragraph{Domanda 2}
+$$k_{eq} = \frac{ P_3}{P_{1a}*P_2} = 6.8 \times 10^6$$
+$$K_{as}*P_{1a}*P_2 = k_{dis}*P_3$$
+
+Dobbiamo ora calcolare la costante di equilibrio empirica:\\
+$$P_3(20) c.a. = 2.3x10^{-5}$$
+$$P_{1a}(20) c.a. = 1.13 \times 10^{-5}$$
+$$P_2(20) c.a. = 3.08 \times 10^{-7}$$
+$$k_{eq} = \frac{ P_3(20)}{P_{1a}(20)*P_2(20)} = \frac{2.3 \times 10^{-5}}{1.13 \times 10^{-5}*3.08 \times 10^{-7}} == 6.8 \times 10^{6}$$
+
+\paragraph{Domanda 3}
+Per capirlo aggiungiamo la reazione 3, con una nuova costante $k_{deg}$.\\
+Dopo circa $10^5$ secondi (quindi circa 28 ore) abbiamo raggiunto lo zero (più o meno) per $P_3$.\\
+Spiegazione: dopo la prima reazione, di dissociazione di $P_1$, $P_{1a}$ tende a dissiparsi, quindi non è possibile dopo le 28 ore che si formi $P_3$ e quindi poi tende a sparire.
+\end{document}
