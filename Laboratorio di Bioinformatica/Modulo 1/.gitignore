@@ -5,6 +5,7 @@ figures/*.png
 *.log
 *.fls
 *.toc
+figures/*.PNG
 NARPresentazione/figures/*.png
 NARPresentazione/*.synctex.gz
 NARPresentazione/*.aux

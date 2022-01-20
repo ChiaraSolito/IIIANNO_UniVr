@@ -6,7 +6,12 @@
 \usepackage{booktabs, siunitx}
 
 \begin{document}
-\section{Traccia}
+\begin{center}
+   \Huge
+   Esercizio 1
+\end{center}
+
+\section*{Traccia}
 In seguito ad una variazione locale di pH la proteina $P_1$ suisce un cambiamento conformazionale che la rende attiva. La forma attiva della proteina ($P_{1a}$)
 è in grado di legare la proteina $P_2$ in modo reversibile con le costanti cinetiche $k_as = 3.4 \times 10^5 M^{-1}s^{-1}$ e $k_dis = 5 \times 10^{-2}s^{-1}$.\\
 Sapendo che le concentrazioni iniziali della protina $P_1$ e della proteina $P_2$ sono rispettivamente $35 \mu M$ e $24 \mu M$ e che la cost6ante cinetica di variazione conformazionale della proteina $P_1$ è $kconf = 7 \times 10^3 M^{-1}s^{-1}$
@@ -16,15 +21,15 @@ simulare il sistema dinamicamente e rispondere ai seguenti quesiti:
    \item Assumendo che a t=20s il sistema sia all'equilibrio, determinare empiricamente la costante di equilibrio e confrontarla con la costante di equilibrio teorica.
    \item Supponendo ora che la proteina $P_{1a}$ sia soggetta a degradazione con una costante cinetica $kdeg=1.2 \times 10^{-1} M^{-1}s^{-1}$, per quanto tempo nel sistema si può rilevare la presenza di $P_3$?
 \end{enumerate}
-\section{Soluzione}
+\section*{Soluzione}
 \begin{verbatim}
 *****************MODEL NAME
 
 *****************MODEL NOTES
 
 *****************MODEL STATE INFORMATION
-$P1(0)=25e-6   %M (moli/I)$
-$P2(0)=24e-6   %M (moli/I)$
+P1(0)=25e-6   %M (moli/I)
+P2(0)=24e-6   %M (moli/I)
 
 *****************MODEL PARAMETERS
 k_conf=7e3 \%M^-1 s^-1
@@ -50,7 +55,7 @@ P1a => :r3     %aggiunto successivamente
 
 *****************MODEL MATLAB FUNCTIONS
 \end{verbatim}
-\section{Risposte}
+\section*{Risposte}
 \paragraph{Domanda 1}
 Sono sufficienti per la prima reazione sono sufficienti, ma per la seconda no. Né $P_3$ né $P_{1a}$ hanno raggiunto l'equilibrio. Già dopo 10 secondi invece è visibile l'equilibrio raggiunto da tutte le specie.
 Quindi non sono sufficienti per stabilire l'equilibrio dell'intero sistema.
@@ -68,4 +73,89 @@ $$k_{eq} = \frac{ P_3(20)}{P_{1a}(20)*P_2(20)} = \frac{2.3 \times 10^{-5}}{1.13 
 Per capirlo aggiungiamo la reazione 3, con una nuova costante $k_{deg}$.\\
 Dopo circa $10^5$ secondi (quindi circa 28 ore) abbiamo raggiunto lo zero (più o meno) per $P_3$.\\
 Spiegazione: dopo la prima reazione, di dissociazione di $P_1$, $P_{1a}$ tende a dissiparsi, quindi non è possibile dopo le 28 ore che si formi $P_3$ e quindi poi tende a sparire.
+
+\newpage
+\begin{center}
+   \Huge
+   Esercizio 2
+\end{center} 
+
+\section*{Traccia}
+La proteina P, è sintetizzata dai ribosomi con una costante cinetica $kl$ pari a$ 3.5 \times 10^{-7} M^{-1}s^{-1}$. È noto che la proteina $P_1$ dimerizza (formando il dimero $P_2$) con una $K_{Dim}. = 5 nM$ e che il dimero può reversibilmente dissociare con una costante cinetica di dissociazione $kdim\_d = 5 \times 10^{-5}s^{-1}$.\\ Nella stessa cellula, un enzima $E$ lega irreversibilmente un cofattore $C$ con una costante cinetica $kcof = 8.4 \times 10^4 M^{-1}s^{-1}$ a formare l'enzima attivo $E_a$. 
+Quest'ultimo catalizza l'attivazione del dimero $P_2$, trasformandolo quindi in $P_{2a}$, con una costante di catalisi $kcat = 1.2 \times 10^{-2}s^{-1}$ ed una costante di Michaelis $K_M = 5 \mu M$. Il dimero attivato lega poi un recettore intracellulare $R$ in modo reversibile a formare il complesso $P_{2a}R$ con costanti cinetiche di associazione e dissociazione rispettivamente $kRa = 1.3 \times 10^5 M^{-1}s^{-1}$ e $kRd =10^{-2} s^{-1}$. Il complesso $P_{2a}R$ dissocia poi in modo irreversibile nel dimeno $P_2$ inattivo e nel recettore attivo $R$. con costante cinetica $kRact = 4 \times 10^{-1}s^{-1} $. 
+Sapendo che le concentrazioni iniziali delle specie molecolari presenti nel sistema sono: 
+$P_1(0) = 13.5 \mu M, E(0) = 10.5 \mu M, C(0) = 5.3 \mu M, R(0) = 320 \mu M$, simulare dinamicamente il sistema e rispondere ai seguenti quesiti: 
+\begin{enumerate}
+   \item Dopo quanto tempo il recettore R è totalmente saturato da $P_{2a}$? Qual è il rispettivo valore massimo di produzione di $R_a$, la sua forma attiva?
+   \item Assumendo che a t=20s il sistema sia all'equilibrio, determinare empiricamente la costante di equilibrio e confrontarla con la costante di equilibrio teorica.
+   \item Supponendo ora che la proteina $P_{1a}$ sia soggetta a degradazione con una costante cinetica $kdeg=1.2 \times 10^{-1} M^{-1}s^{-1}$, per quanto tempo nel sistema si può rilevare la presenza di $P_3$?
+\end{enumerate}
+\section*{Soluzione}
+\begin{verbatim}
+*****************MODEL NAME
+Esercizio 2
+*****************MODEL NOTES
+
+*****************MODEL STATE INFORMATION
+P1(0)=13.5e-6    %M (moli/I)
+E(0)=10.5e-6     %M (moli/I)
+C(0)=5.3e-6      %M (moli/I)
+R(0)=320e-6      %M (moli/I)
+
+*****************MODEL PARAMETERS
+k_1=3.5e-7     %M^-1 s^-1
+k_Dim=5e-9     %M^-1 s^-1
+kdim_d=5e-5    %s^-1
+k_cof=8.4e4   %M^-1s^-1 %alla terza domanda cambia 
+k_cat=1.2e-2   %s^-1
+KM=5e-6       %M
+k_Ra=1.3e5
+k_Rd=1e-2
+k_Ract=4e-1
+
+*****************MODEL VARIABLES
+kdim_a=kdim_d/k_Dim
+VMax=k_cat*Ea
+
+*****************MODEL REACTIONS
+P1 => P1 : r1 % biosintesi della proteina P1
+   vf=k_1
+P1 + P1 <=> P2: r2 %dimerizzazione della proteina P1
+   vf=kdim_a * P1^2
+   vr=kdim_d * P2
+E + C => Ea : r3 %enzima lefa cofattore irreversibilmente e diventa attiva
+   vf=kcof*E*C
+P2 => P2a :r4 %attivazione enzimatica di P2 
+   vf=VMax*P2)/(P2+KM)
+P2a + R <=> P2aR :r5  %il dimero attivato 
+   vf=kRa * P2a * R
+   vr=kRd*P2aR
+P2aE => P2 + Ra :r6 %di
+   vf=kRact*P2aR
+
+*****************MODEL FUNCTIONS
+
+*****************MODEL EVENTS
+
+*****************MODEL MATLAB FUNCTIONS
+\end{verbatim}
+
+\section*{Risposte}
+\paragraph{Domanda 1}
+Dopo i $5500$ secondi il reagente R è completamente saturato.
+\paragraph{Domanda 2}
+Decresce più velocemente E.
+\paragraph{Domanda 3}
+Le due figure differiscono, perchè con $10^2$ su si vedono bene le curve con cui aumentano e diminuiscono i reagenti sui 5000 secondi; 
+inizialmente con $10^4$ non si nota quasi, perché troppo veloce per essere visualizzata bene.\\
+La misura di E, C e Ea cambia (ma non abbiamo visto come).\\
+\includegraphics[width=1\textwidth]{figures/SystemsBiology_Esercizio2_domanda3.PNG}
+\paragraph{Domanda 4}
+Per vederlo abbiamo runnato per 400 secondi:\\
+La concentrazione di Ra è circa 2.1e-5, mentre quella mutata è 14.5e-6.\\
+Calcoliamo la percentuale di Ra mutata relativamente alla quantità normalmente prodotta: dopo 400 secondi la proteina mutata è il 70\% di quella non mutata.
+\paragraph{Domanda 5}
+Raddoppiamo R(0) per verificare la differenza con Wild Type in caso di overespressione e poi lo dimezziamo per vedere una down-regolazione:\\
+In 2000 secondi si nota sui grafici la differenza:\\
+\includegraphics[width=1.4\textwidth]{figures/SystemsBiology_Esercizio2_domanda5.PNG}
 \end{document}
