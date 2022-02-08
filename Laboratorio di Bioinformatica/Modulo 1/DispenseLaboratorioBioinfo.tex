@@ -13,7 +13,9 @@
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{soulutf8}
-\usepackage{epigraph} 
+\usepackage{epigraph}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -23,7 +25,7 @@
 \lfoot{Bioinformatica - A.A. 2021/22}
 \usetikzlibrary{trees}
 \tikzstyle{every node}=[draw=black,thick,anchor=west]
-
+\newcommand{\angstrom}{\mbox{\normalfont\AA}}
 
 \begin{document}
 \newcommand\tab[1][0.3cm]{\hspace*{#1}}
@@ -80,6 +82,7 @@ In particolare, gli studenti avranno la possibilità di applicare stru-menti del
 
     \end{center}
 \end{titlepage}
+\setcounter{page}{5}
 \section{Cos'è la bioinformatica?}
 La bioinformatica è (oggi) una disciplina scientifica dedicata alla risoluzione di problemi biologici a livello
 molecolare con metodi informatici. Descrive fenomeni biologici in modo numerico/statistico.
@@ -269,6 +272,7 @@ relazione di omologia}
         
     \end{center}
 \end{titlepage}
+\setcounter{page}{10}
 \section{Le Basi di Dati Biologiche}
 Il concetto di informazione è strettamente connesso a quello di dato e di
 struttura.
@@ -639,6 +643,7 @@ La risorsa principale che ha prodotto è SwissProt (confluita in Uniprot). Riman
 
     \end{center}
 \end{titlepage}
+\setcounter{page}{19}
 \section{Allineamenti di Sequenze}
 Un primo e precoce allineamento di sequenze si ha nel 1961: H.C. Watson and J.C. Kendrew,
 “Comparison Between the Amino-Acid Sequences of Sperm Whale Myoglobin and of Human Hæmoglobin.” Nature 190:670-672, 1961.\\
@@ -941,6 +946,7 @@ sequenze (Pairwise Sequence Alignment).
 
     \end{center}
 \end{titlepage}
+\setcounter{page}{30}
 \section{Waterman-Smith}
 Un problema dell'algoritmo di Needleman-Wunsch: non si
 tiene conto della penalizzazione delle indel.\\
@@ -1390,6 +1396,8 @@ similitudine (Allineamenti multipli, modeling)
 
     \end{center}
 \end{titlepage}
+\setcounter{page}{45}
+
 \section{BLAST}
 \subsection{Problema con gli algoritmi dinamici}
 Gli algoritmi visti (WS, NW) sono precisi ma lenti.
@@ -1538,7 +1546,7 @@ database sono indicizzati per la ricerca di parole di
 lunghezza $W$.
 \paragraph{Fase 3}Quando si riesce a trovare una corrispondenza Fase 3 : nella versione originale di BLAST (1990)
 (abbinamento tra una “parola” con punteggio maggiore $T$ al database),
-estendere l’allineamento in entrambe le direzioni.
+estendere l'allineamento in entrambe le direzioni.
 \begin{itemize}
     \item Tenere traccia del punteggio (utilizzando la matrice di
     punteggio)
@@ -1645,6 +1653,201 @@ Per valori molto piccoli E e p sono molto simili. Tuttavia tra 1 e
         0.0001 & 0.0001000\\
     \end{tabular}
 \end{center}
+\subsubsection{Panoramica}
+\begin{itemize}
+    \item \textbf{W:} Dimensione della parola usata dall'algoritmo di Blast
+    \item \textbf{Soglia attesa:} Valore massimo di incertezza richiesto ai risultati
+    \item \textbf{Costo gap:} Apertura ed estensione
+    \item \textbf{Matrice di punteggio}
+    \item \textbf{Soglia T di punteggio}
+    \item \textbf{Dimensione del database}
+    \item \textbf{Parametri per il calcolo di E}
+\end{itemize}
+\paragraph{In quali casi ha senso una soglia E elevata?}
+Si supponga di eseguire una ricerca con una query corta
+(ad esempio 9 aminoacidi). Non ci sono residui sufficienti per
+accumulare un punteggio elevato (o un valore di E piccolo).
+Infatti, una corrispondenza di tutti e 9 i residui potrebbe
+produrre un punteggio basso con un valore di E =100 o 200.
+E tuttavia, questo risultato potrebbe essere "reale" e di vostro
+interesse.
+In casi particolari, impostando il valore di cut-off per E a
+20.000 non si cambia il modo in cui è stata fatta la ricerca,
+ma cambiano i risultati riportati.
+\subsection{Strategia per la ricerca con BLAST}
+\begin{itemize}
+    \item Concetti generali
+    \item Come valutare la significatività dei risultati
+    \item Come gestire troppi risultati
+    \item Come gestire troppo pochi risultati
+    \item Blast e la valutazione dell'omologia
+\end{itemize}
+\paragraph{A volte un vero match ha un valore di E > 1}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/realmatch.png}
+\end{center}
+Posso provare un BLAST reciproco per confermare.\\
+A volte un valore E simile si verifica sia per un match esatto corto che per uno lungo.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/match.png}
+\end{center}
+I risultati delle ricerche, ordinati per E, si valutano poi nel dettaglio!
+\subsubsection{Valutare se le proteine sono omologhe}
+\textit{Es.lipocaline: hanno bassa s.i. ma struttura 3D simile}\\
+\paragraph{RBP4 (query) e Salivary Lipocalin from boar:} Basso punteggio bit, valore E=0.40, il 21% di identità
+(“twilight zone"). Ma sono davvero omologhe. Prova un'altra
+ricerca BLAST con la seconda come query, per trovare
+molte altre lipocaline.\\
+L'universo di lipocaline (proteine che trasportano piccoli ligandi idrofobici).
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/lipocaline.png}
+\end{center}
+\begin{enumerate}
+    \item La ricerca con BLAST con salivary lipocalin [Sus
+    scrofa] come query trova molte altre lipocaline
+    \item Utilizzando la beta globina umana come una query, ecco i risultati
+    blastp contro le proteine umane RefSeq (PAM30). Dove si trova
+    mioglobina? È assente!
+    \item Abbiamo bisogno di usare PSI-BLAST
+\end{enumerate}
+\subsubsection{Due esempi di problemi che BLAST standard non può risolvere}
+\begin{enumerate}
+    \item Usando la beta globina umana come query
+    contro proteine umane con RefSeq, blastp non
+    “trova“ la mioglobina umana. Questo perché le due
+    proteine sono troppo distanti. PSI-BLAST presso
+    NCBI così come i modelli nascosti di Markov
+    possono facilmente risolvere questo problema.
+    \item Come possiamo cercare con 10000 paia o addirittura milioni di paia di basi come query?\\Molti strumenti tipo-BLAST per il DNA genomico sono
+    disponibili come PatternHunter, Megablast, Blat, e
+    BLASTZ (NON li vedremo nel corso).
+\end{enumerate}
+\section{PSI-BLAST (position specific iterated)}
+Lo scopo di PSI-BLAST è quello di cercare
+più in profondità nel database match alla
+sequenza della proteina query, utilizzando
+una matrice di punteggio che è adattata
+dinamicamente (in modo iterativo) per la
+ricerca in corso.
+\subsection{Fasi di esecuzione}
+\begin{enumerate}
+    \item Selezionare una query di ricerca (diverse sequenze) contro
+    un database proteico e lanciare BLASTP
+    \item PSI-BLAST costruisce un allineamento multiplo di sequenze
+    a partire dagli hit migliori e crea quindi un "profilo" detto anche
+    Matrice di calcolo posizione-specifica (PSSM, position-
+    specific scoring matrix)
+    \item Il PSSM (e non più la sequenza iniziale) è usato come query
+    sul database: mi aspetto ora di trovare più sequenze sui cui
+    ricalcolare l'allineamento multiplo
+    \item PSI-BLAST stima la significatività statistica (valori di E)
+    \item Ripetere i passaggi 3 e 4 in modo iterativo, tipicamente 5
+    volte. Ad ogni nuova ricerca, un nuovo profilo viene utilizzato nella
+    query.
+\end{enumerate}
+Un PROFILO di lunghezza L è una matrice L X 20 (per
+proteine, o L X 4 per DNA) di elementi s i,j rappresentanti lo
+score per allineare la lettera j alla posizione i.
+Un profilo può essere allineato ad una sequenza individuale
+esattamente allo stesso modo di una normale sequenza
+\subsubsection{Come costruire il profilo?} Esaminare l'output di blastp per identificare "regole”
+empiriche di punteggio per gli aminoacidi tollerati in ogni
+posizione: non tutte le posizioni ammettono la stessa
+variabilità. Il punteggio ne terrà conto.
+\subsubsection{Funzionamento di Psi-Blast}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/psiblast.png}
+\end{center}
+\begin{itemize}
+    \item In riga: 20 amminoacidi
+    \item In colonna: tutti gli aa della posizione 1 alla fine (L) della proteina query per PSI-BLAST
+    \item Notare che dato un amminoacido (come ad esempio l'alanina) nella sequenza query, si possono ottenere diversi punteggi per il match, in relazione alla posizione nella sequenza query e alla frequenza in cui la ritrovo nell'allineamento multiplo.
+    \item Lo stesso vale anche per il triptofano: posizioni diverse hanno, per lo stesso match, punteggi diversi
+\end{itemize}
+\paragraph{In pratica:} il profilo posizione-specifico (PSSM) cattura il
+pattern di conservazione nell'allineamento multiplo ottenuto
+dai migliori hits di BLASTP e lo immagazzina sottoforma di
+matrice di score $\rightarrow$ Posizioni altamente conservate ottengono punteggi alti;
+posizioni poco conservate ottengono punteggi bassi.\\
+Il profilo è quindi una specie di nuova query in cui ogni
+posizione ha un “peso” differenziato: questa informazione
+può essere utilizzata per estendere la ricerca.
+\subsubsection{Esempio di Cicli}
+Schematicamente, questi gli step per i primi due cicli:
+\begin{itemize}
+    \item CICLO 1: singola query, 1 run di BLAST\\\includegraphics[width=0.4\textwidth]{figures/ciclo1.png}
+    \item CICLO 2: PSSM come query, più sequenze trovate\\\includegraphics[width=0.4\textwidth]{figures/ciclo2.png}
+\end{itemize}
+\begin{center}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Iterazioni} & \textbf{\#Hits} & \textbf{\#Hits > Soglia}\\
+        \midrule
+        1 & 104 & 49\\
+        2 & 173 & 96\\
+        3 & 236 & 178\\
+        4 & 301 & 240\\
+        5 & 344 & 283\\
+        6 & 342 & 298\\
+        7 & 378 & 310\\
+        8 & 382 & 320
+    \end{tabular}
+\end{center}
+Nota: (come prima, globina beta, PAM30, RefSeq, Homo
+sapiens). Gli E-values cambiano a seconda delle
+interazioni, e possono migliorare drasticamente. Seguiamo iterativamente l'allineamento con la subunità mu.
+\begin{itemize}
+    \item Iterazione 1:\\
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/it1.png}
+    \end{center}
+    \item Iterazione 2:\\
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/it2.png}
+    \end{center}
+    \item Iterazione 3:\\
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/it3.png}
+    \end{center}
+    \item Iterazione 4:\\
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/it4.png}
+    \end{center}
+    \item Iterazione 5:\\
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/it4.png}
+    \end{center}
+    \item E non migliora più (e nemmeno il bit-score)
+\end{itemize}
+Le matrici di score permettono di campionare una regione
+relativamente limitata dell'universo delle sequenze:
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/mat.png}
+\end{center}
+PSI-BLAST genera matrici di punteggio più potenti delle PAM o BLOSUM
+\subsection{Psi-Blast: la corruzione}
+PSI-BLAST è utile per rilevare relazioni deboli ma
+biologicamente significative tra le proteine.La principale fonte di falsi positivi è la falsa amplificazione di
+sequenze non correlate alla query.\\
+\textit{Esempio:} una query con un motif
+coiled-coil può rilevare migliaia di
+altre proteine con questo motivo che
+non sono omologhe.\\
+Una volta che anche una singola proteina spuria è inclusa
+in una ricerca PSI-BLAST entro la soglia, non ne uscirà e influenzerà la iterazioni successive.\\
+La \textbf{corruzione} è definita come la presenza di almeno un
+falso allineamento positivo con un valore E <10 -4 dopo
+cinque iterazioni.
+Tre approcci per arrestare la corruzioni:
+\begin{enumerate}
+    \item Applicare filtri alle regioni con composizione poco
+    specifica
+    \item Aggiustare il valore di E da 0.001 (default) ad uno più
+    basso, come E = 0.0001.
+    \item Controllare visivamente l'output di ogni iterazione.
+    Rimuovere gli hit sospetti deselezionando la casella.
+\end{enumerate}
+
 \begin{titlepage}
     \begin{center}
         \vspace*{1cm}
@@ -1653,6 +1856,7 @@ Per valori molto piccoli E e p sono molto simili. Tuttavia tra 1 e
 
     \end{center}
 \end{titlepage}
+\setcounter{page}{59}
 \section{Allineamento multiplo di sequenze}
 \subsection{Visione Generale}
 \subsubsection{Una definizione}
@@ -1671,7 +1875,7 @@ Non c'è necessariamente un allineamento "corretto" per una famiglia di proteine
         \item Le corrispondenti strutture tridimensionali evolvono, anche se più lentamente
         \item Può essere particolarmente difficile identificare i residui che si sovrappongono nello spazio (strutturalmente) in un allineamento multiplo di sequenze.
     \end{itemize}
-\hl{Due proteine che condividono il 30\% di identità di sequenza avranno circa il 50\% dei residui sovrapponibili nelle due strutture}
+Due proteine che condividono il 30\% di identità di sequenza avranno circa il 50\% dei residui sovrapponibili nelle due strutture
 \subsubsection{Caratteristiche utili per realizzzarlo}
 Alcuni residui allineati, come cisteine che formano ponti disolfuro, o i triptofani, possono essere altamente conservati
     \begin{itemize}
@@ -1688,29 +1892,31 @@ Alcuni residui allineati, come cisteine che formano ponti disolfuro, o i triptof
         \item Una singola query può essere cercata contro un database di MSA (ad esempio Pfam)
         \item Le regioni regolatorie dei geni sono spesso identificabili da MSA
     \end{itemize}
-\subsection{Metodi}
+\subsection{Metodi Euristici}
 I metodi esatti non vengono trattati in questa sede: non ci sono soluzioni efficienti e già con 5 sequenze il tempo di computazione è eccessivo (esponenziale)
-\subsubsection{Metodi Euristici}
-\hl{\textbf{Metodi progressivi}}: usano un albero guida (analogo ad un albero filogenetico) per determinare come combinare uno per uno allineamenti a coppie
+\textbf{Metodi progressivi}: usano un albero guida (analogo ad un albero filogenetico) per determinare come combinare uno per uno allineamenti a coppie
 (progressivamente) per creare un allineamento multiplo.\\
-\small{Esempi: CLUSTAL OMEGA (W), MUSCLE (usato da HomoloGene)}
+Esempi: CLUSTAL OMEGA (W), MUSCLE (usato da HomoloGene)
+\section{Clustal Omega}
+Usa Clusta Omega per fare un MSA progressivo.
+\subsection{Fasi di MSA}
 \paragraph{Il MSA progressivo di Feng-Doolittle (1987) alla base di Clustal (W) avviene in 3 fasi}
 \begin{enumerate}
     \item Realizzare una serie di allineamenti a coppie globali (Needleman e Wunsch, algoritmo di programmazione dinamica) di cui si calcola la distanza (matrice delle distanze)
     \item Creare un albero guida a partire dalla matrice delle distanze
     \item Allineare progressivamente le sequenze
 \end{enumerate}
-\textbf{MSA progressivo, fase 1 di 3:}\\
-\normalsize{generare allineamenti a coppie globali}\\
+\subsubsection{Feng Doolittle fase 1: generare allineamenti}
+\normalsize{Generare allineamenti a coppie globali}\\
 \small{Esempio: allineare 5 globine (1, 2, 3, 4, 5).}\\
-\paragraph{\hl{Primo step:} a due a due e valutare gli score di ogni possibile allineamento a coppie\\}
+\paragraph{Primo step: a due a due e valutare gli score di ogni possibile allineamento a coppie\\}
 \textbf{Numero di allineamenti a coppie necessari per coprire tutte le possibili combinazioni}
 \begin{itemize}
     \item Per n sequenze, (n-1) (n) / 2
     \item Per 5 sequenze, (4) (5) / 2 = 10
     \item Per 200 sequenze, (199) (200) / 2 = 19.900
 \end{itemize}…Quindi per molte sequenze ClustalW è molto lento ed è preferibile usare metodi più veloci (MUSCLE è molto veloce).
-\paragraph{\hl{Secondo step:} albero guida\\}
+\subsubsection{Feng-Doolittle fase 2: albero guida}
 \textbf{Convertire i punteggi di similitudine in punteggi di distanza:} è matematicamente più semplice, oltre che più intuitivo, lavorare con le distanze. Una semplice definizione di distanza è data dalla percentuale di
 residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
 \begin{itemize}
@@ -1719,19 +1925,1282 @@ residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
 \end{itemize}
 \paragraph{Il clustering alla base di CLUSTAL(W)} È una matrice di distanze, minore è il numero, maggiore è la similitudine.
 \textit{Nota: tutte le distanze tra la I e la IV riga sono minori di quelle riportate nella V}
-%inserire foto 
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/clustal.png}
+\end{center}
 \begin{itemize}
     \item Tutte le sequenze vengono poi allineate progressivamente, seguendo le indicazioni dell'albero
     guida: prima si allineano le più simili (vicine) e poi progressivamente le più distanti.
     \item A ogni passaggio si utilizza un algoritmo dinamico di allineamento molto efficiente che accoppia sequenze o gruppi di sequenze
     \item Il MA è composto a partire a tanti allineamenti a coppie, anche fra gruppi di sequenze.
-    \item{} \textit{Nota: Le indel presenti negli allineamenti già effettuati restano fisse.}
+    \item[] \textit{Nota: Le indel presenti negli allineamenti già effettuati restano fisse.}
+    \item[]\includegraphics[width=0.5\textwidth]{figures/albero1.png}
     \item Come allineare pogressivamente due gruppi di sequenze? Si usa sempre una matrice. È simile all'allineamento dinamico di due sequenze visto.
     \item Lo score S in ogni
     casella è la media degli score ottenuti confrontando tutte le possibili coppie di a.a. nella riga e colonna
     corrispondenti (secondo ad es. BLOSUM62)
-    \item 
+    \item Quando la matrice è stata totalmente calcolata, si calcola il percorso con il migliore allineamento (unisce gli S più alti)
+    \item[] \includegraphics[width=0.5\textwidth]{figures/albero2.png}
 \end{itemize}
+\subsubsection{Feng-Doolittle fase 3: allineamento progressivo\\}
+Fare un MSA in base all'ordine nell'albero guida:
+\begin{itemize}
+    \item Iniziare con le due sequenze più strettamente correlate
+    \item Quindi aggiungere la sequenza (o il gruppo) successiva più vicina
+    \item Continuare fino a quando tutte le sequenze vengono aggiunte al MSA
+    \item Regola: “Un gap è per sempre”
+\end{itemize}
+\paragraph{Metodi euristici per l'allineamento multiplo di sequenze}
+\begin{itemize}
+    \item Cinque globine lontanamente correlate (umano a pianta)
+    \item Cinque globine beta strettamente correlate (specie differenti)
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/globclust.png}
+\end{center}
+\subsubsection{Perché un GAP è per sempre?}
+Ci sono molti modi possibili per fare un MSA. Dove aggiungere i gaps è una questione cruciale : i gaps
+sono spesso aggiunti tra le prime due sequenze (le più
+vicine).\\
+Cambiare la scelta iniziale di un gap successivamente
+significherebbe dare più peso, nella definizione
+dell'evoluzione della famiglia a sequenze più distanti tra
+loro. Mantenere le scelte dei gap iniziale significa credere che
+quell'evento sia più affidabile, quindi se serve un gap, prima
+si valuta dove ne sono già stati visti e poi si considerano
+altre posizioni.
+\subsubsection{Esempio sulla variabilità dei MSA}
+\paragraph{Allineamenti di 5 globine utilizzando 5 diversi programmi}
+Consideriamo un allineamento multiplo di sequenze (MSA) di
+cinque globine. Useremo cinque tra i migliori programmi per il
+MSA: ClustalW, Praline, MUSCLE (utilizzato da HomoloGene),
+ProbCons e TCoffee. Ogni programma offre punti di forza
+particolari.\\
+Ci concentreremo su una istidina (H) residuo che ha un ruolo
+critico nel legare l'ossigeno nelle globine, e dovrebbe quindi
+essere allineata; tuttavia spesso non è allineata. Ciascuno dei
+cinque programmi può dare risposte diverse.\\
+La nostra \textbf{conclusione} è che non esiste un approccio ottimale
+al MSA. Decine di nuovi programmi sono stati introdotti negli
+ultimi anni.
+\section{Confronto}
+\subsection{ClustalW}
+Il più usato, è uscito nel 1994 e non viene più aggiornato. È anche quello di
+riferimento per i nuovi programmi che spesso hanno prestazioni migliori.
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/clustalw.png}
+\end{center}
+Nota come la regione in cui una istidina è conservata ($ \blacktriangledown $) vari a
+seconda di quale dei cinque algoritmi è utilizzato
+\subsection{Praline}
+Introdotto di recente, ha buone prestazioni
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/praline.png}
+\end{center}
+Nota come la regione in cui una istidina è conservata ($ \blacktriangledown $) vari a
+seconda di quale dei cinque algoritmi è utilizzato
+\subsection{MUSCLE}
+Nuovo programma (molto buono e molto veloce) che sta
+avendo più successo di ClustalW
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/muscle.png}
+\end{center}
+\subsection{Probcons}
+Usa le HMM e con MUSCLE sta guadagnando consensi fra
+gli utilizzatori
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/probcons.png}
+\end{center}
+\subsection{TCoffee}
+Incorpora informazioni sulla struttura secondaria nel
+realizzare l'allineamento.
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/tcoffee.png}
+\end{center}
+\section{Metodi Iterativi}
+\textbf{Metodi iterativi}: consistono nel calcolare una
+soluzione sub-ottimale e modificarla ripetutamente
+con metodi della programmazione dinamica o altri
+metodi fino a quando la soluzione converge (non
+migliora ulteriormente).\\
+\textit{Esempi:} MAFFT, MUSCLE, IterAlign, Praline\dots
+Non vengono visti nel dettaglio
+\subsection{La consistenza} Algoritmi potenti, veloci e accurati basati sulla consistenza:
+valutano la probabilità di allineamento sulla base di
+database di allineamenti a coppie locali ad alto punteggio e
+allineamenti a coppie globali a lungo raggio per creare un
+allineamento completo.
+\paragraph{Concetto:} se abbiamo 3 sequenze A, B e C, e allineiamo A
+con B e B con C, implicitamente abbiamo allineato anche A
+con C. Ma magari l'allineamento implicito è incoerente (o
+incosistente) rispetto al diretto allineamento A con C: cerco
+un MSA che ottimizzi la consistenza.
+\begin{itemize}
+    \item Sequenza x: $x_{i}$
+    \item Sequenza y: $y_{j}$
+    \item Sequenza z: $z_{k}$
+\end{itemize}
+Se $x_{i}$ si allinea con $z_{k}$ e $z_{k}$ su akkubea cib $y_{j}$
+allora $x_{i}$ dovrebbe allinearsi con $y_{j}$. Il programma
+determina vincoli che cercano di soddisfare questa
+necessità di coerenza.\\
+ProbCons incorpora elementi di prova da più sequenze
+per guidare la creazione di un allineamento a coppie.
+\section{T-Coffee (2000)}
+\textit{Tree-based Consistency Objective Function for Alignment Evaluation}\\
+Attraverso un procedimento progressivo simile a Clustal W si determina
+un allineamento multiplo che sia il più possibile coerente con
+“vincoli” esterni.
+\subsection{Vincoli}
+derivano dall'insieme di allineamenti a coppie tra le seq. da allineare (locali e
+globali). Il MA finale deve soddisfare il piu' possibile quei vincoli:
+\begin{itemize}
+    \item Primari: danno come peso a ciascun appaiamento di a.a. AB il valore di seq. sim.
+    ottenuta dal relativo allineamento a coppie.
+    \item Estesi: quante volte l'appaiamento AB si ritrova coerentemente in altri allineamenti
+    possibili.
+\end{itemize}
+T-Coffee è una collezione di tools per MSA. Ci sono anche vari tools per
+valutare gli MSA ottenuti.
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/tools.png}
+\end{center}
+TCoffee può integrare le informazioni strutturali in un MSA.
+\section{Metodi}
+\textit{Come facciamo a decidere quale programma utilizzare?}\\
+Ci sono dataset di benchmarking per gli allineamenti multipli
+allineati meticolosamente a mano, in base a somiglianza
+strutturale, o con algoritmi automatici ma molto accurati
+(dispendiosi in termini di tempo e memoria). Alcuni programmi dotati di interfacce che sono più user-
+friendly rispetto ad altri. La maggior parte dei programmi sono
+molto buoni, dunque dipende dalla vostra preferenza. Se le vostre proteine hanno una struttura 3D, usatela per
+aiutarvi a giudicare l'allineamento.
+\subsection{Strategia per la valutazione degli algoritmi per l'allineamento multiplo (benchmarking)}
+\begin{enumerate}
+    \item Creare o utilizzare un database di sequenze proteiche per le
+    quali la struttura 3D è nota. Così possiamo definire i "veri"
+    omologhi in base ai criteri strutturali.
+    \item Prova a fare allineamenti multipli di sequenza
+    con molti gruppi diversi di proteine (molto correlati,
+    molto lontani, pochi gap, molti gap, inserzioni, outliers).
+    \item Confrontare le risposte e scegliere il migliore algoritmo per
+    quel set
+\end{enumerate}
+\paragraph{BAliBASE:} A benchmark
+alignments database for
+the evaluation of multiple
+sequence alignment
+programs
+(database di allineamenti
+affidabili)
+\paragraph{In conclusione: } Test di valutazione suggeriscono che
+ProbCons (algoritmo basato sulla consistenza/progressivo),
+dà i migliori risultati con BAliBASE, anche se MUSCLE
+(algoritmo progressivo) è un programma estremamente
+veloce e preciso.\\
+ClustalW è il programma più usato. Ha una bella interfaccia
+(in particolare con ClustalX) ed è facile da usare. Ma diversi
+programmi sono migliori. Non c'è IL programma migliore: gli
+output possono essere certamente diversi (soprattutto se si
+allineano proteine divergenti o sequenze di DNA).
+\paragraph{Pfam} Il database per Pfam (famiglie di proteine) è una risorsa
+importante per l'analisi delle famiglie di proteine.
+\section{Homologene}
+Un modo rapido per accedere ad allineamenti
+multipli; facciamo un esempio: la caveolina (proteina presente nelle caveole della
+membrana plasmatica, “raft” lipidici ricchi di colesterolo e
+sfingolipidi).
+\begin{itemize}
+    \item Fase 1: in NCBI cambiare il menu a tendina per HomoloGene
+    e immettere caveolina nella casella di ricerca
+    \item Fase 2: verificare i risultati. Prendiamo la prima serie di
+    caveolin 1. Visualizzare l'allineamento multiplo.\\
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/homo.png}
+    \end{center}
+    \item Fase 3: controllare l'allineamento multiplo.
+    Si noti che queste dieci proteine si allineano bene, anche se
+    devono essere inclusi alcuni gaps.\\
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/homo2.png}
+    \end{center}
+\end{itemize}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \LARGE
+        \textbf{Lezione 7:\\ Introduzione alla Bioinformatica Strutturale}
+
+    \end{center}
+\end{titlepage}
+\setcounter{page}{69}
+\section{Introduzione alle Banche dati di proteine}
+\subsection{Le proteine: complessi polimeri di amminoacidi}
+Il legame peptidico lega covalentemente amminoacidi
+adiacenti costituendo il “backbone” della proteina. Una
+proteina è formata da una o più catene polipeptidiche.
+\paragraph{Legame peptidico}
+l'alternanza di legami
+peptidici costituisce il
+backbone e determina la struttura secondaria della proteina.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/strutt.png}
+\end{center}
+\subsection{Struttura secondaria}
+$\alpha$-eliche e foglietti $\beta$ si formano a
+seguito di ben precisi pattern di
+legami H tra carbonili e gruppi NH
+\begin{itemize}
+    \item \textbf{$\alpha$-elica}: legame a H tra residuo $i$ e
+    $i+4$ (C=O dell'uno e N-H dell'altro).
+    L'elica che si forma ha un giro
+    completo ogni 3.6 a.a e la distanza
+    media è 0.54 nm
+    \item \textbf{$\beta$-sheet}: più filamenti $\beta$ disposti uno
+    accanto all'altro e collegati tra loro
+    da tre o più legami H che formano una struttura planare molto compatta
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{figures/sec.png}
+    \end{center}
+    \item Gli angoli $\varphi$ e $\psi$ sono definiti dai legami singoli che
+    uniscono il $C_{\alpha}$ al gruppo NH e CO contigui e dai due
+    legami peptidici (planari) coinvolti. Essi non possono
+    assumere qualunque valore per ragioni steriche.
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{figures/ang.png}
+    \end{center}
+    \item Le coppie ($\varphi$,$\psi$) definiscono il plot di Ramachandran
+    (conformazioni permesse sulle aree ombreggiate).
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{figures/ramachandran.png}
+        \includegraphics[width=0.3\textwidth]{figures/ramachandran2.png}
+    \end{center}
+\end{itemize}
+
+\begin{minipage}[c]{.5\textwidth}
+    \raggedright
+    La \textbf{struttura secondaria} è definita dal pattern dei legami a
+    idrogeno.\\
+    Esistono anche strutture secondarie aperiodiche:
+    \begin{itemize}
+        \item $\beta$-turn: il legame H è tra O del residuo $i$ e H del gruppo amminico del residuo $i+3$ \\
+        \item Random coil o "ansa": gli angoli diedri non presentano generalmente regolarità.
+\end{itemize}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/sec2.png}
+        \includegraphics[width=0.4\textwidth]{figures/sec3.png}\\
+        \includegraphics[width=0.4\textwidth]{figures/sec4.png}
+    \end{center}
+\end{minipage}
+\subsection{Struttura terziaria e quaternaria}
+La \textbf{struttura terziaria e quaternaria} dipendono dalle
+interazioni fra le catene laterali, che hanno proprietà
+chimico-fisiche molto diverse.\\
+La struttura 3D di una proteina è molto complessa (1958,
+John Kendrew, prima struttura della mioglobina)
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pdb.png}\\
+    \textit{strutture depositate nel Protein Data Bank}
+\end{center}
+l'organizzazione strutturale delle proteine è ancora più complessa:
+Si identificano motivi strutturali e domini, inoltre cofattori, gruppi
+prostetici. \textit{Esempio: il motivo EF-hand e la calmodulina}
+\section{Protein Data Bank}
+Ad oggi (22 novembre 2021) ci sono 184407 strutture depositate.
+\begin{itemize}
+    \item PDB: È la principale risorsa per le strutture di
+    macromolecole (Proteine, Supercomplessi, Acidi nucleici)
+    \item Le strutture sono determinate mediante cristallografia,
+    NMR e microscopia crioelettronica (cryoEM)
+    \item Oltre ai file di struttura (.PDB) sono presenti informazioni
+    sulle sequenze e molti strumenti per:
+        \subitem Analisi di struttura, Visualizzazione di ligandi,
+        Determinazione delle similitudini
+\end{itemize}
+\subsection{Il file .PDB}
+Si può scaricare il file .pdb dal link a destra, e aprirlo con un qualsiasi editor di testo.\\
+Lo stesso file aperto con un visualizzatore molecolare (es. PyMol o VMD) permette di visualizzare la struttura 3D della macromolecola.\\
+\textbf{Il file .PDB: formato testuale per la descrizione
+di strutture 3D di macromolecole biologiche.}\\
+Contiene la descrizione e l'annotazione di strutture di proteine e
+acidi nucleici tra cui: coordinate atomiche, rotameri di catene
+laterali osservati, assegnazione a particolari strutture secondarie, e
+connettività atomica. Altre molecole come acqua, ioni, acidi
+nucleici, ligandi e così via possono essere descritti nel formato pdb.
+\paragraph{Un breve peptide con sequenza ripetuta} I vari campi hanno significati precisi.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pdb2.png}
+\end{center}
+\subsection{Pfam e Prosite}
+\begin{itemize}
+    \item Utili per studiare e catalogare le strutture proteiche.
+    \item Le similitudini (domini, fold, ponti disolfuro, ecc) possono
+    essere usate per inferire la funzione.
+    \item Utile tra proteine simili e omologhe in specie diverse.
+\end{itemize}
+\subsubsection{Pfam}
+Suddivide le proteine e ne descrive le caratteristiche in famiglie in base a metodi statistici:
+\begin{itemize}
+    \item Allineamenti
+    \item HMM
+\end{itemize}
+\subsubsection{Prosite}
+\begin{itemize}
+    \item Individua, data una sequenza, le possibili famiglie di appartenenza.
+    \item Determina possibili caratteristiche funzionali; domini; cofattori; siti attivi; amminoacidi strutturalmente importanti; livello di conservazione
+\end{itemize}
+\subsubsection{CATH}
+\begin{itemize}
+    \item Database che definiscono famiglie strutturali.
+    \item Aiutano a predire le strutture e a caratterizzarle (secondo
+    un'idea evoluzionistica della funzione).
+\end{itemize}
+\textbf{CATH:} a hierarchical domain classification of
+protein structures in the Protein Data Bank.\\
+Classificazione in modo curato sulla base di:
+\begin{itemize}
+    \item CLASSE (contenuto e tipo di strutture
+    secondarie)
+    \item ARCHITETTURA (descrizione
+    dell'orientamento delle strutture
+    secondarie senza tener conto delle
+    connessioni)
+    \item TOPOLOGIA (tiene conto delle
+    connessioni che caratterizzano le strutture
+    secondarie)
+    \item (H)OMOLOGIA (raggruppa proteine con
+    strutture e funzioni simili)
+\end{itemize}
+\paragraph{È possibile prevedere proprietà strutturali di
+proteine a partire dalla sequenza?}
+In molti casi (ma non in tutti…) la strutture 3D assunta da
+una proteina è determinata totalmente dalla propria
+sequenza. Questo è alla base della scoperta di Christian
+Anfinsen (1957) e del paradigma del protein folding.\\
+La RNasi A denaturata chimicamente è in grado di ripiegarsi in forma nativa e
+catalicamente attiva se vengono gradualmente a mancare le condizioni
+denaturanti: l'informazione sul corretto folding deve essere contenuta nella sequenza.
+\section{Reti Neurali}
+Le reti neurali: un metodo efficace per
+predizioni di elementi strutturali proteici.
+\paragraph{Premesse:}
+\begin{itemize}
+    \item È possibile riprodurre artificialmente alcune funzioni cognitive del
+    cervello e “allenarle”, come i bambini apprendono e riconoscono.
+    \item Si possono usare architetture di calcolo dette reti neurali artificiali
+    (ANN)
+    \item Sulla base di caratteristiche distintive di un oggetto (osservazione) la
+    rete deve essere in grado di classificarlo
+    \item Il numero e le la modalità di interconnessione di equazioni di una
+    rete ne definiscono l'architettura, che viene definita e organizzata
+    durante l'apprendimento
+\end{itemize}
+\subsection{Struttura di una rete neurale}
+Ogni rete deve possedere:
+\begin{enumerate}
+    \item un'area in cui i dati distintivi
+    dell'oggetto entrano;
+    \item una in cui sono elaborati;
+    \item un'altra in
+    cui viene emesso il risultato.
+\end{enumerate}
+l'unità elementare di calcolo di una NN è il neurone: la
+connessione tra i vari neuroni è detta sinapsi. Ogni neurone
+riceve uno o più input attraverso valori numerici x i , e restituisce
+dopo l'elaborazione l'output y.
+\begin{itemize}
+    \item $x$ è l'ingresso e si può esprimere
+    come somma pesata dei singoli
+    input $x_{i}$ provenienti dai neuroni $i$, ciascuono con un peso $w_i$, e da un parametro di modulazione $\vartheta$.
+    \item $y$ è la funzione di attivazione del
+    neurone.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{figures/net.png}
+\end{center}
+l'output y di un neurone può costituire l'input di un altro neurone a
+valle, e così via, fino ai neuroni di output che emettono un valore che
+tiene conto di tutta l'informazione transitata nel network.\\
+I neuroni possono essere connessi a strati (layers) completamente
+connessi fra loro: ogni neurone di uno strato è connesso a tutti i
+neuroni dello strato successivo. Il flusso dell'informazione procede dal
+primo all'ultimo strato (feed forward): il primo strato è l' “occhio”,
+l'ultimo la “bocca”, in mezzo tutti gli strati di elaborazione.\\
+\textit{Esempio semplice: il perceptrone, NN a 2 strati. Qui riceve in ingresso 5
+valori e produce in output il valore 0 o 1 a seconda della
+soglia t e del risultato della funzione di attivazione. Le
+sinapsi amplificano o attenuano il segnale in base ai pesi w}
+\begin{itemize}
+    \item Ingressi: $x_1, x_2, x_3, x_4, x_5$
+    \item con $w_1, w_2, w_3, w_4, w_5$ pesi
+    \item Funzione di attivazione: $y = {1\over e + e^{-\sum_i x_iw_i}}$
+    \item Uscita: se $y>t$ allora emmetti 1, altrimenti 0
+\end{itemize}
+\subsection{Architettura e apprendimento di reti neurali}
+Una rete semplicissima riesce a classificare gli oggetti in base a
+pochi descrittori $(x_1,x_2,\dots,x_N)$ linearmente separabili.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/neural.png}
+\end{center}
+\begin{minipage}[t]{.5\textwidth}
+    \begin{flushleft}
+    Se il “perceptrone apprende” l'equazione della
+    retta, esso decide a quale parte di piano
+    appartiene un (nuovo) oggetto caratterizzato
+    dalle coordinate ($x_1,x_2$)
+    \end{flushleft}
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}
+    \begin{flushright}
+        Se gli oggetti di due classi non sono
+        separabili linearmente serve una rete in
+        grado di apprendere funzioni di ordine
+        superiore a quello lineare (retta)
+    \end{flushright}
+\end{minipage}
+Il problema della percezione di relazioni di ordini superiori al primo
+si risolve mediante reti con strati nascosti, che richiedono
+algoritmi più complicati.\\
+Prima di usare la rete come classificatore di oggetti sulla base di un
+assetto di descrittori numerici, la rete deve essere guidata
+all'apprendimento, cioè deve imparare a riconoscere quegli oggetti.
+\paragraph{Apprendimento:} si presenta alla rete una serie di oggetti che
+appartiene o meno alla classe in esame e si interroga la rete.
+l'apprendimento ha successo se la rete riesce a riconoscere gli
+elementi essenziali che definiscono l'oggetto e può generalizzare.\\
+Durante l'apprendimento si modulano i parametri $w_j$, eventualmente
+anche $\theta$ e $t$ per ottimizzare l'accuratezza in un apprendimento
+supervisonato.
+\paragraph{Esempio:} si forniscono alla NN in sequenza alcuni vettori di $n$
+elementi $x_i$ descrittivi di oggetti noti da riconoscere (peso,
+lunghezza, colore…). La rete deve emettere 1 per ogni oggetto riconosciuto. Se non lo classifica
+bene, si modificano i parametri fino ad ottenere 1. I parametri si
+ottimizzano (fino ad un certo limite) con la retropropagazione (cambiando $w_i$).
+\subsection{Collegamento con le proteine}
+Le reti neurali possono riconoscere la presenza di particolari
+segnali di sequenza e prevedere proprietà strutturali e funzionali
+associate al segnale. Esempio: la struttura secondaria.
+\paragraph{Storicamente:} approcci statistici basati sull'osservazione
+(frequenza di residui in particolari ss; “propensione”;
+Chou e Fasman, 1974). Il problema però è molto adatto alle NN.
+\paragraph{L'idea:} La rete può “leggere” una porzione di sequenza e decidere se il
+residuo centrale appartiene alle due principali ss periodiche (a-
+elica, $\beta$-sheet) o a nessuno delle due.
+Usando poi finestre scorrevoli si può estendere la ricerca a tutta la sequenza
+\paragraph{La retedi Holley \& Karplus (1989) per la previsione di ss}
+\begin{itemize}
+    \item Ha uno strato di ingresso, uno strato nascosto e uno di output formato da due neuroni
+    \item Input: 17 neuroni (lunghezza ideale) che “leggono” una finestra di 17 aa
+    \item La rete prevede la conformazione del residuo centrale (il nono)
+    \item La sequenza scorre dall'N- al C-terminale (residui 1-17, 2-18, ecc.) e l'info si propaga feed-
+    forward
+    \item Output dato dai due neuroni in uscita: (1,0) $\alpha$-elica; (0,1) $\beta$-sheet; (0,0) random coil
+\end{itemize}
+Per allenare la rete occorrono due set di dati: un training set
+(campione di apprendimento) e un test set (verifica della
+performance). Questi non devono mai coincidere.
+\begin{itemize}
+    \item Training set: per modulare i parametri della rete
+    \item Test set: per valutare l'accuratezza e l'errore della NN
+\end{itemize}
+Es. due set di proteine non omologhe a struttura nota per allenare
+e validare la rete.
+\paragraph{Codifica di un amminoacido:} Come può la rete “vedere” un
+amminoacido?\\
+In genere, un aa è codificato con un vettore di 21 componenti, tutti
+uguali a zero tranne quello la cui posizione identifica l'aa. l'ultima
+posizione è dedicata a caratteri riempitivi (N- e C- terminale).\\
+I caratteri riempitivi servono ad esempio per predire la conformazione del residuo all'N
+terminale. Se esso diventa centrale, devo riempire le posizioni precedenti
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/es.png}
+\end{center}
+\paragraph{Codifica di un allineamento multiplo: }Notevole aumento di
+accuratezza della previsione di strutture secondarie.\\
+Nei singoli neuroni non entrano più singoli residui in input, ma profili
+contenenti le frequenze del residuo.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/allimul.png}
+\end{center}
+Nei singoli neuroni non entrano più singoli residui in input, ma profili
+contenenti le frequenze del residuo. 
+\begin{itemize}
+    \item Ciascun neurone
+    in ingresso
+    contiene 21 unità
+    corrispondenti alle
+    21 colonne del
+    profilo (ultima
+    colonna: eventuali
+    indel)
+    \item Esempio: finestra scorrevole con N=13
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/allimul2.png}
+\end{center}
+\subsubsection{Storicamente: Profile Network from Heidelberg (PHD)}
+sviluppato da
+Rost e Sander (1993) è il primo sistema di previsione che sfrutta
+questa strategia. È basato su tre livelli, ciascuno contenente varie
+reti alternative:
+\begin{itemize}
+    \item Livello 1: input è MA sotto forma di profilo. 13 gruppi di 21 neuroni ciascuno, uno
+    strato nascosto e 3 unità di uscita (una per $\alpha$-elica, una per $\beta$-sheet e una per
+    random coil). Il neurone che emette il valore più elevato indica la ss prevista per il
+    residuo al centro della finestra (mappatura sequenza-struttura)
+    \item Livello 2: l'output del livello 1 può contenere incongruenze. Es., singoli residui in
+    elica. C'è una seconda rete allenata a risolvere questi inghippi (17 gruppi di 3
+    neuroni, ciascuno riceve in ingresso i tre valori prodotti dal livello precedente)
+    (mappatura struttura-struttura)
+    \item Livello 3: media risultati leggermente diversi ottenuti ripetendo le previsioni
+    utilizzando reti con parametri leggermente diversi; la “giuria” assegna la
+    predizione in base alla media delle varie elaborazioni e fornisce l'attendibilità
+    della previsione
+\end{itemize}
+\paragraph{Schema del funzionamento di PHD}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/phd.png}\\
+    \textit{Nota: il numero di neuroni dei vari strati non è fedelmente riportato qui! Inoltre non
+    sono riportate tutte le reti alternative per ciascun livello: qui solo due, nella realtà fino
+    a 8-9}
+\end{center}
+\subsubsection{Schema del funzionamento di PSIPRED}
+Sviluppato da David Jones (1999), utilizza 3 iterazioni di PSI-BLAST per
+costruire il profilo, raccogliendo le sequenze omologhe alla query e
+calcola il profilo mediante BLOSUM62.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/psipred.png}
+\end{center}
+\textit{Esempio di output:}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/psipred1.png}
+\end{center}
+\subsubsection{Schema del funzionamento di JPRED}
+Sviluppato da Cuff \& Barton (2000), al primo livello sfrutta un MA
+codificato mediante una matrice PSSM calcolata da PSI-BLAST o un
+HMM. Esiste un secondo livello per rimuovere incongruenze ed una
+giuria che eventualmente coinvolge una terza rete. Accuratezza 81.5\%
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/jpred.png}
+\end{center}
+\subsection{Altre proprietà}
+Le reti neurali possono essere utilizzate per predire anche altre
+proprietà delle proteine. Ad esempio:
+l'\textbf{accessibilità al solvente}: si fa “rotolare” una sfera di 1.4 Å sulla
+superficie della proteina e si determina la SAS (solvent-
+accessible surface). La SAS è diversa dalla superficie di Van der
+Waals (unione delle superfici ottenute dai raggi di VdW) e dalla
+superficie molecolare (inviluppo inferiore generato dal probe).
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/acc.png}
+\end{center}
+Le proteine strutturate in soluzione presentano alcuni residui esposti
+al solvente, ed altri “sepolti” (buried) al loro interno. Può essere utile
+valutare l'accessibilità relativa del residuo X per confronto con il
+tirpeptide libero G-X-G
+\textit{Domanda}: che frazione di questa Phe è effettivamente esposta?
+Risposta: $24/210 \angstrom 2 = 11.4\%$
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/ex.png}
+\end{center}
+JPRED permette anche di predire l'accessibilità al solvente.
+Esempio: sol 25 - buried (B) se l'accessibilità è$ < 25\%$.\\
+Nell'output è specificata la predizione delle singole matrici usate (hmm o
+pssm).
+\paragraph{Topologia}
+La topologia di membrana si può predire mediante NN. Esistono vari
+tools che migliorano quelli storici funzionanti su indici di idrofobicità. I
+più moderni ed efficaci usano le NN (es. PHDhtm, Rost et al., 1995) o
+modelli nascosti di Markov . Un esempio è il programma TMHMM di
+Krogh et al. (2001) che ha un'accuratezza dell'80\%
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/NN.png}
+\end{center}
+
+
+
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \LARGE
+        \textbf{Lezione 8: Introduzione alla Biologia dei Sistemi}
+
+    \end{center}
+\end{titlepage}
+\setcounter{page}{79}
+\section{Cos'è la Biologia dei Sistemi?}
+La scienza è spesso un fatto di scala, quello che vediamo dipende da quello che \textit{stiamo guardando}.
+Ingrandire o rimpicciolire unìimmagine, spesso può portare a scenari differenti.\\
+La \textbf{Biologia dei Sistemi} è un approccio olistico di comprensione della biologia.
+\begin{itemize}
+    \item Si occupa delle interazioni tra i componenti dei sistemi biologici, e come portano alle funzioni e comportamenti conosciuti.
+    \item Assume che molte proprietà della vita emergano solo a livello di sistema, poiché il comportamento di un sistema come un tuttuno non può essere spiegato solo attraverso i suoi componenti.
+    \item Si applica sia alle cellule che agli organismi.
+\end{itemize}
+\begin{center}
+    \textit{"... il pluralismo di cause ed effetti nelle reti biologiche è affrontato meglio tramite l'osservazione, attraverso misure quantitative,
+    componenti multipli simultanemanente e integrando rigorosamente i dati con i modelli matematici."}
+\end{center}
+\begin{flushright}
+    Sauer et al., Science 316:550 (2007)
+\end{flushright}
+\subsection{Dai component ai sistemi}
+\textit{Attraverso le computer simulations}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/simu.png}
+\end{center}
+\subsection{Nascita della Biologia dei Sistemi}
+La Biologia dei Sistemi non è una scienza del tutto nuova, trova infatti radici in:
+\begin{itemize}
+    \item Modellamento quantitativo della cinetica degli enzimi
+    \item Simulazione di processi neurofisiologici
+    \item Teoria cibernetica e di controllo
+\end{itemize}
+Esempi storici:
+\begin{enumerate}
+    \item \textbf{Hodgkin AL, Huxley AF (1952)}: A quantitative description of membrane current
+    and its application to conduction and excitation in nerve. J Physiol, 117: 500-
+    544.
+    \item \textbf{Noble D (1960)}: Cardiac action and pacemaker potentials based on the Hodgkin-
+    Huxley equations. Nature, 188: 495-497
+    \item[] Gli anni 60 e 70 hanno visto un'evoluzione degli approcci allo studio di sistemi molecolari complessi: Analisi del controllo metabolico e Teoria dei sistemi biochimici.
+\end{enumerate}
+\subsection{È necessaria?}
+Nell'era \textit{-omica} la biologia molecolare e la biochimica sono evolute molto rapidamente portando a un grosso ammontare di dati da analizzare.\\
+\begin{minipage}[c]{.5\textwidth}
+    \raggedright
+    \textbf{Screening ad alto rendimento}\\
+    milioni di test veloci biochimici, genetici e farmacologici.
+    \begin{center}
+        $\downarrow$
+    \end{center}
+    Identificazione di composti attivi, anticorpi o geni che modulano un particolare pathway.
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \textbf{Trascrittomica, proteomica e metabolomica}\\
+    Misuramento dell'intera espressione genetica di cellule o tessuti tramite microarrays di DNA/proteine, identificazione e misurazione delle piccoli metaboliti nelle cellule/tessuti, identificazione completa di proteine e espressione di pattern proteici di cellule/tessuti.
+\end{minipage}\\
+
+Molti dati da analizzare equivalgono all'uso estensivo di matematica e modellamento in generale. Ad oggi è possibile grazie al potere computazionale migliorato.
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/three.png}
+\end{center}
+Il framework teoretico è la Teoria dei Sistemi: descrive ogni gruppo di oggetti che lavora concertatamente per produrre risultati, spesso un comportamento complesso.
+\paragraph{Modelli matematici: il cuore della Biologia dei Sistemi}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/sistemi.png}
+\end{center}
+\paragraph{Modellare: un problema multiscala}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/multiscala.png}
+\end{center}
+Abbiamo bisogno di trasferire e integrare l'informazione da differenti scale spaziali e temporali per arrivare al modello \textbf{predittivo} finale.
+\subsection{La costruzione di modelli computazionli dev'essere sistemico}
+\begin{itemize}
+    \item Lo sviluppo di modelli quantitativi di anche semplici sistemi viventi richiede una conoscenza estensiva della biologia, da reazioni biochimiche a quelle fisiologiche
+    \item Molti approcci diversi devono essere usati: ad esempio per le reti biochimiche si possono usare le time-series (continue o discrete), steady-state
+    analyses (MCA, FBA), descrizioni logiche, ecc.
+    \item Pathways molto grandi non possono essere costruiti in una prova sola. Parliamo di centinaia di migliaia di interazioni.
+    \item Possiamo pensare di usare e riusare modelli fatti di moduli differenti.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/sis.png}
+\end{center}
+\section{Scienze riduzionistiche}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/reduction.png}
+\end{center}
+Cosa sono la chimica? La fisica? La biologia molecolare?
+\subsubsection{Descrizione di sistemi/processi biochimici}
+\textbf{Obiettivo:} capire i sistemi/processi biochimici. Da dove iniziamo?
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/inter.png}
+\end{center}
+\begin{minipage}[t]{.5\textwidth}
+    \raggedright
+    \textbf{Biologia strutturale/chimica}\\
+    Approccio riduzionista; alta risoluzione; scale spaziali e temporali piccole
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}
+    \textbf{Biologia di Sistema}\\
+    Approccio sistemico; nessun limite di scale spazio-temporali; bassa risoluzione
+\end{minipage}
+\subsection{Qual è l'intersezione?}
+Se intersechiamo la Biologia Strutturale e la Biologia di Sistema \dots ?\\
+Design di proteine/farmaci per uso biomedico/industriale. Più in generale \dots descrizzione meccanica della rete molecolare nei suoi dettagli più sottili per il fine della capibilità predittiva.
+\subsection{Esempio pratico: Rete di Proteine}
+\begin{enumerate}
+    \item La rete
+    \subitem  Cosa sappiamo del sistema intero? (dati -omici, analisi matematica o di modello)
+    \item I componenti
+    \subitem Cosa sappiamo delle due proteine? (dati strutturali, dati biochimici/biofisici)  
+\end{enumerate}
+\textbf{Cosa succede ai sistemi se queste particolari interazioni si perturbano?} Ad esempio a causa di mutazioni, modificazioni chimiche, \dots\\
+L'intersezione è particolarmente chiara quanto lo scopo è la Biologia Sintetica: combina scienza e ingegneria per sintetizzare nuove funzioni e sistemi.
+
+\section{Modellare la struttura della rete}
+\paragraph{Modellamento dei sistemi biochimici: Framework dei Modelli Sistemici}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/modelli.png}
+\end{center}
+\subsection{Struttura}
+\begin{itemize}
+    \item Quali sono gli elementi del modello?
+    \item Quali sono le interazioni tra questi elementi?
+    \item Quali sono i link all'\textit{esterno} non modellato?
+    \item Il modello intero può essere diviso in moduli che possono essere trattati indipendentemente?
+\end{itemize}
+\textbf{Definizione:}
+\begin{itemize}
+    \item La struttura del modello della rete in termini di "rete di elementi interconnessi"
+    \item L'esterno (può essere costante o dinamico)
+    \subitem Un esterno non modellato non è l'esterno di una cellula, ecc. ma più astratto e generico
+    \item Moduli che possono essere modellati indipendentemente
+\end{itemize}
+\subsection{Da dove partiamo?}
+\paragraph{Conoscenza biologica}
+Letteratura, database, ecc.
+\paragraph{Model Network Structure} \textit{Struttura del modello della rete}\\
+Diagramma di processi (Kitano, Science, 2003)
+\subsubsection*{Esempi di database}
+\begin{minipage}[t]{.5\textwidth}
+    \raggedright
+    \includegraphics[width=0.8\textwidth]{figures/data.png}\\
+    \textit{Kyoto Encyclopedia of Genes and Genomes}
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}
+    \raggedleft
+    \includegraphics[width=0.8\textwidth]{figures/signal.png}\\
+    \textit{Signaling Pathway Database}\\
+\end{minipage}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/biocarta.png}
+\end{center}
+
+\subsubsection{I Database di Biomodels}
+L'idea dietro i Biomodels Database:
+\begin{itemize}
+    \item Immagazzinare e fornire modelli quantitativi di interesse biomedicale
+    \item Solo modelli descritti nella letteratura scientifica peer-reviewd
+    \item I modelli sono curati: dei software fanno il controllo dell sintassi, mentre un essere umano cura la semantica
+    \item I modelli sono simulati per controllare che i riferimenti corrispondono
+    \item I componenti dei modelli sono annotati, per migliorare l'identificazione e il recupero
+    \item I modelli sono accettati in vari formati, e essere adatti a tanti altri.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/biomodels.png}
+\end{center}
+\subsection{Esempio di Struttura del Modello di Rete}
+Trasporto di glucosio e energetici in cellule gliali.\\
+\begin{minipage}[c]{.5\textwidth}
+    \raggedright
+    \includegraphics[width=0.65\textwidth]{figures/glial.png}\\
+    Descrizione schematica del meccanismo fisiologico
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \raggedleft
+    Ci concentriamo solo sull'assorbimento del glucosio, la produzione ed estrusione del lattato e lo scambio di protoni. Il trasportatore per H e Lac è il Monocarbossilato Cotrasportatore.
+\end{minipage}
+\begin{flushright}
+    Struttura del modello di rete 
+    \includegraphics[width=0.4\textwidth]{figures/model.png}
+\end{flushright}
+Struttura:
+\begin{itemize}
+    \item Rappresentazione grafica della rete
+    \item Definire: reagenti, prodotti, modificatori, compartimenti
+\end{itemize}
+\paragraph{Prossimo step: Aggiungere le informazioni stechiometriche}
+Ad esempio:\\
+R\_MP5: 1 Gluc\_x $\rightarrow$ 1 Gluc\_i\\
+R\_Glyc: 1 Gluc\_i $\rightarrow$ 1 Lac\_i\\
+R\_MP6: 1 Lac\_i $\rightarrow$ 1 Lac\_x\\
+2 H\_i $\rightarrow$ 2 H\_x
+d/dt (concentraation vector) = stpochiometric matrix * reatcion rates vector
+\begin{itemize}
+    \item In maniera formale:
+    \item $\dot{x} = Nv(x)$
+\end{itemize}
+\[
+\frac{d}{dt}
+    \begin{pmatrix} 
+        Gluc_x \\ 
+        Lac_x \\
+        H_x \\
+        Gluc_i \\
+        Lac_i \\
+        H_i 
+    \end{pmatrix} = \begin{pmatrix} 
+        -1 & 0 & 0 \\ 
+        0 & 1 & 0 \\
+        0 & 2 & 0 \\
+        1 & 0 & -1 \\
+        0 & -1 & 2 \\
+        0 & -2 & 0
+    \end{pmatrix} \begin{pmatrix} 
+        R_{MP5}\\ 
+        R_{MP6}\\
+        R_{Glyc} 
+    \end{pmatrix}
+    \]
+\begin{itemize}
+    \item Modello stechiometrico - spesso chiamato 'modello statico'
+    \item Informazioni addizionali
+\end{itemize}
+\begin{flushright}
+    $R_{MP5} = R_{MP5}(Gluc_x, MP5)$\\
+    $R_{MP6} = R_{MP6}(Lac_i, H_x, H_i, MP6)$\\
+    $R_{Glyc} = R_{Glyc}(Gluc_i, \dots )$
+\end{flushright}
+\textbf{Espressioni matematiche:}\\
+Definizione delle espressioni matematiche per le interazioni tra gli elementi (trascrizioni, traslazioni, degradazioni, reazioni, trasporti, ecc.).
+Bisogna definire la matematica dietro il modello.
+\subsection{Model Tasks}
+\subsubsection{Espressioni matematiche nel modellamento dinamico}
+\textbf{Dynamic model} $\begin{cases}
+    \dot{x} = Nv(x,p) \\
+    v_i(x,p) = ??? 
+  \end{cases}$
+Come determiniamo $v_i(x,p)$?
+\begin{itemize}
+    \item Intuizione meccanistica/biochimica
+    \item Comportamento qualitativo (saturazione, veloce, lento)
+    \item Tipo di processo (trasporto, reazione enzimatica, reazione concentrata, diffusione, \dots)
+    \item Regione di operazione (lineare, sempre saturata, \dots)
+    \item Reversibile, irreversibile
+\end{itemize}
+\subsubsection{Espressioni matematiche}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/react.png}\\
+    \includegraphics[width=0.5\textwidth]{figures/react2.png}
+\end{center}
+La complessità di una reazione cinetica è definita da:
+\begin{itemize}
+    \item lo scopo della reazione
+    \item lo scopo del modello
+    \item la conoscienza biochimica
+    \item[] Condizioni di operazione del modello
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/scope.png}\\
+\end{center}
+\subsubsection{Determinazione dei paremetri}
+Assegnare un valore ai parametri del modello. Devo definire i valori.
+\paragraph{Principio}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/principio.png}\\
+\end{center}
+\section{Modelli standard nella Biologia dei sistemi}
+\begin{itemize}
+    \item Metabolismo 
+    \subitem Cinetica degli enzimi e termodinamica, controllo metabolico della rete
+    \item Trasduzione del segnale
+    \subitem Comunicazione intra-extracellulare, adattamento e regolazione dinamica
+    \item Ciclo cellulare
+    \subitem Oscillazioni glicolitiche, invecchiamento e processi relativi
+    \item Espressione genetica
+    \subitem Reti Bayesiane e Booleane, processi di regolazione
+\end{itemize}
+\paragraph{Futuro della Biologia dei Sistemi}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/future.png}\\
+\end{center}
+\subsection{Concetti generali e proprietà}
+Nessun modello SB è unico, ma è sempre definito da i suoi:
+\begin{itemize}
+    \item Stati:
+        \subitem un'istantanea che contiene abbastanza informazioni da permettere predizioni del futuro
+        \subitem Stazionario asintotico, oscillatorio, caotico, \dots
+    \item Parametri, variabili, costanti:
+        \subitem costanti di tasso e di equilibrio, dipendenza/relazioni tra stati, \dots
+    \item Classificazione del processo:
+        \subitem reversibilità, periodicità, framework deterministico o stocastico, variabili continue o discrete, \dots
+\end{itemize}
+\paragraph{Necessità di standard} I modelli SB hanno bisogno di essere condivisi e riutilizzati: abbiamo quindi bisogno di formati standard
+\begin{itemize}
+    \item cellML
+        \subitem Basato sui moduli, scalabile;
+    \item Neuroml
+        \subitem Flessibile (set espandibile di classsi/schemi)
+    \item BrainML
+        \subitem I modelli sono schemi XML
+    \item BioPAX
+        \subitem No cinetica, semantica profonda, OWL;
+    \item SBGN
+        \subitem Rappresentazione semantica delle interazioni;
+    \item SBML (Systems Biology Markup Language)
+        \subitem Cinetica ricca, semantica debole, XML;
+\end{itemize}
+\subsection{Linguaggio comune: SBML}
+Il Systems Biology Markup Language (SBML), nato nell'anno 2000,
+è un linguaggio leggibile dalla macchina, derivato da XML, per
+rappresentare modelli di reti di reazioni biochimiche e:
+\begin{itemize}
+    \item Consente l'uso di più strumenti software senza riscrivere i modelli
+    per ogni strumento;
+    \item Consente ai modelli di essere condivisi e pubblicati in una forma diversa, così che
+    i ricercatori possono utilizzarli anche in un ambiente software diverso;
+    \item Garantisce la sopravvivenza dei modelli oltre la durata del software
+    usato per crearli
+\end{itemize}
+SBML è definito in livelli (specifiche compatibili con le versioni successive che aggiungono
+caratteristiche e potenza espressiva). I nuovi livelli non sostituiscono i vecchi
+livelli. Tuttavia, ogni livello può avere più versioni.\\
+Al momento più di 100 sistemi software supportano SBML.
+\paragraph{Esempio:} Trasduzione nel ciclo della GTPasi (nella cascata della fototrasduzione)
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/trasduzione.png}
+\end{center}
+Due possibili rappresentazione del modello di struttura
+\includegraphics[width=0.3\textwidth]{figures/tras1.png}\\
+L'implementazione grafica di CellDesigner:
+\includegraphics[width=0.5\textwidth]{figures/tras2.png}
+Tutte le implementazioni e simulazioni qui sono fatte con IntiQuan (IQM Tool Repository).\\
+Possiamo implementare questo sistema a 8 reazioni nell'IQMTools e testare la piattaforma sia con framework deterministico
+che stocastico.
+\subsection*{Implementazione}
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+        ********** MODEL NAME
+        Hofmann1
+
+
+        ********** MODEL NOTES
+        Biophysical Journal Volume 71, 1996, 3051-3063
+
+
+        ********** MODEL STATE INFORMATION
+        G(0) = 3000
+        Gact(0) = 0
+        GactPDEact(0) = 0
+        Gr(0) = 0
+        PDE(0) = 300
+        R(0) = 1
+        Ract(0) = 1
+        RactG(0) = 0
+        Ri(0) = 0
+    \end{verbatim}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+
+        ********** MODEL PARAMETERS
+        k1 = 100
+        k2 = 1
+        k3 = 7000
+        k4 = 0.3
+        k5 = 2.0
+        k6 = 0.05
+        k7 = 8
+        k8 = 2
+
+
+        ********** MODEL VARIABLES
+
+
+        ********** MODEL REACTIONS
+        R => Ract : R1
+        vf = k1*R
+        G+Ract => RactG : R2
+        vf = k2*Ract*G
+        RactG => Gact+Ract : R3
+        vf = k3*RactG
+        Gact+PDE => GactPDEact : R4
+        vf = k4*Gact*PDE
+    \end{verbatim}
+\end{minipage}\\
+Una descrizione alternativa: equazioni ordinarie differenziali:\\
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+
+
+        ********** MODEL STATES
+        d/dt(G) = -R2+R8
+        d/dt(Gact) = +R3-R4-R6
+        d/dt(GactPDEact) = +R4-R7
+        d/dt(Gr) = +R6+R7-R8
+        d/dt(PDE) = -R4+R7
+        d/dt(R) = -R1
+        d/dt(Ract) = +R1-R2+R3-R5
+        d/dt(RactG) = +R2-R3
+        d/dt(Ri) = +R5
+        G(0) = 3000
+        Gact(0) = 0
+        GactPDEact(0) = 0
+        Gr(0) = 0
+        PDE(0) = 300
+        R(0) = 1
+        Ract(0) = 1
+        RactG(0) = 0
+        Ri(0) = 0
+    
+    \end{verbatim}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+        ********** MODEL REACTIONS
+        R1 = k1*R
+        R2 = k2*Ract*G
+        R3 = k3*RactG
+        R4 = k4*Gact*PDE
+        R5 = k5*Ract
+        R6 = k6*Gact
+        R7 = k7*GactPDEact
+        R8 = k8*Gr
+
+    \end{verbatim}
+\end{minipage}\\
+Le due rappresentazioni sono equivalenti
+\includegraphics[width=0.4\textwidth]{figures/reaction.png}
+
+\paragraph{Simulazione deterministica del modello}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/graph.png}
+\end{center}
+\subsection{Framework deterministico: è realistico?}
+In termini generali:
+\begin{itemize}
+    \item $N$ specie chimiche $S_1, S_2, \dots, S_N$ e $M$ possibili reazioni $R_1, R_2, \dots, R_M$
+    \item Il sistema ha una costante di volume $\Omega$ e temperatura $T$, ed è ben mescolato (spazialmente omogeneo)
+    \item $X_i$ è il numero di molecole di $S_i$
+\end{itemize}
+$$ X = (X_1(t),X_2(t), \dots, X_N(t))$$
+è lo STATO del sistema al tempo $t$.\\
+Il problema è: dato $X(t_0)$ trova $X(t)$.\\
+L'approccio tradizionale è scrivere un insieme di primo ordine accoppiato
+equazioni differenziali ordinarie, dove f i dipende da ciascuna reazione
+cinetica:
+$$ \frac{dX_i}{dt} = f_i(X_1, \dots, X_N)$$ 
+$$i = 1, \dots, N$$
+Queste sono chiamate equazioni della velocità di reazione (RRE) e di solito lo sono
+scritto in termini di concentrazioni $C_i = X_i / \Omega$ quindi $X(t)$ è apparentemente un processo continuo e deterministico.\\
+\paragraph{Ma nei fatti \dots}
+\begin{itemize}
+    \item $X(t)$ non è continuo; è discreto
+    \item Le molecole si presentano in numero intero e le popolazioni molecolari cambiano
+    solo per importi interi
+    \item $X(t)$ non è deterministico; è stocastico
+    \item Le reazioni chimiche si verificano come eventi discreti, come risultato di
+    collisioni molecolari che non possono essere previste con precisione
+\end{itemize}
+Nel migliore dei casi, possiamo predire solo la \textit{probabilità} che una reazione avvenga.
+\begin{center}
+    \textbf{Dalla cinetica chimica deterministica a quella STOCASTICA}
+\end{center}
+\paragraph{Framework cinetico chimico stocastico}
+Ogni relazione elementare $R_j$ è definita da due quantità:
+\begin{itemize}
+    \item una funzione di propensione $a_j(x)$, dove $a_j(x)dt$ fornisce la probabilità, dato $X(t) = x$, che una reazione $R_j$ occorrerà in $[t, t + dt]$
+    \item un vettore di cambio di stato $v_j = (v_{1j}, \dots, v_{Nj})$ dove $v_{ij}$ è il cambiamento nella popolazione $S_j$ causato da una reazione $R_j$
+    \item Implicazione: $X(t)$ è un \textbf{jump Markov process} (un processo stocastico, a tempo continuo, a stati discreti e che dimentica il passato)
+\end{itemize}
+Per un sistema ben miscelato possiamo ottenere una soluzione analitica esatta
+della funzione di densità di probabilità.
+\subsection{Equazione chimica principale}
+La funzione di densità di probabilità della variabile aleatoria $X(t)$ è definita come:
+$$ P( x,t | x_0, t_0) = Prob \{ X(t) = x, \textrm{ dato } X(t_0) = x_0 \}$$
+Si può dimostrare che l'evoluzione temporale di $P$ segue la seguente EQUAZIONE MASTER CHIMICA:
+$$\frac{\partial P(x,t|x_0, t_0)}{\partial t} = \sum^M_{j=1}[a_j(x-v_j)P(x-v_j,t | x_0,t_0) -a_j(x)P(x,t | x_0,t_0)]$$
+Determina completamente $X(t)$ ed è impossibile risolvere analiticamente tranne per quelli più semplici. Con $M$ indichiamo tutte le reazioni possibili.
+\subsection{Quando stocastica e quando deterministica?}
+Per i sistemi chimici più pratici la popolazione molecolare è molto grande, e la RRE fenomenologica:
+$$\frac{dX(t)}{dt} = \sum^M_{j=1}[v_j a_j (X(t))$$
+è accurata e veloce.
+In piccoli sistemi biochimici però, in cui sono presenti specie reagenti critiche
+in numeri bassi (ad esempio nell'espressione genica), il sistema è intrinsecamente stocastico e deterministico RRE può essere impreciso e fuorviante.
+Per tali sistemi, dobbiamo invece usare il CME o altre approssimazioni.
+\paragraph{Comparazione di approcci deterministici e stocastici}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/compare.png}
+\end{center}
+\subsubsection{Un altro sistema semplice}
+\subsubsection*{Focus sul ciclo di segnalazione della proteina G}
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/G.png}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \large
+    Quattro stati tempo-dipendenti\\
+    Due quantità indipendenti (Rc* e GAP considerate costanti)
+    $$\begin{cases}
+        \frac{d[G\alpha^{GDP}\beta \gamma]}{dt} = \frac{dn_1}{dt} = V_1 - V_2\\
+        \frac{d[\beta \gamma]}{dt} = \frac{dn_2}{dt} = V_2 -V_1\\
+        \frac{[G\alpha^{GTP}]}{dt} = \frac{dn_3}{dt} = V_2 -V_3\\
+        \frac{[G\alpha^{GDP}]}{dt} = \frac{dn_4}{dt} = V_3 -V_1
+    \end{cases}$$
+\end{minipage}
+
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/G2.png}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \large
+    Una possibile descrizione cinetica delle reazioni biochimiche:
+    $$V_1 = k_{ass}[G\alpha^{GDP}][\beta \gamma] = k_1n_4n_2$$
+    $$V_2 = \frac{k_{diss}[G\alpha^{GDP}\beta \gamma][Rc*]}{K_2 + [G\alpha^{GDP}\beta \gamma]} = k_2\frac{n_1}{K_2 + n_1}$$
+    $$V_3 = \frac{k_{hydr}[G\alpha^{GTP}][GAP]}{K_3 + [G\alpha^{GTP}]} = k_3\frac{n_3}{K_3 + n_3}$$
+\end{minipage}\\
+\subsubsection*{Simulazione per 15 secondi}
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+
+        ********** MODEL PARAMETERS
+        K2 = 500
+        K3 = 2
+        kass = 0.001
+        kdiss = 15
+        khydr = 15
+        RCact = 30
+        GAP = 25
+        k2 = 450
+        k3= 375
+        k1 = 0.001
+    
+        ********** MODEL STATES
+        n1(0) = 500
+        n2(0) = 1
+        n3(0) = 1
+        n4(0) = 1
+
+    \end{verbatim}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/mini.png}
+\end{minipage}
+
+\subsubsection*{Cambiamo alcuni parametri}
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+
+        ********** MODEL PARAMETERS
+        K2 = 500
+        K3 = 2
+        kass = 0.01
+        kdiss = 20
+        khydr = 5
+        RCact = 30
+        GAP = 20
+        k2 = 450
+        k3= 375
+        k1 = 0.001
+    
+        ********** MODEL STATES
+        n1(0) = 500
+        n2(0) = 1
+        n3(0) = 1
+        n4(0) = 1
+
+    \end{verbatim}
+    Nessuna delle condizioni iniziali cambia: solo il numero di GAP!
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/sim1.png}\\
+    \includegraphics[width=1\textwidth]{figures/sim2.png}
+\end{minipage}\\
+Elevate quantità allo stato stazionario di $G\alpha - GTP$ e $\beta \gamma$: questa è l'immagine cinetica classica del ciclo della proteina G.
+\subsubsection*{Cambiamo altri parametri \dots}
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{verbatim}
+
+        ********** MODEL PARAMETERS
+        K2 = 500
+        K3 = 2
+        kass = 0.001
+        kdiss = 25
+        khydr = 5
+        RCact = 100
+        GAP = 52
+    
+        ********** MODEL STATES
+        n1(0) = 500
+        n2(0) = 1
+        n3(0) = 1
+        n4(0) = 1
+
+    \end{verbatim}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/sim3.png}\\
+    \includegraphics[width=1\textwidth]{figures/sim4.png}
+\end{minipage}
+Ora $G\alpha - GTP$ mostra un comportamento transitorio, mentre $\beta \gamma$ raggiunge un importo stazionario elevato: l'immagine cinetica del ciclo della proteina G è completamente cambiato!
+\begin{enumerate}
+    \item Include un feedback negativo per l'internazionalizzazione del recettore $G\alpha - GTP$-indotto.\\Il recettore Rc potrebbe essere rimosso dalla superficie cellulare. Quindi, [R$c^{act}$] non è più costante e potremmo pensare di cambiarlo come:
+    $$\frac{d[Rc^{act}]}{dt} = V_{del} - V_{rem} - k_{rem}[Rc^{act}]\frac{1 + (An_3/K_A)}{1 + (n_3 / K_4)}$$
+    $V_{del} = $ velocità di consegna del recettore alla superficie cellulare\\
+    $k_{rem} = $ costante di velocità per la rimozione del recettore\\
+    $A, K_A = $ costanti cinetiche
+    \item Include un feedback positivo per l'attività GPCR $G\alpha -GTP$-migliorata
+    $$ V_2 = k_2\frac{n_1}{K_2 + n_1} \frac{1 + (Bn_3 / K_B)}{ 1 + (n_3 / K_B)}$$
+    $B,K_B = $ costanti cinetiche
+\end{enumerate}
+Simulando per 15 secondi:
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/sim15s.png}
+\end{center}
+Se provo a simulare per un tempo più lungo (300 secondi)
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/300sec.png}
+\end{center}
+L'aggiunta di anse regolatrici comporta oscillazioni nel
+concentrazione dei componenti del ciclo delle proteine G.
+\paragraph{Potremmo anhe aggiungere alcuni eventi che facciano si che il sistema salti tra modi differenti}
+Il sistema di segnalazione della proteina G trimerica può passare da una modalità a
+un'altra e tornare ai cambiamenti iniziali delle condizioni.\\
+Il sistema potrebbe essere stimolato con diverse quantità di GPCR e/o GAP in tempo.\\
+Stessa semplice cinetica della prima modalità analizzata + nuovi EVENTI che si verificano nel tempo:\\
+\begin{minipage}[c]{.5\textwidth}
+    \begin{verbatim}
+
+        ********** MODEL EVENTS
+
+        event1 = gt(time,15),RCact,5
+        event2 = gt(time,30),RCact,20
+        event3 = gt(time,45),RCact,90
+        event4 = gt(time,60),GAP,17
+        event4 = gt(time,75),GAP,25
+
+    \end{verbatim}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/flip.png}
+\end{minipage}
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/100sec.png}
+\end{center}
+\paragraph{Un esempio di modello SBML}
+\begin{verbatim}
+    <?xml verion="1.0" encoding="UTF-8"?>
+-<smbl xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+    -<model name="G_protein_Cycle_dd">
+        -<notes>
+            -<html xmlns="http://www.w3.org/1999/xhtml">
+                <body>Excercise form the paper by Katanec and Chornomorets
+                (Biochem J.2007)</body>
+            </html>
+            </notes>
+            ...
+\end{verbatim}
+
 
 
 \begin{titlepage}
@@ -1742,7 +3211,6 @@ residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
 
     \end{center}
 \end{titlepage}
-
 \section{Domande sull'introduzione}
 \Large
 \begin{enumerate}
@@ -1751,7 +3219,7 @@ residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
 
 \section{Domande sulle banche dati}
 \begin{enumerate}
-    \item ) Cos'è Uniprot? Oltre ad una descrizione generale si descrivano i suoi livelli e si elenchino almeno 5 sezioni che si possono trovare nelle pagine delle singole proteine (entry). Si descrivano inoltre brevemente i database PDB e ExPASy. Cosa hanno in comune queste tre risorse?
+    \item Cos'è Uniprot? Oltre ad una descrizione generale si descrivano i suoi livelli e si elenchino almeno 5 sezioni che si possono trovare nelle pagine delle singole proteine (entry). Si descrivano inoltre brevemente i database PDB e ExPASy. Cosa hanno in comune queste tre risorse?
     \item Si citino e discutano brevemente 4 banche dati presenti in NCBI. Se possibile escludere NCBI protein.
     \item Si descrivano le banche dati NCBI Gene, Unigene e Genbank. Inoltre, in che relazione sono tra di esse?
     \item  Descrivere Uniprot, Pfam, Prosite, CATH e PDB, con particolare attenzione alla più importante tra di esse (qual è?)
@@ -1760,6 +3228,31 @@ residui diversi (100- SI in \%) che viene inserita nella matrice delle distanze.
     \item Si descrivano il formato FASTA, il formato ASN.1 e il formato XML nell'ambito della bioinformatica.
     \item 
 \end{enumerate}
+
+\section{Domande sugli allineamenti di sequenza}
+
+\section{Domande sul confronto di sequenze}
+
+\section{Domande sugli algoritmi dinamici}
+
+\section{Domande su Waterman-Smith}
+
+\section{Domande sull'allineamento globale e locale}
+
+\section{Domande sulle matrici di punteggio}
+
+\section{Domande sulle matrici di sostituzione}
+
+\section{Domande su BLOSUM e PAM}
+
+\section{Domande su BLAST e PSI-BLAST}
+
+\section{Domande sull'allineamento multiplo}
+
+
+
+
+
 
 
 \end{document}
