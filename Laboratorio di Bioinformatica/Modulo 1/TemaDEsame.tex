@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs, siunitx}
+\usepackage[shortlabels]{enumitem}
+\begin{document}
+
+\section*{Tema d'esame - Teoria}
+Rispondere in modo sintetico ai seguenti quesiti:
+\begin{enumerate}[1)]
+   \item Descrivere brevemente le caratteristiche del Protein Data Bank ed il contenuto di un file .pdb
+   \item Spiegare la differenza tra omologia e similitudine. È possibile che due sequenze abbiano un'identità di sequenza del 57\% e una similitudine del 21\%? Perché?
+   \item Siano date le due sequenze di amminoacidi:\\
+      $s_{1}$ = \begin{verbatim}MVALMGTKAADL\end{verbatim}
+      $s_{2}$ = \begin{verbatim}MVAIMASRAGEI\end{verbatim}
+      Allinearle senza inserire gaps e senza costruire alcuna matrice e rispondere ai seguenti quesiti.
+      \begin{enumerate}[a)]
+         \item Stimare quantitativamente il grado di identita.
+         \item Quantificare la similitudine utilizzando la matrice di punteggio data.
+      \end{enumerate}
+      \underline{Illustrare in ambo i casi il calcolo svolto.}\\
+      Cosa si può concludere circa l'omologia?
+   \item Che tipo di allineamento di sequenza si ottiene applicando gli algoritmi di Needleman-Wunsch e Waterman-Smith? Spiegare brevemente in cosa differiscono tra loro, e qual è la sostanziale differenza rispetto ai metodi euristici.
+   \item Che differenza c'è tra allineamento globale e locale di sequenza? Illustrare come si può quantitativamente valutare la significatività di un allineamento globale.
+   \item Che cosa s'intende per "twilight zone" nell'allineamento di sequenze proteiche?
+\end{enumerate}
+
+
+\newpage
+\section*{Tema d'esame - Laboratorio}
+\subsection*{Esercizio 1}
+Utilizzando NCBI Gene, individuare l'entry relativa al gene che codifica per la proteina 'frequenin'. Rispondere alle seguenti domande, spiegando il procedimento seguito.
+\begin{enumerate}[a)]
+   \item Qual è il nome del gene e il relativo id in \textit{homo sapiens} e \textit{drosophila melanogaster}?
+   \item Su quali cromosomi si trova nei due organismi di cui sopra?
+   \item Qual è il codice Uniprot della proteina espressa da questo gene nell'uomo?
+   \item Quali sono le principali funzioni molecolari della proteina espressa?
+   \item È possibile affermare che la proteina si trova nella membrana post-sinaptica? Perchè?
+   \item Quanti articoli PubMed sono collegati a questo gene nella specie \textit{bos taurus} dalla pagina del database Gene?
+\end{enumerate}
+\subsection*{Esercizio 2}
+Ricercare in BLASTP le sequenze simili a NP$\_$000781 nell'organismo \textit{Danio rerio} (7955), ricercando nel dataabase di sequenze con codice RefSeq escludendo le sequenze modellate. Rispondere alle seguenti domande:
+\begin{enumerate}[a)]
+   \item A quale organismo appartiene la sequenza di input? Che proteina è?
+   \item Quante sono le hits trovate e a quale superfamiglia appartengono?
+   \item Quante hits hanno scope compreso tra 80 e 200? Qual è il loro codice RefSeq?
+   \item Qual è la hit (nome proteina e codice RefSeq) che rappresenta l'allineamento locale che ricopre la porzione minore rispetto alla lunghezza della query? Qual è l'E-value? Qual è l'identità di sequenza?
+\end{enumerate}
+\subsection*{Esercizio 3}
+Cercare sul database UNIPROT la proteina OUTER MEMBRANE PHOSPHOLIPASE A.
+\begin{enumerate}[a)]
+   \item Quale entries ci sono relative a \textit{Escherichia coli} (qualunque ceppo)? Qual è la lunghezza della catena polipeptidica più frequente?
+   \item Selezionare la entry reelativa al ceppo K12 (PA1$\_$ECOLI). Con quale metodo sono state risolte le strutture tridimensionali? Qual è il file PDB a maggior risoluzione che risolve solo la catena A? Cosa si intende per catena? Qual è la percentuale di sequenza risolta in questa struttura?
+\end{enumerate}
+Aprire il relativo file PDB con Pymol e rispondere a questi ulteriori quesiti.
+\begin{enumerate}[a)]
+   \setcounter{enumi}{2}
+   \item Quante sono le $\alpha$-eliche? Elencare i residui che complessivamente formano la struttura ad $\alpha$-elica più lunga.
+   \item Sono presenti ioni $Ca^{2+}$ o $Mg^{2+}$?
+   \item Che tipo di interazione stabilizza la coppia di residui Ile41 e Lys68? Indicare i gruppi chimici coinvolti e la loro distanza.
+\end{enumerate}
+\end{document}

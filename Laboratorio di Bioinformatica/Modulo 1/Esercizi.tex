@@ -4,16 +4,280 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{booktabs, siunitx}
-
+\usepackage[shortlabels]{enumitem}
 \begin{document}
+
 \begin{center}
    \Huge
+   Databases
+\end{center}
+\begin{center}
+   \huge
+   Esercizio 1
+\end{center}
+\section*{Traccia}
+Scaricare il fasta della sequenza genomica di human hemoglobin subunit beta (NM$\_$000518.5).
+\begin{enumerate}
+   \item Visitare il sito di ExPASy (\begin{verbatim}[expasy.org](http://expasy.org/\end{verbatim})):
+   \item Provare il tools TRANSLATE (resources A..Z) per tradurre automaticamente una sequenza genica in una proteica.
+   \item Sottomettere la sequenza genomica scaricata
+   \item Quale frame è corretto (confrontare la sequenza predetta con quella reale NP$\_$000509.1)?
+   \item Perché ci sono 6 frames?
+\end{enumerate}
+
+
+\begin{center}
+   \huge
+   Esercizio 2
+\end{center}
+\section*{Traccia}
+Cercare la sequenza nucleotidica e amminoacidica della rodopsina (rhodopsin), il pigmento visivo che innesca la visione nei vertebrati
+\begin{enumerate}
+   \item Cominciamo dal database Nucleotide. Quante sequenze ci sono per la ricerca “rhodopsin”?
+   \item Limitare la ricerca al database RefSeq. Quanti record ci sono?
+   \item Limitiare la ricerca ad homo sapiens (human), usando l’opzione advanced search. Quante sequenze nucleotidiche trova?
+   \item Visualizziamo l’entry “Homo sapiens rhodopsin (RHO), RefSeqGene on chromosome 3”. Quante bp ci sono nella sequenza?
+   \item Ci sono malattie genetiche associate a questa entry? Di tipo solo autosomico dominante? (OMIM)
+   \item Scaricare il file della sequenza nucloetidica del gene di rhodopsin
+\end{enumerate}
+
+
+\begin{center}
+   \huge
+   Esercizio 3
+\end{center}
+\section*{Traccia}
+Ricercare la proteina “Hemoglobin subunit beta” di Homo sapiens. Filtrare solo i record con RefSeq selezionare il risultato con codice RefSeq NP$\_$000509.1 (accession).
+\begin{enumerate}
+   \item Individuare
+   \begin{itemize}
+      \item lunghezza,
+      \item peso molecolare
+      \item il refseq del trascritto
+   \end{itemize}
+   \item Salvare localmente la sequenza FASTA della PROTEINA
+   \item Salvare localmente la sequenza FASTA del TRASCRITTO
+   \item Ci sono SNP? Cos’è un SNP?
+   \item Ci sono malattie mendeliane note legate a questa proteina?
+   \item Ci sono strutture legate a questa proteina?
+      \item Quante risolte per NMR e quante mediante Cristallografia (X-Ray)?
+\end{enumerate}
+Se vogliamo adesso scaricare la sequenza amminoacidica, della rodopsina (rhodopsin) per l’uomo su quale database dobbiamo andare e quali filtri utilizzare ?
+\begin{enumerate}
+   \item Scaricare il FASTA della proteina e salvarlo in una directory locale.
+   \item Collegarsi ad OMIM sfruttando il link sulla destra. Quanti records si ottengono? Trovare almeno due mutazioni puntiformi associate a retinite pigmentosa.
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 4
+\end{center}
+\section*{Traccia}
+Nel database Uniprot si cerchi la proteina Transferrin receptor (TFR1) per l’uomo (P02786).
+\begin{enumerate}
+   \item Quante isoforme ha ?
+   \item Ha la struttura risolta ? Se si, a partire da quale aminoacido è risolta.
+   \item Quale è il nome del gene che la codifica (entrare in HGNC)
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 5
+\end{center}
+\section*{Traccia}
+Nel database Uniprot si cerchi la proteina Transferrin receptor 2 (TFR2) per l’uomo (Q9UP52).
+\begin{enumerate}
+   \item Quante isoforme ha, se ne ha più di una perche ?
+   \item Ha la struttura risolta ? Se si, a partire da quale aminoacido è risolta.
+   \item Quale è il nome del gene che la codifica (entrare in HGNC)
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 6
+\end{center}
+\section*{Traccia}
+Scaricare le sequenze proteiche del recettore della transferrina (TFR1), ma che abbiano la struttura 3D risolta e formino un complesso con un qualsiasi ligando.
+\begin{enumerate}
+   \item Utilizzare il database Protein.
+   \item Limitare la ricerca solo al database PDB (quelli con struttura risolta).
+   \item In ricerca avanzata cercare “TFR1” e “complex” in tutti i campi
+   \item Scegliere una entry specifica
+   \item In “Display Settings” selezionare “FASTA”
+   \item In “Send” selezionare “Complete Record” e “File”
+\end{enumerate}
+
+\begin{center}
+   \Huge
+   Matrici di Punteggio
+\end{center}
+\section*{Traccia}
+\begin{center}
+   \huge
+   Esercizio 1
+\end{center}
+
+Allineare con i 2 algoritmi le sequenze
+GAATTCAGTTA
+GGATCGA
+Per l’allineamento globale (NW) usare la seguente opzione
+\begin{enumerate}
+   \item Quale dei 2 algoritmi restituisce l’allineamento con il punteggio maggiore? Perché?
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 2
+\end{center}
+\section*{Traccia}
+Allineare con i 2 algoritmi le sequenze
+GAATTCAGTTA
+GGATCGA
+\begin{enumerate}
+   \item Settando la penalità per apertura (e chiusura) dei gap a 1 con i due algoritimi (NW e WS) cosa cambia? Perché?
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 3
+\end{center}
+\section*{Traccia}
+Utilizzando l’algoritmo NW disponibile su: [\begin{verbatim}https://www.ebi.ac.uk/Tools/psa/emboss_needle/](https://www.ebi.ac.uk/Tools/psa/emboss_needle/\end{verbatim})
+Allineare la sequenza di calmodulina umana (CALM1) con quella di:
+\begin{enumerate}
+   \item Bos taurus (bovina)
+   \item Arabidopsis thaliana (pianta) (ottenere le sequenze da opportuni database…).
+      \subitem Mantenere i settaggi di default per i gaps, e utilizzare la matrice di score BLOSUM 62)
+   \item Qual è l’identità di sequenza? Quali reisidui differiscono pur restando simili per prorietà chimico-fisiche?
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 4
+\end{center}
+\section*{Traccia}
+Utilizzando l’algoritmo WS per allineamenti locali disponibile su: \begin{verbatim}[https://www.ebi.ac.uk/Tools/psa/emboss_water/](https://www.ebi.ac.uk/Tools/psa/emboss_water/)\end{verbatim}
+Allineare la sequenza delle due proteine con codice Uniprot P46065 e P21457
+\begin{enumerate}
+   \item Di quali proteine si tratta? Cosa hanno in comune?
+   \item Qual e’ l’identita’ di sequenza? E la similitudine? Si puo’ trattare di proteine omologhe? Perche’?
+   \item Identificare una zona in cui l’identita’ e’ estesa a 8 residui. Che struttura secondaria ha la seconda proteina in quella zona?
+   \item Se si allinea la prima proteina con P51177 quali sono i punteggi di allineamento?Allineare LOCALMENTE la prima lunga regione senza gaps. Qual e’? E quali sono i nuovi punteggi? Di quali zone di SII si tratta?
+\end{enumerate}
+
+\begin{center}
+   \Huge
+   Blast
+\end{center}
+
+\begin{center}
+   \huge
+   Esercizio 1
+\end{center}
+\section*{Traccia}
+Eseguire una ricerca tramite blastp su NCBI usando la seguente sequenza di 12 aminoacidi:
+PNLHGLFGRKTG
+\begin{enumerate}
+   \item Metterla in formato FASTA. I parametri di ricerca saranno automaticamente adattati per sequenze corte.
+   \item Resettare l’interfaccia
+   \item Attivare l’opzione “Show results in a new window” per poter confrontare i parametri di default con quelli modificati automaticamente.
+   \item Osservare la sezione “search summary”:
+   \item Qual è il valore di cut-off dell’E-value?
+   \item Come è cambiata la “word size”?
+   \item Qual è la matrice di punteggio?
+   \item Come sono variati i parametri rispetto al defualt e perchè?
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 2
+\end{center}
+\section*{Traccia}
+PSI-BLAST - proteina sconosciuta
+\begin{enumerate}
+   \item Un campione biologico ha rivelato la presenza della sequenza proteica di origine sconosciuta riportata in:
+   \begin{verbatim}[http://goo.gl/siebf5](http://goo.gl/siebf5)\end{verbatim}
+   \item Si ritiene che debba appartenere alla specie Danio Rerio (zebrafish).
+   \item Utilizzare PSI-BLAST con i seguenti parametri: RefSeq come database, escludendo i modelli dagli output, limitandosi all’organismo Danio rerio, PAM30 come matrice di score.ù
+   \item Di che tipo di proteina si tratta? (Guardare se ci sono domini conservati!) Quanti hits ci sono alla prima iterazione? Qual e’ l’hit con score piu’ basso ed E-value piu’ alto? Segnarsi il codice RefSeq. Quante hits hanno score >200
+   \item Alla seconda ietrazione, qual e’ l’hit con score minore? Che E-value ha? E che score ha la proteina con peggior score alla iterazione precedente?Perché?
+   \item Quante nuove hit compaiono alla terza iterazione?
+   \item A quale iterazione non vengono piu’ aggiunte hits?
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 3
+\end{center}
+\section*{Traccia}
+Entrare in BLASTX di NCBI e copiare la sequenza di “dinosauro” "Lost World” come input.
+[ftp://ftp.ncbi.nlm.nih.gov/pub/FieldGuide/lostworld.txt](ftp://ftp.ncbi.nlm.nih.gov/pub/FieldGuide/lostworld.txt)
+Resettare la pagina prima di impostare i parametri Assicuratevi di includere l'intera sequenza. Ricercare sul database “nr”. Escludere i modelli (XM/XP).
+\begin{enumerate}
+   \item A quale proteine appartiene probabilmente questa sequenza nucleotidica?
+   \item Nella pagina dei risultati, guardare i risultati degli allineamenti.
+   \item La pagina risultante mostrerà la sequenza query scritta come proteina (utilizzando le 20 lettere corrispondenti agli amminoacidi). Il Dr. Mark Boguski che ha creato la sequenza ha lasciato un messaggio nascosto nella sequenza query in posizioni corrispondenti ai 4 gap della sequenza allineata. Qual è il suo messaggio?
+\end{enumerate}
+
+\begin{center}
+   \Huge
+   MSA
+\end{center}
+\begin{center}
+   \huge
+   Esercizio 1
+\end{center}
+\section*{Traccia}
+Nel sito Homologene scaricare le sequenze fasta che ci sono nell’entry relativa alla proteina NP$\_$000940.1 ed allinearle con muscle EBI : \begin{verbatim}[https://www.ebi.ac.uk/Tools/msa/muscle/](https://www.ebi.ac.uk/Tools/msa/muscle/)\end{verbatim} (attenzione! Selezionare come output il formato Clustal!)
+\begin{enumerate}
+   \item Quante sequenze si stanno allineando?
+   \item Cosa permette di dire che le sequenze sono in formato FASTA?
+   \item Quali due delle sequenze non conservano la stringa “ICLI”?
+   \item Quante e quali inserzioni di un singolo aminoacido sono avvenute e in quali sequenze?
+   \item Aprire l’allineamento in Jalview dopo averlo esportato in formato FASTA da MUSCLE. Selezionare la regione che si estende da ”GQSPPE…” a “… VRDVQ” della sequenza NP$\_$990185.1, tramite il tab Web Service lanciare JPRED. Qual è l’elemento di struttura secondaria più ricorrente, secondo la predizione di JPRED? Quante alfa eliche sono predette? Suggerimento: Usare HTML format per l’output
+   \item (se non fosse disponibile dal tab, collegarsi a: \begin{verbatim}[http://www.compbio.dundee.ac.uk/jpred/](http://www.compbio.dundee.ac.uk/jpred/)\end{verbatim} ). ATTENZIONE: JPRED può essere lento!!!
+\end{enumerate}
+
+\begin{center}
+   \huge
+   Esercizio 2
+\end{center}
+\section*{Traccia}
+Cerchiamo l’entry 1EBM nel database PDB
+\begin{enumerate}
+   \item Quali macromolecole contiene la struttura?
+   \item Quante catene? Cosa rappresenta la catena A? E’ mutata?
+   \item È una proteina intera? Mancano residui? Perchè?
+   \item Cliccare sul tab Sequence. Che informazioni troviamo?
+\end{enumerate}
+
+
+Scarichiamo il file PDB e visualizziamolo con un editor di testo (attenti a dove lo salvate!)
+
+\begin{enumerate}
+  \item Chi sono gli autori del lavoro strutturale?
+  \item Si tratta di cristallografia a raggi X o di NMR?
+  \item Qual è la risoluzione della struttura?
+  \item Cosa si trova al REMARK 200? Hanno usato luce di
+   sincrotrone per risolvere la struttura?
+  \item Cosa si trova al REMARK 470? Spiegate i residui mancanti
+  \item Cosa si tova nel campo SEQRES?
+  \item Quante $\alpha$-eliche e $\beta$-sheets ci sono?
+  \item Trovare le coordinate del carbonio alfa di Asp174
+\end{enumerate}
+
+\begin{center}
+   \Huge
+   SystemsBiology
+\end{center}
+\begin{center}
+   \huge
    Esercizio 1
 \end{center}
 
 \section*{Traccia}
 In seguito ad una variazione locale di pH la proteina $P_1$ suisce un cambiamento conformazionale che la rende attiva. La forma attiva della proteina ($P_{1a}$)
-è in grado di legare la proteina $P_2$ in modo reversibile con le costanti cinetiche $k_as = 3.4 \times 10^5 M^{-1}s^{-1}$ e $k_dis = 5 \times 10^{-2}s^{-1}$.\\
+è in grado di legare la proteina $P_2$ in modo reversibile con le costanti cinetiche $k_as = 1.4 \times 10^5 M^{-1}s^{-1}$ e $k_dis = 5 \times 10^{-2}s^{-1}$.\\
 Sapendo che le concentrazioni iniziali della protina $P_1$ e della proteina $P_2$ sono rispettivamente $35 \mu M$ e $24 \mu M$ e che la cost6ante cinetica di variazione conformazionale della proteina $P_1$ è $kconf = 7 \times 10^3 M^{-1}s^{-1}$
 simulare il sistema dinamicamente e rispondere ai seguenti quesiti:
 \begin{enumerate}
@@ -33,7 +297,7 @@ P2(0)=24e-6   %M (moli/I)
 
 *****************MODEL PARAMETERS
 k_conf=7e3 \%M^-1 s^-1
-k_as=3.4e5 \%M^-1 s^-1
+k_as=\item4e5 \%M^-1 s^-1
 k_dis=5e-2 \%s^-1
 k_deg=1.2e-2 %aggiunto successivamente
                  %all'esercizio 3
@@ -66,8 +330,8 @@ $$K_{as}*P_{1a}*P_2 = k_{dis}*P_3$$
 Dobbiamo ora calcolare la costante di equilibrio empirica:\\
 $$P_3(20) c.a. = 2.3x10^{-5}$$
 $$P_{1a}(20) c.a. = 1.13 \times 10^{-5}$$
-$$P_2(20) c.a. = 3.08 \times 10^{-7}$$
-$$k_{eq} = \frac{ P_3(20)}{P_{1a}(20)*P_2(20)} = \frac{2.3 \times 10^{-5}}{1.13 \times 10^{-5}*3.08 \times 10^{-7}} == 6.8 \times 10^{6}$$
+$$P_2(20) c.a. = 1.08 \times 10^{-7}$$
+$$k_{eq} = \frac{ P_3(20)}{P_{1a}(20)*P_2(20)} = \frac{2.3 \times 10^{-5}}{1.13 \times 10^{-5}*.08 \times 10^{-7}} == 6.8 \times 10^{6}$$
 
 \paragraph{Domanda 3}
 Per capirlo aggiungiamo la reazione 3, con una nuova costante $k_{deg}$.\\
@@ -76,15 +340,15 @@ Spiegazione: dopo la prima reazione, di dissociazione di $P_1$, $P_{1a}$ tende a
 
 \newpage
 \begin{center}
-   \Huge
+   \huge
    Esercizio 2
 \end{center} 
 
 \section*{Traccia}
-La proteina P, è sintetizzata dai ribosomi con una costante cinetica $kl$ pari a$ 3.5 \times 10^{-7} M^{-1}s^{-1}$. È noto che la proteina $P_1$ dimerizza (formando il dimero $P_2$) con una $K_{Dim}. = 5 nM$ e che il dimero può reversibilmente dissociare con una costante cinetica di dissociazione $kdim\_d = 5 \times 10^{-5}s^{-1}$.\\ Nella stessa cellula, un enzima $E$ lega irreversibilmente un cofattore $C$ con una costante cinetica $kcof = 8.4 \times 10^4 M^{-1}s^{-1}$ a formare l'enzima attivo $E_a$. 
+La proteina P, è sintetizzata dai ribosomi con una costante cinetica $kl$ pari a$ .5 \times 10^{-7} M^{-1}s^{-1}$. È noto che la proteina $P_1$ dimerizza (formando il dimero $P_2$) con una $K_{Dim}. = 5 nM$ e che il dimero può reversibilmente dissociare con una costante cinetica di dissociazione $kdim\_d = 5 \times 10^{-5}s^{-1}$.\\ Nella stessa cellula, un enzima $E$ lega irreversibilmente un cofattore $C$ con una costante cinetica $kcof = 8.4 \times 10^4 M^{-1}s^{-1}$ a formare l'enzima attivo $E_a$. 
 Quest'ultimo catalizza l'attivazione del dimero $P_2$, trasformandolo quindi in $P_{2a}$, con una costante di catalisi $kcat = 1.2 \times 10^{-2}s^{-1}$ ed una costante di Michaelis $K_M = 5 \mu M$. Il dimero attivato lega poi un recettore intracellulare $R$ in modo reversibile a formare il complesso $P_{2a}R$ con costanti cinetiche di associazione e dissociazione rispettivamente $kRa = 1.3 \times 10^5 M^{-1}s^{-1}$ e $kRd =10^{-2} s^{-1}$. Il complesso $P_{2a}R$ dissocia poi in modo irreversibile nel dimeno $P_2$ inattivo e nel recettore attivo $R$. con costante cinetica $kRact = 4 \times 10^{-1}s^{-1} $. 
 Sapendo che le concentrazioni iniziali delle specie molecolari presenti nel sistema sono: 
-$P_1(0) = 13.5 \mu M, E(0) = 10.5 \mu M, C(0) = 5.3 \mu M, R(0) = 320 \mu M$, simulare dinamicamente il sistema e rispondere ai seguenti quesiti: 
+$P_1(0) = 1.5 \mu M, E(0) = 10.5 \mu M, C(0) = 5.3 \mu M, R(0) = 320 \mu M$, simulare dinamicamente il sistema e rispondere ai seguenti quesiti: 
 \begin{enumerate}
    \item Dopo quanto tempo il recettore R è totalmente saturato da $P_{2a}$? Qual è il rispettivo valore massimo di produzione di $R_a$, la sua forma attiva?
    \item Assumendo che a t=20s il sistema sia all'equilibrio, determinare empiricamente la costante di equilibrio e confrontarla con la costante di equilibrio teorica.
@@ -97,13 +361,13 @@ Esercizio 2
 *****************MODEL NOTES
 
 *****************MODEL STATE INFORMATION
-P1(0)=13.5e-6    %M (moli/I)
+P1(0)=1\item5e-6    %M (moli/I)
 E(0)=10.5e-6     %M (moli/I)
 C(0)=5.3e-6      %M (moli/I)
 R(0)=320e-6      %M (moli/I)
 
 *****************MODEL PARAMETERS
-k_1=3.5e-7     %M^-1 s^-1
+k_1=\item5e-7     %M^-1 s^-1
 k_Dim=5e-9     %M^-1 s^-1
 kdim_d=5e-5    %s^-1
 k_cof=8.4e4   %M^-1s^-1 %alla terza domanda cambia 
