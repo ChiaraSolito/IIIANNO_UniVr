@@ -6,7 +6,110 @@
 \usepackage{booktabs, siunitx}
 \usepackage[shortlabels]{enumitem}
 \begin{document}
-
+\section{Domande sulle banche dati}
+\begin{enumerate}
+    \item Cos'è Uniprot? Oltre ad una descrizione generale si descrivano i suoi livelli e si elenchino almeno 5 sezioni che si possono trovare nelle pagine delle singole proteine (entry). Si descrivano inoltre brevemente i database PDB e ExPASy. Cosa hanno in comune queste tre risorse?
+      \subitem{-} Uniprot è un database rinomato che contiene informazioni sulle sequenze proteiche; si divide in tre livelli: 
+         \begin{enumerate}
+            \item UKB (uniprot knowledge base) che contiene le informazioni revisionate e conosciute dalla letteratura biomedica
+            \item Uniprot reference che contiene informazioni su famiglie di proteine raggruppate tramite clustering
+            \item Uniprot Archive che contiene sequenze proteiche non ridondanti stabili
+         \end{enumerate}
+      5 sezioni per una entry sono:
+      \begin{itemize}
+         \item Function = riassume informazioni sulla entry ricercata. Elenca i processi molecolari e biologici a cui prende parte la proteina.
+         \item Structure =  contiene informazioni circa la sua struttura secondaria. Sono elencati gli spettri risolti a raggi X e/o NMR contenuti in PDB.
+         \item Sequence = contiene la sequenza amminoacidica con eventuali isoforme. Sono esplicitate anche le eventuali varianti naturali.
+         \item Pathology = contiene le informazioni sulle malattie legate a tale proteina
+         \item Interaction = elenca le interazioni tra subunità con altre proteine
+      \end{itemize}
+      PDB sta per protein data bank, è un database che contiene files .pdb, più informazioni su struttura 3D di proteine, visulazzione dei ligandi e analisi delle caratteristiche di una proteina.\\
+      ExPASy è un altro database proteico multifunzione. Uno dei tools più usati è translate tool che serve per tradurre dna in proteina.\\
+      Questi database hanno in comune il fatto che contengono informazioni su proteine, e Uniprot possiede link a PDB nella sezione structure (strutture risolte della entry). 
+    \item Si citino e discutano brevemente 4 banche dati presenti in NCBI. Se possibile escludere NCBI protein.
+      \subitem{-} I quattro database sono Gene, OMIM e Homologene.
+      \begin{itemize}
+         \item Gene: raccoglie sequenze nucleotidiche con particolare enfasi sulla descrizione genica. È orienta
+         to ai geni e ai loci.
+         \item OMIM: contiene in informazioni sui cosiddetti “disordini genetici” nell'uomo. Raggruppa le informazioni sulle malattie mendeliane umane.
+         \item Homologene: contiene sequenze di geni omologhi nell'uomo. 
+         \item PubChem: dedicato ai composti chimici, come inibitori, stimolatori, ecc. come farmaci che agiscono su una proteina o su un gene.
+      \end{itemize}  
+    \item  Descrivere Uniprot, Pfam, Prosite, CATH e PDB, con particolare attenzione alla più importante tra di esse (qual è?)
+      \subitem{-} Possiamo subito dire che sono tutte banche dati proteiche, nello specifico:
+         \begin{itemize}
+            \item Uniprot è un database rinomato che contiene informazioni sulle sequenze proteiche; si divide in tre livelli: 
+            UKB (uniprot knowledge base) che contiene le informazioni revisionate e conosciute dalla letteratura biomedica;	Uniprot reference che contiene informazioni su famiglie di proteine raggruppate tramite clustering; infine Uniprot Archive che contiene sequenze proteiche non ridondanti stabili.
+            \item Pfam e Prosite sono utili per studiare e catalogare le strutture proteiche, per dedurne proprietà strutturali e di similitudine con altre classi di proteine, per confrontare una proteina di interesse con una classe di proteine che si sospetta essere funzionalmente simile. 
+               \subitem Pfam suddivide le proteine in famiglie strutturali e ne descrive le caratteristiche in base a metodi statistici come allineamenti e Hidden Markov Models, utili per dedurre proprietà simili nelle classi di oggetti (criteri per decidere se una proteina appartiene ad una certa famiglia strutturale oppure no).
+               \subitem Prosite individua, data una sequenza query, le possibili famiglie di apparteneneza e le informazioni relative ai siti conservati e funzionali per poterli confrontare.  Determina possibili caratteristiche funzionali, domini, cofattori, siti attivi funzionali per enzimi, amminoacidi strutturalmente importanti, livello di conservazione.
+            \item CATH è un database che definisce famiglie strutturali, sfruttando un criterio gerarchico di classificazione in famiglie che svolgono una funzione biologica comune. Aiutano a predire le strutture e a caratterizzarlo. L'acronimo individua i 4 elementi gerarchici: CLASSE (contenuto e tipo di strutture secondarie), ARCHITETTURA (descrizzazione dell'orientamento delle strutture secondarie senza tener conto delle connessioni), TOPOLOGIA (tiene conto delle connessioni che caratterizzano le strutture secondarie) e HOMOLOGIA (raggruppa proteine con strutture e funzioni simili).
+         \end{itemize}
+    \item Cos'è Pubmed? Descrivere la banca dati, i suoi contenuti, e gli strumenti messi a disposizione degli utenti (illustrati a lezione), sia per la ricerca che per la gestione dei risultati.
+      \subitem{-} Pubmed, accessibile tramite l'interfaccia di accesso ai database ENTREZ, è la banca dati per la letteratura biomedica più completa. Contiene articoli scientifici peer-reviewed e quindi contiene informazioni solide. Durante le ricerche è possibile filtrare i risultati per anno di pubblicazioni, autori, parole chiave (tramite cui effettuiamo le ricerche), abstract, citazioni ecc. Ogni articolo è identificato dal PMID (ID PubMed).
+    \item Si descrivano il formato FASTA e il formato XML nell'ambito della bioinformatica.
+      \subitem Il formato FASTA e il formato XML sono diversi formati di rappresentazione delle sequenze:
+         \begin{itemize}
+            \item Il formato FASTA rappresenta mediante testo sequenze nucleotidiche o peptidiche, con sequenze maiuscole. La prima riga è sempre di commento (preceduta da ">") e le linee successive, ciascuna di 80 caratteri, rappresentano la sequenza.
+            \item Il formato XML (eXtensible Markup Language) replica la struttura logica del record nella banca dati, i tag permettono di delimitare e definire campi e sottocampi, per permetterne una facile lettura da software diversi che lavorano con le sequenze.
+         \end{itemize}
+\end{enumerate}
+\section{Domande sugli allineamenti di sequenza}
+Tutte nella simulazione d'esame.
+\section{Domande sul confronto di sequenze e Matrici di Sostituzione}
+Le domande tipiche si trovano nella simulazione d'esame. Aggiungiamo:
+\begin{itemize}
+   \item Cosa indica il valore atteso $E$? Cosa indica il p-value?
+   \subitem{-} Il valore atteso $E$ (o indice di incertezza) indica il numero di allinementi con punteggio $\geq S$ ottenuti per caso sulla ricerca nel database. 
+   Esso viene stimato dalla seguente equazione:
+   $$E=KMNe^{-\lambda S}$$
+   Dove:
+   $K, \lambda = $ parametri\\
+   $M =$ lunghezza della query\\
+   $N =$ lunghezza della sequenza nel database\\
+   $S = $score\\
+   Più alto è il valore di $E$ più è probabile che un allineamento sia poco significativo; più basso è $E$ più la probabilità che l'allineamento sia casuale è bassa e l'allimeamento è significativo (non casuale), quindi il valore di $E$ decresce esponenzialmente con l'aumentare di $S$. Ottenere un allineamento con $E=1$ significa che esiste un altro allineamento con lo stesso score $S$ che è risultato per caso. La stessa ricerca su un database più piccolo o più grande, anche se restituisce lo stesso allineamento deve avere un valore $E$ diverso (ciò dipende da k).\\
+   Per stimare la probabilità che un certo allineamento sia causale si utilizza il $p-VALUE$ pari a $ p=1-e^{-E}$. 
+   Ovviamente quando $E-VALUE$ è elevato (ci sono molte sequenze allineate casualmente) il $p-VALUE$ sarà elevato quindi casualità elevata.
+   La soglia critica è dell'1\%. Se la probabilità supera l'1\% abbiamo che la probabilità di ottenere tali allineamenti casualmente è troppo elevata.
+\end{itemize}
+\section{Domande su BLAST e PSI-BLAST}
+\begin{itemize}
+   \item Cos'è BLAST? Descrivere il suo algoritmo.
+      \subitem{-} BLAST è un tool web-accessibile che permette un confronto rapido tra una sequenza query e il contenuto di un database. È fondamentale per capire la relazione di una sequenza query con altre proteine o sequenze di DNA note. L'algoritmo BLAST (come FASTA) è un approssimazione euristica per l'allineamento locale (trovano soluzioni approssimate ma vicine a quelle ottimali in tempi brevi).\\
+      L'algoritmo si divide in 3 fasi:
+      \begin{enumerate}
+         \item Compila una lista di parole di lunghezza W con un punteggio oltre la soglia T.
+         \item Scansiona il database per le voci della lista appena compilata.
+         \item Quando riesco a trovare una corrispondenza si deve estendere l'allineamento, ricalcolando il punteggio e fermandosi quando diventa inferiore a una certa soglia. Nella versione originale di BLAST ciascun hit è esteso in entrambe le direzioni, nella versione migliorata sono necessari due hit vicini entro una distanza A.
+      \end{enumerate}
+   \item In BLAST a cosa servono i parametri W,T e A?
+      \subitem{-} Il parametro T è la soglia di punteggio nella lista di parole corrispondenti alla query, mentre W  è la lunghezza (o dimensione) della parola query. Scegliere w piccoli mi permetterà di avere un numero di hits maggiore ma più sensibilità. Viceversa scegliere w grandi velocizzano la ricerca a scapito della sensibilità. Il parametro A, utilizzato nella versione migliorata di BLAST, definisce la distanza entro cui è necessario trovare due hit perché avvengano le estensioni, questo fa in modo che avvengano meno frequentemente.
+   \item Si discuta Psi-BLAST: principi di base e applicazioni. Quali limiti di BLAST supera? Come?
+      \subitem{-} Psi-BLAST è un algoritmo euristico di allineamento locale che permette di effettuare una ricerca più in profondità, rispetto a BLAST, utilizzando una matrice di punteggio adattata dinamicamente. L'algoritmo è diviso in 5 fasi: costruisce un allineamneto multiplo di sequenze a partire dagli hit migliori e crea quindi un "profilo" detto Matrice di Calcolo Posizione Specifica (PSSM), usato come query nel database per l'iterazione successiva. Il PSSM catturna il pattern di conservazione nell'allineamento multiplo ottenuto dai migliori hits di BLASTP e lo immagazzina sottoforma di matrice di score (dove le posizioni più conservate hanno punteggi più alti e le regioni poco conservate, punteggi più bassi). Il profilo è quindi una specie di nuova query in cui ogni posizione ha un "peso" differenziato: questa informazione può essere utilizzata per estendere la ricerca.\\
+      Psi-BLAST supera il limite di BLAST di non trovare proteine omologhe se queste sono troppo distanti dall'ancestrale comune, inoltre riesce a risolvere il problema delle query lunghe (che BLAST classico invece non trova).
+\end{itemize}
+\section{Allineamenti Multipli di Sequenze}
+\begin{itemize}
+   \item Cos'è Clustal-W?
+      \subitem{-} Clustal-W è la versione moderna di Clustal Omega, un metodo progressivo per determinare come combinare uno per uno allineamenti a coppie, per creare un allineamento multiplo, usando un albero guida. Si compone di 3 fasi:
+      \begin{enumerate}
+         \item Realizzare una serie di allineamenti a coppie globali, usando NW, di cui si calcola la distanza in una matrice delle distanze.
+         \item Creare un albero guida a partire dalla matrice delle distanze.
+         \item Allineare progressivamente le sequenze, prima le più vicine, ovvero più simili, e poi le più distanti.
+      \end{enumerate}
+      Clustal-W (come Clustal Omega) per molte sequenze è parecchio lento perché ha una crescita esponenziale, per cui è preferibile per sequenze lunghe utilizzare altri metodi, per esempio MUSCLE.
+   \item Citare due metodi alternativi a Clustal-W. In cosa differiscono? In che modo lo migliorano?
+      \subitem{-} Metodi alternativi a Clustal-W sono i metodi iterativi, come MUSCLE e Praline: differiscono perché consistono nel calcolare una soluzione subottimale e modificarla ripetutamente, con metodi di programmazione dinamica (o altri) fino a quando la soluzione converge.\\
+      Un altro metodo alternativo è TCoffee (che ha un procedimento simile a Clustal-W) che determina un allineamento multiplo, il più poessibile coerente con vincoli esterni (differisce per questo da Clustal-W, garantendo la soddisfazione della necessità di coerenza).
+   \item Cos'è il benchmarking negli allineamenti multipli?
+      \subitem{-} Il benchmarking consiste nella valutazione degli algoritmi di allineamento multiplo, tramite l'utilizzo di dataset di test, quindi allineamenti noti e affidabili. Posso così confrontare le risposte di diversi algoritmi per un determinato set di interesse. Il database più utilizzato per questa funzione è BAliBASE.
+\end{itemize}
+\section{Reti Neurali}
+\begin{itemize}
+   \item Come funziona una rete neurale?
+      \subitem{-} 
+\end{itemize}
 \begin{center}
    \Huge
    Databases
@@ -18,13 +121,25 @@
 \section*{Traccia}
 Scaricare il fasta della sequenza genomica di human hemoglobin subunit beta (NM$\_$000518.5).
 \begin{enumerate}
-   \item Visitare il sito di ExPASy (\begin{verbatim}[expasy.org](http://expasy.org/\end{verbatim})):
+   \item Visitare il sito di ExPASy (\texttt{[expasy.org](http://expasy.org/})):
    \item Provare il tools TRANSLATE (resources A..Z) per tradurre automaticamente una sequenza genica in una proteica.
    \item Sottomettere la sequenza genomica scaricata
-   \item Quale frame è corretto (confrontare la sequenza predetta con quella reale NP$\_$000509.1)?
+   \item Quale frame è corretto (confrontare la sequenza predetta con quella reale \texttt{NP$\_$000509.1})?
    \item Perché ci sono 6 frames?
 \end{enumerate}
-
+\section*{Svolgimento}
+\begin{enumerate}
+   \setcounter{enumi}{3}
+   \item Il frame corretto è il terzo.\\
+   \begin{verbatim}
+      5'3' Frame 3
+      ICF-HNCVH-QPQTDTMVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQR
+      FFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLH
+      VDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH-ARFLAVQ
+      FLLKVPLFPKSNY-TGGYYEGP-ASGFCLIKNIYFHC
+   \end{verbatim}
+   \item Ci sono 6 frames perché ogni regione del DNA ha sei possibili frame di lettura, tre in ciascuna direzione. Il frame di lettura utilizzato determina quali amminoacidi verranno codificati da un gene.
+\end{enumerate}
 
 \begin{center}
    \huge
@@ -35,37 +150,61 @@ Cercare la sequenza nucleotidica e amminoacidica della rodopsina (rhodopsin), il
 \begin{enumerate}
    \item Cominciamo dal database Nucleotide. Quante sequenze ci sono per la ricerca “rhodopsin”?
    \item Limitare la ricerca al database RefSeq. Quanti record ci sono?
-   \item Limitiare la ricerca ad homo sapiens (human), usando l’opzione advanced search. Quante sequenze nucleotidiche trova?
-   \item Visualizziamo l’entry “Homo sapiens rhodopsin (RHO), RefSeqGene on chromosome 3”. Quante bp ci sono nella sequenza?
+   \item Limitiare la ricerca ad homo sapiens (human), usando l'opzione advanced search. Quante sequenze nucleotidiche trova?
+   \item Visualizziamo l'entry “\texttt{Homo sapiens rhodopsin (RHO), RefSeqGene on chromosome 3}”. Quante bp ci sono nella sequenza?
    \item Ci sono malattie genetiche associate a questa entry? Di tipo solo autosomico dominante? (OMIM)
    \item Scaricare il file della sequenza nucloetidica del gene di rhodopsin
 \end{enumerate}
-
+\section*{Svolgimento}
+\begin{enumerate}
+   \item Nel database Nucleotide ci sono 56577 entries per la ricerca "rhodopsin".
+   \item Selezionando il database RefSeq nella colonna sulla sinistra, da "Reference Database": ci sono 7977 entries.
+   \item In Advances Search inseriamo con "All Fields" la ricerca "rhodopsin" e nell'AND selezioniamo "Organism" e poi cerchiamo: Homo Sapiens (human), trova 20 sequenze nucleotidiche.
+   \item Selezionando la prima entry (“\texttt{Homo sapiens rhodopsin (RHO), RefSeqGene on chromosome 3}”) ci sono 198295559 bp. 
+   \item Apriamo il collegamento in "gene" nella sezione "\texttt{FEATURES": /db$\_$xref = "MIM:180380}"\\Arriviamo nella pagina OMIM correlata, ci sono diverse malattie genetiche associate a questa entry, ci sono anche delle malattie autosomiche recessive (\texttt{In affected members of 2 Indonesian families segregating autosomal recessive retinitis pigmentosa-4 (RP4; 613731), Kartasasmita et al. (2011) identified homozygosity for a 482G-A transition in exon 2 of the RHO gene, resulting in trp161-to-ter (W161X) substitution. Haplotype analysis suggested that this is a founder mutation.})
+   \item Scarichiamo il file della sequenza nucleotidica dall'apposito link in NCBI.
+\end{enumerate}
 
 \begin{center}
    \huge
    Esercizio 3
 \end{center}
 \section*{Traccia}
-Ricercare la proteina “Hemoglobin subunit beta” di Homo sapiens. Filtrare solo i record con RefSeq selezionare il risultato con codice RefSeq NP$\_$000509.1 (accession).
+Ricercare la proteina “Hemoglobin subunit beta” di Homo sapiens. Filtrare solo i record con RefSeq selezionare il risultato con codice RefSeq \texttt{NP$\_$000509.1} (accession).
 \begin{enumerate}
    \item Individuare
    \begin{itemize}
-      \item lunghezza,
-      \item peso molecolare
+      \item lunghezza
       \item il refseq del trascritto
    \end{itemize}
    \item Salvare localmente la sequenza FASTA della PROTEINA
    \item Salvare localmente la sequenza FASTA del TRASCRITTO
-   \item Ci sono SNP? Cos’è un SNP?
+   \item Ci sono SNP? Cos'è un SNP?
    \item Ci sono malattie mendeliane note legate a questa proteina?
    \item Ci sono strutture legate a questa proteina?
       \item Quante risolte per NMR e quante mediante Cristallografia (X-Ray)?
 \end{enumerate}
-Se vogliamo adesso scaricare la sequenza amminoacidica, della rodopsina (rhodopsin) per l’uomo su quale database dobbiamo andare e quali filtri utilizzare ?
+Se vogliamo adesso scaricare la sequenza amminoacidica, della rodopsina (rhodopsin) per l'uomo su quale database dobbiamo andare e quali filtri utilizzare ?
 \begin{enumerate}
    \item Scaricare il FASTA della proteina e salvarlo in una directory locale.
    \item Collegarsi ad OMIM sfruttando il link sulla destra. Quanti records si ottengono? Trovare almeno due mutazioni puntiformi associate a retinite pigmentosa.
+\end{enumerate}
+\section*{Svolgimento}
+\begin{enumerate}
+   \item Ricerchiamo nel database Protein di NCBI, con Advanced Search, "\texttt{(Hemoglobin subunit beta[Protein Name]  AND "Homo sapiens"[Organism] AND refseq[filter]}" (oppure selezioniamo RefSeq dopo aver effettuato la prima parte della ricerca, nella colonna a sinistra). Selezioniamo la prima (codice RefSeq \texttt{NP$\_$000509.1})
+   \begin{itemize}
+      \item Ha una lunghezza di 147 aa 
+      \item Il refseq del trascritto è NM$\_$000518.5, lo troviamo, nella sezione FEATURES, sotto "gene", nella stringa "\texttt{/coded$\_$by="NM$\_$000518.5:51..494"}"
+   \end{itemize} 
+   \setcounter{enumi}{3}
+   \item Nella colonna laterale destra, troviamo il link \texttt{SNP} che ci porta agli SNP correlati (identificati dalla ricerca \texttt{SNP Links for Protein (Select 4504349)})\\ Le entry trovate sono 481. Un SNP è un polimorfismo a singolo nucleotide (ovvero  un polimorfismo, cioè una variazione, del materiale genico a carico di un unico nucleotide, tale per cui l'allele polimorfico risulta presente nella popolazione in una proporzione superiore all'1\%)
+   \item Nel database OMIM per la stessa entry, come malattie mendeliane note troviamo: Delta-beta thalassemia, Erythrocytosis, Heinz body anemia, Hereditary persistence of fetal hemoglobin, Methemoglobinemia beta type, Sickle cell anemia, Thalassemia, Thalassemia-beta, dominant inclusion-body, resistenza alla Malaria.
+   \item Collegandosi al link Structure nella colonna destra troviamo 369 strutture legate a questa proteina, dalla sezione filtri possiamo vedere che 313 risolte per X-Ray e una sola per NMR. 
+\end{enumerate}
+Per cercare la sequenza amminoacidica della proteina Rodopsina possiamo sempre collegarci a NCBI Protein, o anche a UniProt, il filtro da usare è \texttt{"Homo Sapiens"[Organism]}
+\begin{enumerate}
+   \setcounter{enumi}{1}
+   \item Ci sono solo 2 record,  in quello della retina pigmentosa troviamo le mutazioni puntiformi: T58R, 180380.0004 e  T17M, 180380.0006)
 \end{enumerate}
 
 \begin{center}
@@ -73,7 +212,7 @@ Se vogliamo adesso scaricare la sequenza amminoacidica, della rodopsina (rhodops
    Esercizio 4
 \end{center}
 \section*{Traccia}
-Nel database Uniprot si cerchi la proteina Transferrin receptor (TFR1) per l’uomo (P02786).
+Nel database Uniprot si cerchi la proteina Transferrin receptor (TFR1) per l'uomo (P02786).
 \begin{enumerate}
    \item Quante isoforme ha ?
    \item Ha la struttura risolta ? Se si, a partire da quale aminoacido è risolta.
@@ -85,7 +224,7 @@ Nel database Uniprot si cerchi la proteina Transferrin receptor (TFR1) per l’u
    Esercizio 5
 \end{center}
 \section*{Traccia}
-Nel database Uniprot si cerchi la proteina Transferrin receptor 2 (TFR2) per l’uomo (Q9UP52).
+Nel database Uniprot si cerchi la proteina Transferrin receptor 2 (TFR2) per l'uomo (Q9UP52).
 \begin{enumerate}
    \item Quante isoforme ha, se ne ha più di una perche ?
    \item Ha la struttura risolta ? Se si, a partire da quale aminoacido è risolta.
@@ -120,10 +259,27 @@ Scaricare le sequenze proteiche del recettore della transferrina (TFR1), ma che 
 Allineare con i 2 algoritmi le sequenze
 GAATTCAGTTA
 GGATCGA
-Per l’allineamento globale (NW) usare la seguente opzione
+Per l'allineamento globale (NW) usare la seguente opzione End Gap Penality, settata su True
 \begin{enumerate}
-   \item Quale dei 2 algoritmi restituisce l’allineamento con il punteggio maggiore? Perché?
+   \item Quale dei 2 algoritmi restituisce l'allineamento con il punteggio maggiore? Perché?
 \end{enumerate}
+\section*{Svolgimento}
+Con WS troviamo che:
+\begin{verbatim}
+   # Length: 4
+   # Identity:       3/4 (75.0%)
+   # Similarity:     3/4 (75.0%)
+   # Gaps:           0/4 ( 0.0%)
+   # Score: 15.0
+\end{verbatim}
+Con NW troviamo che: 
+\begin{verbatim}
+   # Length: 11
+   # Identity:       4/11 (36.4%)
+   # Similarity:     4/11 (36.4%)
+   # Gaps:           4/11 (36.4%)
+   # Score: -3.5
+\end{verbatim}
 
 \begin{center}
    \huge
@@ -142,13 +298,14 @@ GGATCGA
    Esercizio 3
 \end{center}
 \section*{Traccia}
-Utilizzando l’algoritmo NW disponibile su: [\begin{verbatim}https://www.ebi.ac.uk/Tools/psa/emboss_needle/](https://www.ebi.ac.uk/Tools/psa/emboss_needle/\end{verbatim})
+Utilizzando l'algoritmo NW disponibile su: [\begin{verbatim}https://www.ebi.ac.uk/Tools/psa/emboss_needle/]
+   (https://www.ebi.ac.uk/Tools/psa/emboss_needle/\end{verbatim})
 Allineare la sequenza di calmodulina umana (CALM1) con quella di:
 \begin{enumerate}
    \item Bos taurus (bovina)
    \item Arabidopsis thaliana (pianta) (ottenere le sequenze da opportuni database…).
       \subitem Mantenere i settaggi di default per i gaps, e utilizzare la matrice di score BLOSUM 62)
-   \item Qual è l’identità di sequenza? Quali reisidui differiscono pur restando simili per prorietà chimico-fisiche?
+   \item Qual è l'identità di sequenza? Quali reisidui differiscono pur restando simili per prorietà chimico-fisiche?
 \end{enumerate}
 
 \begin{center}
@@ -156,13 +313,14 @@ Allineare la sequenza di calmodulina umana (CALM1) con quella di:
    Esercizio 4
 \end{center}
 \section*{Traccia}
-Utilizzando l’algoritmo WS per allineamenti locali disponibile su: \begin{verbatim}[https://www.ebi.ac.uk/Tools/psa/emboss_water/](https://www.ebi.ac.uk/Tools/psa/emboss_water/)\end{verbatim}
+Utilizzando l'algoritmo WS per allineamenti locali disponibile su: \begin{verbatim}[https://www.ebi.ac.uk/
+   Tools/psa/emboss_water/](https://www.ebi.ac.uk/Tools/psa/emboss_water/)\end{verbatim}
 Allineare la sequenza delle due proteine con codice Uniprot P46065 e P21457
 \begin{enumerate}
    \item Di quali proteine si tratta? Cosa hanno in comune?
-   \item Qual e’ l’identita’ di sequenza? E la similitudine? Si puo’ trattare di proteine omologhe? Perche’?
-   \item Identificare una zona in cui l’identita’ e’ estesa a 8 residui. Che struttura secondaria ha la seconda proteina in quella zona?
-   \item Se si allinea la prima proteina con P51177 quali sono i punteggi di allineamento?Allineare LOCALMENTE la prima lunga regione senza gaps. Qual e’? E quali sono i nuovi punteggi? Di quali zone di SII si tratta?
+   \item Qual e' l'identita' di sequenza? E la similitudine? Si puo' trattare di proteine omologhe? Perche'?
+   \item Identificare una zona in cui l'identita' e' estesa a 8 residui. Che struttura secondaria ha la seconda proteina in quella zona?
+   \item Se si allinea la prima proteina con P51177 quali sono i punteggi di allineamento?Allineare LOCALMENTE la prima lunga regione senza gaps. Qual e'? E quali sono i nuovi punteggi? Di quali zone di SII si tratta?
 \end{enumerate}
 
 \begin{center}
@@ -179,10 +337,10 @@ Eseguire una ricerca tramite blastp su NCBI usando la seguente sequenza di 12 am
 PNLHGLFGRKTG
 \begin{enumerate}
    \item Metterla in formato FASTA. I parametri di ricerca saranno automaticamente adattati per sequenze corte.
-   \item Resettare l’interfaccia
-   \item Attivare l’opzione “Show results in a new window” per poter confrontare i parametri di default con quelli modificati automaticamente.
+   \item Resettare l'interfaccia
+   \item Attivare l'opzione “Show results in a new window” per poter confrontare i parametri di default con quelli modificati automaticamente.
    \item Osservare la sezione “search summary”:
-   \item Qual è il valore di cut-off dell’E-value?
+   \item Qual è il valore di cut-off dell'E-value?
    \item Come è cambiata la “word size”?
    \item Qual è la matrice di punteggio?
    \item Come sono variati i parametri rispetto al defualt e perchè?
@@ -198,11 +356,11 @@ PSI-BLAST - proteina sconosciuta
    \item Un campione biologico ha rivelato la presenza della sequenza proteica di origine sconosciuta riportata in:
    \begin{verbatim}[http://goo.gl/siebf5](http://goo.gl/siebf5)\end{verbatim}
    \item Si ritiene che debba appartenere alla specie Danio Rerio (zebrafish).
-   \item Utilizzare PSI-BLAST con i seguenti parametri: RefSeq come database, escludendo i modelli dagli output, limitandosi all’organismo Danio rerio, PAM30 come matrice di score.ù
-   \item Di che tipo di proteina si tratta? (Guardare se ci sono domini conservati!) Quanti hits ci sono alla prima iterazione? Qual e’ l’hit con score piu’ basso ed E-value piu’ alto? Segnarsi il codice RefSeq. Quante hits hanno score >200
-   \item Alla seconda ietrazione, qual e’ l’hit con score minore? Che E-value ha? E che score ha la proteina con peggior score alla iterazione precedente?Perché?
+   \item Utilizzare PSI-BLAST con i seguenti parametri: RefSeq come database, escludendo i modelli dagli output, limitandosi all'organismo Danio rerio, PAM30 come matrice di score.ù
+   \item Di che tipo di proteina si tratta? (Guardare se ci sono domini conservati!) Quanti hits ci sono alla prima iterazione? Qual e' l'hit con score piu' basso ed E-value piu' alto? Segnarsi il codice RefSeq. Quante hits hanno score >200
+   \item Alla seconda ietrazione, qual e' l'hit con score minore? Che E-value ha? E che score ha la proteina con peggior score alla iterazione precedente?Perché?
    \item Quante nuove hit compaiono alla terza iterazione?
-   \item A quale iterazione non vengono piu’ aggiunte hits?
+   \item A quale iterazione non vengono piu' aggiunte hits?
 \end{enumerate}
 
 \begin{center}
@@ -228,13 +386,13 @@ Resettare la pagina prima di impostare i parametri Assicuratevi di includere l'i
    Esercizio 1
 \end{center}
 \section*{Traccia}
-Nel sito Homologene scaricare le sequenze fasta che ci sono nell’entry relativa alla proteina NP$\_$000940.1 ed allinearle con muscle EBI : \begin{verbatim}[https://www.ebi.ac.uk/Tools/msa/muscle/](https://www.ebi.ac.uk/Tools/msa/muscle/)\end{verbatim} (attenzione! Selezionare come output il formato Clustal!)
+Nel sito Homologene scaricare le sequenze fasta che ci sono nell'entry relativa alla proteina NP$\_$000940.1 ed allinearle con muscle EBI : \begin{verbatim}[https://www.ebi.ac.uk/Tools/msa/muscle/](https://www.ebi.ac.uk/Tools/msa/muscle/)\end{verbatim} (attenzione! Selezionare come output il formato Clustal!)
 \begin{enumerate}
    \item Quante sequenze si stanno allineando?
    \item Cosa permette di dire che le sequenze sono in formato FASTA?
    \item Quali due delle sequenze non conservano la stringa “ICLI”?
    \item Quante e quali inserzioni di un singolo aminoacido sono avvenute e in quali sequenze?
-   \item Aprire l’allineamento in Jalview dopo averlo esportato in formato FASTA da MUSCLE. Selezionare la regione che si estende da ”GQSPPE…” a “… VRDVQ” della sequenza NP$\_$990185.1, tramite il tab Web Service lanciare JPRED. Qual è l’elemento di struttura secondaria più ricorrente, secondo la predizione di JPRED? Quante alfa eliche sono predette? Suggerimento: Usare HTML format per l’output
+   \item Aprire l'allineamento in Jalview dopo averlo esportato in formato FASTA da MUSCLE. Selezionare la regione che si estende da ”GQSPPE…” a “… VRDVQ” della sequenza NP$\_$990185.1, tramite il tab Web Service lanciare JPRED. Qual è l'elemento di struttura secondaria più ricorrente, secondo la predizione di JPRED? Quante alfa eliche sono predette? Suggerimento: Usare HTML format per l'output
    \item (se non fosse disponibile dal tab, collegarsi a: \begin{verbatim}[http://www.compbio.dundee.ac.uk/jpred/](http://www.compbio.dundee.ac.uk/jpred/)\end{verbatim} ). ATTENZIONE: JPRED può essere lento!!!
 \end{enumerate}
 
@@ -243,10 +401,10 @@ Nel sito Homologene scaricare le sequenze fasta che ci sono nell’entry relativ
    Esercizio 2
 \end{center}
 \section*{Traccia}
-Cerchiamo l’entry 1EBM nel database PDB
+Cerchiamo l'entry 1EBM nel database PDB
 \begin{enumerate}
    \item Quali macromolecole contiene la struttura?
-   \item Quante catene? Cosa rappresenta la catena A? E’ mutata?
+   \item Quante catene? Cosa rappresenta la catena A? E' mutata?
    \item È una proteina intera? Mancano residui? Perchè?
    \item Cliccare sul tab Sequence. Che informazioni troviamo?
 \end{enumerate}
@@ -277,7 +435,7 @@ Scarichiamo il file PDB e visualizziamolo con un editor di testo (attenti a dove
 
 \section*{Traccia}
 In seguito ad una variazione locale di pH la proteina $P_1$ suisce un cambiamento conformazionale che la rende attiva. La forma attiva della proteina ($P_{1a}$)
-è in grado di legare la proteina $P_2$ in modo reversibile con le costanti cinetiche $k_as = 1.4 \times 10^5 M^{-1}s^{-1}$ e $k_dis = 5 \times 10^{-2}s^{-1}$.\\
+è in grado di legare la proteina $P_2$ in modo reversibile con le costanti cinetiche $k_{as} = 1.4 \times 10^5 M^{-1}s^{-1}$ e $k_{dis} = 5 \times 10^{-2}s^{-1}$.\\
 Sapendo che le concentrazioni iniziali della protina $P_1$ e della proteina $P_2$ sono rispettivamente $35 \mu M$ e $24 \mu M$ e che la cost6ante cinetica di variazione conformazionale della proteina $P_1$ è $kconf = 7 \times 10^3 M^{-1}s^{-1}$
 simulare il sistema dinamicamente e rispondere ai seguenti quesiti:
 \begin{enumerate}
