@@ -108,7 +108,7 @@ Per questo è bene ricordare che l'informazione di partenza sono le sequenze pr
 \end{itemize}
 Una cosa molto recente è la medicina di precisione: una volta si parlava di medicina personale, conoscendo il sequenziamento genomico di una persona, si può conoscere tutta la sua storia clinica? Capiamo le malattie a livello personalizzato.\\
 In questo modulo ci concentreremo sull'annotazione genomica e sulla bioinformatica strutturale e poi anche il risequenziamento del genoma.\\
-Il Covid è stato un campo di prova molto importante. In questo modulo ci concentreremo sull’annotazione genomica e sulla bioinformatica strutturale e poi anche il risequenziamento del genoma.
+Il Covid è stato un campo di prova molto importante. In questo modulo ci concentreremo sull'annotazione genomica e sulla bioinformatica strutturale e poi anche il risequenziamento del genoma.
 
 \subsection{Cos'è la Genomica?}
 La genomica è una branca della biologia molecolare che si occupa dello studio
@@ -119,11 +119,11 @@ dati che produce.
 \paragraph{Cosa studia la genomica?}
 \begin{itemize}
     \item Estrazione e/o cattura di DNA da essere viventi.
-    \item Sequenziamento del DNA con tecniche all’avanguardia come NGS
+    \item Sequenziamento del DNA con tecniche all'avanguardia come NGS
     (Next Generation Sequencing).
     \item Assemblaggio di genomi a partire da milioni di frammenti di DNA.
     \item Ri-sequenziamento di genomi.
-    \item Allineamento Allineamento di frammenti frammenti di DNA a un genoma di riferimento riferimento. \item Annotazione di genomi. \item Annotazione funzionale di geni all’interno di un genoma.
+    \item Allineamento Allineamento di frammenti frammenti di DNA a un genoma di riferimento riferimento. \item Annotazione di genomi. \item Annotazione funzionale di geni all'interno di un genoma.
     \item Analisi di espressione genica mediante sequenziamento dei
     trascritti (RNA-Seq).
     \item GWAS (Genome Wide Association Studies).
@@ -131,11 +131,11 @@ dati che produce.
     varianti)
 \end{itemize}
 
-\section{Ottimizzazione del protocollo bioinformatico per l’annotazione di geni codificanti proteine in genomi complessi}
+\section{Ottimizzazione del protocollo bioinformatico per l'annotazione di geni codificanti proteine in genomi complessi}
 Un genoma sequenziato ma non ben annotato non serve a molto.\\
-Con l’avvento del sequenziamento con costi sempre più contenuti, il numero di genomi sequenziati sta incrementando considerevolmente. Lo scopo di conoscere la sequenza genomica è principalmente indirizzato a capire la funzionalità dei geni.\\
+Con l'avvento del sequenziamento con costi sempre più contenuti, il numero di genomi sequenziati sta incrementando considerevolmente. Lo scopo di conoscere la sequenza genomica è principalmente indirizzato a capire la funzionalità dei geni.\\
 Il progetto "Encode" ha dato il via all'annotazione come la conosciamo, tramite la produzione di protocolli
-Annotare un genoma significa conoscere la localizzazione, la struttura, la funzionalità di tutti gli elementi che compongono l’intero genoma. In pratica l’annotazione è quello che si deve fare dopo aver sequenziato un certo genoma. Gli elementi che vengono annotati sono:
+Annotare un genoma significa conoscere la localizzazione, la struttura, la funzionalità di tutti gli elementi che compongono l'intero genoma. In pratica l'annotazione è quello che si deve fare dopo aver sequenziato un certo genoma. Gli elementi che vengono annotati sono:
 \begin{enumerate}
     \item Geni codificanti proteine
     \item Geni non codificanti proteine
@@ -149,13 +149,13 @@ Faccio un allineamento: è la prima cosa che devo fare! Faccio un allineamento t
 
 Nel corso del tempo si è capito che non basta annotare solo le zone esoniche ma bisogna considerare anche il resto come gli elementi regolatori.
 Con ri-sequenziamento del genoma di un paziente si intende mappare il DNA su un genoma di riferimento per confrontare le varianti manifestate.
-L’annotazione dei geni codificanti proteine, viene suddivisa in:
+L'annotazione dei geni codificanti proteine, viene suddivisa in:
 \begin{itemize}
     \item Annotazione funzionale\\Consiste nel caratterizzare ogni
     singolo gene, assegnando una funzione biologica a ogni proteina
     codificata dal gene stesso.
     \item Annotazione genica o semplicemente annotazione\\ consiste
-    nel definire all’interno del genoma:
+    nel definire all'interno del genoma:
         \subitem{-} La localizzazione di ciascun gene. \item La struttura di ciascun gene (esoni,
         CDS, UTR).
         \subitem{-} Gli eventuali trascritti alternativi.
@@ -165,7 +165,7 @@ L’annotazione dei geni codificanti proteine, viene suddivisa in:
 \end{center}
 \subsection{Il modello genico}
 In questo modulo ci occuperemo anche di studiare algoritmi di predizione di strutturale di geni dalla loro sequenza. Quello che bisogna fare è utilizzare HMM per costruire un modello che descriva probabilisticamente le conformazioni possibili.
-Occorre operare sempre una divisione in training e test set. In ogni caso bisogna sempre partire dalla definizione di gene riassunta nell’immagine seguente:
+Occorre operare sempre una divisione in training e test set. In ogni caso bisogna sempre partire dalla definizione di gene riassunta nell'immagine seguente:
 \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/model.png}
 \end{center}
@@ -175,7 +175,7 @@ Un gene codificante proteine è composto da diversi elementi:
     \item Introne: regione che viene eliminata durante la maturazione.
     \item mRNA: RNA maturo, composto da esoni.
     \item CDS: regione codificante dell‘mRNA.
-    \item UTR: regione non tradotta dell’mRNA.
+    \item UTR: regione non tradotta dell'mRNA.
 \end{itemize}
 \subsection{Formato di File di Annotazione GFF3}
 \begin{center}
@@ -183,7 +183,7 @@ Un gene codificante proteine è composto da diversi elementi:
 \end{center}
 \subsection{Metodi per l'identificazione dei geni codificanti proteine}
 \begin{itemize}
-    \item Metodi basati sull’allineamento delle evidenze sperimentali.
+    \item Metodi basati sull'allineamento delle evidenze sperimentali.
     \item Metodi basati sulla predizione predizione genica ab
     initio.
     \item Metodi basati sulla predizione genica ab
@@ -191,7 +191,7 @@ Un gene codificante proteine è composto da diversi elementi:
     \item Metodi basati sul confronto tra genomi.
 \end{itemize}
 
-\subsubsection{Metodi basati sull’allineamento delle evidenze sperimentali}
+\subsubsection{Metodi basati sull'allineamento delle evidenze sperimentali}
 Si possono utilizzare diverse evidenze sperimentali, che
 opportunamente elaborate e allineate al genoma
 permettono di identificare le regioni codificanti proteine:
@@ -203,8 +203,8 @@ permettono di identificare le regioni codificanti proteine:
     \item Proteine omologhe: sequenze aminoacidiche corrispondenti a
     proteine omologhe di organismi evolutivamente vicini.
     \item Tiling arrays: microarray con sonde equamente spaziate su
-    tutto il genoma, permettono l’identificazione di regione
-    espresse mediante l’ibridazione di campione marcati.
+    tutto il genoma, permettono l'identificazione di regione
+    espresse mediante l'ibridazione di campione marcati.
     \item MPSS: Massively Parallel Signature Sequencing, piattaforma
     che analizza il livello di espressione e identifica una regione di
     17-20 bp degli mRNA tramite sequenziamento.
@@ -221,20 +221,20 @@ ottenuto dalla retrotrascrizione di un frammento di RNA maturo.
 \paragraph{Proteine Omologhe}
 Dalla sequenza proteica delle proteine si può risalire alla
 sequenza nucleotidica e quindi alla zona codificante (CDS) del
-gene che l’ha codificata.
+gene che l'ha codificata.
 \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/omolog.png}
 \end{center}
 \paragraph{RNA Seq}
 Sono sequenze di lughezza tra 50-150 bp che derivano dal sequenziamento shotgun di un
-intero trascrittoma, cioè dalla retro-trascrizione di tutto l’RNA in cDNA di un particolare
+intero trascrittoma, cioè dalla retro-trascrizione di tutto l'RNA in cDNA di un particolare
 momento cellulare, poi spezzato e sequenziato con tecnologie NGS.
 \begin{center}
     \includegraphics[width=0.5\textwidth]{figures/rnaseq.png}
 \end{center}
 \subsubsection{Metodi basati sulla predizione predizione genica ab initio}
 Per identificare le regioni codificanti i predittori utilizzano algoritmi e modelli
-matematici specifici che utilizzando informazione intrinseca dell’organismo
+matematici specifici che utilizzando informazione intrinseca dell'organismo
 analizzato cercano di identificare la localizzazione e la struttura dei geni.
 \begin{itemize}
     \item Sensori di segnale (\textit{signal sensors}): permettono di identificare le giunzioni
@@ -243,8 +243,8 @@ analizzato cercano di identificare la localizzazione e la struttura dei geni.
     regioni codificanti di lunghezza variabile.
 \end{itemize}
 I predittori hanno bisogno di dati di esempio per imparare le caratteristiche
-dell’organismo analizzato (dati di training) e dei dati di prova per valutare
-l’accuratezza delle predizioni (dati di test).
+dell'organismo analizzato (dati di training) e dei dati di prova per valutare
+l'accuratezza delle predizioni (dati di test).
 
 \begin{center}
     \begin{tabular}{*{8}c}
@@ -276,9 +276,9 @@ l’accuratezza delle predizioni (dati di test).
 Predizione genica ab initio: utilizza dati di training che potrebbero non
 essere rappresentativi di tutti i geni del genoma.\\
 Evidenze sperimentali: non coprono mai tutto il genoma, quindi non
-permettono l’annotazione completa di tutti i geni codificanti proteine.\\
+permettono l'annotazione completa di tutti i geni codificanti proteine.\\
 I migliori metodi di predizione genica utilizzano una metodologia
-ibrida tra predizione predizione genica ab initio e l’utilizzo l’utilizzo degli allineamenti allineamenti delle
+ibrida tra predizione predizione genica ab initio e l'utilizzo l'utilizzo degli allineamenti allineamenti delle
 evidenze sperimentali:
 \begin{itemize}
     \item cDNA
@@ -305,7 +305,7 @@ allineamento esistenti.
 \begin{itemize}
     \item Vantaggio: relativamente semplici da utilizzare.
     \item Svantaggio: consentono un controllo limitato dei passaggi
-    intermedi dell’annotazione.
+    intermedi dell'annotazione.
 \end{itemize}
 Pipeline di annotazione più utilizzate:
 \begin{itemize}
@@ -313,18 +313,18 @@ Pipeline di annotazione più utilizzate:
     \item MAKER 
 \end{itemize}
 \subsection{Obiettivo}
-L’ottimizzazione del protocollo bioinformatico
-per l’annotazione dei geni codificanti proteine
+L'ottimizzazione del protocollo bioinformatico
+per l'annotazione dei geni codificanti proteine
 in genomi complessi. A questo scopo non verrà utilizzata una
 pipeline automatica di annotazione ma,
 attraverso la scelta di metriche adeguate,
 verrà valutato ogni singolo passaggio
-intermedio dell’annotazione in modo da
+intermedio dell'annotazione in modo da
 fornire una procedura ottimizzata sulla base
 delle evidenze sperimentali a disposizione.
 
 \subsection{Genoma di riferimento}
-Genoma dell’organismo eucariote Vitis
+Genoma dell'organismo eucariote Vitis
 vinifera, versione V1 PN40024 12X del
 consorzio French-Italian Public
 Consortium for Grapevine Genome, con
@@ -358,7 +358,7 @@ Motivi di questa scelta:
     $\rightarrow$ 22.355 trascritti putativi ridondanti (5.808 non
     ridondanti).
     \item \textbf{RNA-seq:}\\114.726.580 reads RNA-seq sequenziati dal laboratorio
-    di genomica dell’Università di Verona (pool di 45
+    di genomica dell'Università di Verona (pool di 45
     campioni provenienti da 15 tessuti e organi a diversi
     stadi di sviluppo).\\Allineamento e generazione modelli genici con suite
     Bowtie + Tophat + Cufflinks.\\
@@ -388,11 +388,11 @@ Distribuzione della percentuale di sovrapposizione di nucleotidi tra allineament
 
 \section{Il covid}
 \paragraph{Gli articoli scientifici durante il covid}
-Le tempistiche di review degli articoli non sono compatibili con quelle di lotta al covid, le ricerche portano via tanto tempo, una volta mandate a un giornale sono analizzate da un editor: decide se è d’accordo con gli obiettivi del giornale. Allora viene mandato ai reviewers, anonimi esperti che analizzano il lavoro, commentano, approvano, non approvano, ecc. In questo caso l’editor può bocciare, chiedere minor or major revisions oppure accettarlo. Si può fare avanti e indietro tra queste cose per mesi.
+Le tempistiche di review degli articoli non sono compatibili con quelle di lotta al covid, le ricerche portano via tanto tempo, una volta mandate a un giornale sono analizzate da un editor: decide se è d'accordo con gli obiettivi del giornale. Allora viene mandato ai reviewers, anonimi esperti che analizzano il lavoro, commentano, approvano, non approvano, ecc. In questo caso l'editor può bocciare, chiedere minor or major revisions oppure accettarlo. Si può fare avanti e indietro tra queste cose per mesi.
 Durante la lotta al covid si sono creati dei giornali di pre-print: appena finita la ricerca la si può depositare su queste banche dati, a cui viene assegnato un DOI (protegge la proprietà intellettuale). In quel caso è già a disposizione della comunità scientifica: 
 \begin{itemize}
     \item Molti articoli venuti fuori nelle notizie erano in pre print, quindi non erano articoli revisionati manualmente
-    \item L’informazione negli articoli di pre print è stata categorizzata da algoritmi di machine learning, e questo ha aiutato a comprendere articoli di aiuto alla lotta al covid.
+    \item L'informazione negli articoli di pre print è stata categorizzata da algoritmi di machine learning, e questo ha aiutato a comprendere articoli di aiuto alla lotta al covid.
 \end{itemize}
 \paragraph{Cosa c'è ancora da fare in merito al covid?}
 Trovare un vaccino che sia pan-coronavirus. Trovare le regioni della proteina spike più conservate, che permettano di neutralizzare la proteina di tutte le varianti.\\
@@ -408,7 +408,7 @@ L'estrapolazione dei geni è un processo di:
     \item Scannerizzare il genoma per identificare le regioni che matchano il mio modello 
     \item Abbiamo una predizione, che dobbiamo validare e testare
 \end{itemize}
-\subsection{Appocci alla Gene Finding}
+\subsubsection{Appocci alla Gene Finding}
 \begin{itemize}
     \item Metodi Diretti \\ Vado direttamente a cercare dove posso mappare le cose conosciute: cerco metch esatti o simili di EST, cDNA o proteine
     \item Metodi Indiretti
@@ -418,5 +418,87 @@ L'estrapolazione dei geni è un processo di:
             \item Metodi che combinano i due precedenti
         \end{enumerate}
 \end{itemize}
-
+\subsubsection{Procarioti}
+Identificare Open Reading Frames (ORF) lunghe, che possono codificare per proteine.
+\begin{itemize}
+    \item Identificazione del codone di start ATG che massimizza la lunghezza dell'ORF
+    \item Codoni di end (UAA,UAG,UGA)
+    \item TATA box (TATAAT), la sequenza a -35 o siti di binding ribosomale: siti di inizio trascrizionale o di traduzione,
+    \item Bias di codone (codon usage)
+\end{itemize}
+GLIMMER, GeneMark. 90\% sia per la sensibilità che la specificità.
+\paragraph{Cosa possiamo misurare nei geni (e modellare)?}
+Molta della conoscenza è prevenuta nei conronti delle caratteristiche protein-coding.
+\begin{itemize}
+    \item ORF (Open Reading Frames): una sequenza definita da AUG inframe e il codone di stop, che a turno definiscono una sequenza aminoacidica putativa.
+    \item Codon Usage: più frequentemente misurato tramite CAI (Codon Adaptation Index)
+    \item Frequenze nucleotidiche e correlazioni (valore e struttura)
+    \item Siti funzionali: siti di splicing, promotori, UTRs, siti di poliadenilazione
+\end{itemize}
+\subsubsection{Codon Adaptation Index}
+I parametri sono determinati empiricamente dall'esame di un set "grande" di geni d'esempio. Questo ovviamente lo rende imperfetto:
+\begin{itemize}
+    \item I geni di solito hanno codoni inusuali per un motivo 
+    \item La potenza predittiva è dipendente dalla lunghezza della sequenza.
+\end{itemize}
+\subsubsection{Informazioni Generali sui Software di Predizione}
+\begin{itemize}
+    \item È, in generale, organismo-specifico
+    \item Funziona meglio su geni che sono "ragionevolmente" simili a qualcosa visto in precedenza
+    \item Trova regioni codificanti per proteine meglio di quelle non codificanti
+    \item In assenza di informazioni esterne (dirette), forme alternative non verranno identificate
+    \item È imperfetto!
+\end{itemize}
+\subsection{Classi di Informazioni}
+\subsubsection{Informazioni Estrinseche}
+formata da tutto ciò che la letteratura scientifica ci fornisce: EST, cDNA e prodotti proteici. Non è costituita soltanto dall'informazione circa la sequenza genica. Le informazioni estrinseche sono prelevate da programmi tipo BLAST, BLAT ecc. e da file in formato FASTA.
+\begin{itemize}
+    \item BLAST family, FASTA, ecc.
+        \subitem Pros: veloci, statisticamente ben fondato
+        \subitem Cons: non c'è comprensione/modelli di struttura dei geni 
+    \item BLAST, Sim4, EST$\_$GENOME, ecc.
+        \subitem Pros: le strutture geniche sono incorporate
+        \subitem Cons: splicing non-canonico, più lento di blast 
+\end{itemize}
+\subsubsection{Informazioni Intrinseche}
+Predittori genici. Possiamo avere:
+\begin{itemize}
+    \item \textit{de novo} che usano sequenze di uno o più genomi come unico input.
+    \item \textit{Ab initio}: non usano genomi informativi. Usano solo l'informazione della sequenze genica senza informazioni esterne.
+\end{itemize}
+Per quanto riguarda i metodi ab initio, abbiamo che essi simulano la trascrizione e lo splicing di un trascritto per ricavare informazioni circa i geni presenti. Per fare questo usano \textbf{sensori segnale} e \textbf{sensori contenuto}.
+\paragraph{Sensori Segnale}  sono studiati per riconoscere codoni di inizio e di stop, enhancer, silencer, siti di splicing alternativo ecc. Per perseguire tale scopo utilizzano una PSSM ovvero un profilo che è una matrice 20xn (n lunghezza della query) che associa per ogni casella la frequenza di un certo AA in una certa posizione.
+Per addestrare quindi l'algoritmo ab initio a riconoscere ad esempio i promotori, gli fornisco una PSSM creata allineando sequenze annotate di promotori. Dopo averlo addestrato, lo applico sul genoma in questione.
+Di fatto il profilo non è altro che un HMM di livello zero cioè un modello a stati che mi identifica la probabilità di osservare un certo amminoacido in una certa posizione. Creare un profilo non fa altro che catturare il pattern di conservazione per le sequenze allineate.
+\paragraph{Sensori Contenuto} ervono per riconoscere il contenuto di tale sequenza codificante.\\
+Quando sono disponibili più genomi da confrontare è possibile stimare il grado di conservazione nelle sequenze.
+\section{Modelli di Biologia Computazionale}
+Nella “ricerca” di un gene i modelli possono essere visti come “generatori di sequenze” (attraverso gli HMM) o classificatori di sequenze” (attraverso le ANN).
+\subsection{HMM} Gli esoni e gli introni di una sequenza da modellare e poi da generare sono identificati da uno stato. La catena di acquisizione degli stati parte dal $5'$ fino al $3'$ in cui ogni base è generata grazie ad una matrice di emissione condizionata solo dallo stato corrente. \\
+La transizione da uno stato all’altro dipende dalla matrice di transizione che è soggetta ai vincoli biologi tali per cui un ORF è adiacente ad un esone ecc.
+I valori da inserire nella matrice sono stimati dagli osservabili cioè guardando le sequenze.
+\paragraph{Basic HMM}
+\begin{enumerate}
+    \item Insieme di possibili stati $X$: codone di inizio, esone, introne, accettore, codone di stop
+    \item Insieme di osservabili: $A$, $C$, $T$, $G$
+    \item Matrice delle transizioni $\varphi$
+    \item Matrice delle emissioni $H$ (contiene le frequenze di un nucleotide in uno stato particolare)
+    \item Distribuzione di probabilità iniziali    
+\end{enumerate}
+HMM sono coinvolti nel processo generativo e abbiamo degli ordini di catena di Markov che sono il numero di posizioni precedenti sulla quale la corrente posizione dipende. \\
+Ordine 0: mononucleotide
+$$ P_0(s) = p(t) \cdot p(t) \cdot p(a) \cdot p(c) \cdot p(g) \dots = \prod^N_{i = 1} p(s_i)$$
+Ordine 1: dinucleotide
+$$ P_1(s) = p(t) \cdot p(t|t) \cdot p(a|t) \cdot p(c|a) \dots = p(s_1)\prod^N_{i = 2} p(s_i|s_{i-1})$$
+Ordine 2: trinucleotide
+$$ P_2(s) = p(tt) \cdot p(a|tt) \cdot p(c|ta) \cdot p(g|ac) \dots = p(s_1s_2)\prod^N_{i = 3} p(s_i|s_{i-2}s_{i-1})$$
+Posso andare a costruire un modello addestrando l’HMM su sequenze non codificanti e codificanti. Ottengo ad esempio una cosa di questo tipo:
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/hmm.png}
+\end{center}
+Nell’utilizzo di HMM è importante usare server che utilizzano tools che siano documentati. Se la documentazione non è presente non si utilizza quel tool.
+\section{Curve ROC: specificità e sensibilità}
+Questi due parametri servono per verificare se le performance di predizione sono state corrette o meno. La sensibilità è la frazione di geni conosciuti che sono stati correttamente predetti. La specificità è la frazione di geni predetti che corrispondono a veri geni.\\
+BLAST in genere è poco sensibile ma molto specifico mentre PSI-BLAST è il contrario. Per il PSI-BLAST la specificità potrebbe essere condizionata dalla presenza dei falsi positivi che inducono ad una corruzione della ricerca.\\
+Di seguito alcuno grafici che rappresentano le distribuzioni ideali e reali degli scores:
 \end{document}
