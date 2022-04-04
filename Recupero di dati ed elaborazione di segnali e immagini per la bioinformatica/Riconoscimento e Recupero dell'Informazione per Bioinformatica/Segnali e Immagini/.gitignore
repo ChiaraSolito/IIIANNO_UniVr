@@ -1,7 +1,0 @@
-*.synctex.gz
-*.aux
-*.fdb_latexmk
-*.log
-*.fls
-*.toc
-figures/*.PNG
