@@ -1,0 +1,15 @@
+figures/*.png
+*.synctex.gz
+*.aux
+*.fdb_latexmk
+*.log
+*.fls
+*.toc
+figures/*.PNG
+NARPresentazione/figures/*.png
+NARPresentazione/*.synctex.gz
+NARPresentazione/*.aux
+NARPresentazione/*.fdb_latexmk
+NARPresentazione/*.log
+NARPresentazione/*.fls
+NARPresentazione/*.toc

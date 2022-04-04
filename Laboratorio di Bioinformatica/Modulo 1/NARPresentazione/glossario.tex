@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs, siunitx}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{pifont}
+\usepackage[margin=0.90in]{geometry}
+\usepackage{etoolbox,titling}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{soulutf8}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\definecolor{boxTitle}{HTML}{fff79a}
+\definecolor{boxBackground}{HTML}{fffce0}
+\definecolor{boxFrame}{HTML}{f1e2b8}
+
+
+\definecolor{boxTitle2}{HTML}{b3ffda}
+\definecolor{boxBackground2}{HTML}{e6f2ff}
+\definecolor{boxFrame2}{HTML}{b3d7ff}
+
+\definecolor{boxTitle3}{HTML}{ff794d}
+\definecolor{boxBackground3}{HTML}{ffe6e6}
+\definecolor{boxFrame3}{HTML}{ffb399}
+
+\definecolor{boxTitle4}{HTML}{d7d7c1}
+\definecolor{boxBackground4}{HTML}{ebebe0}
+\definecolor{boxFrame4}{HTML}{c3c3a2}
+
+
+\tcbset{box1/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground, colframe=boxFrame,
+    coltitle=black, colbacktitle=boxTitle,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box1}[1][]{box1, #1}
+
+\tcbset{box2/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground2, colframe=boxFrame2,
+    coltitle=black, colbacktitle=boxTitle2,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box2}[1][]{box2, #1}
+
+\tcbset{box3/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground3, colframe=boxFrame3,
+    coltitle=black, colbacktitle=boxTitle3,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box3}[1][]{box3, #1}
+
+\tcbset{box4/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground4, colframe=boxFrame4,
+    coltitle=black, colbacktitle=boxTitle4,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2},
+    boxed title style={
+      before upper=\hspace*{0.5cm}, % reserve space for the image
+      overlay={
+       \node at ([xshift=0.1cm]frame.west)
+         {\includegraphics[scale=0.65]{bc-loupe}};
+      }
+    }
+  }
+}
+
+\newtcolorbox{box4}[1][]{box4, #1}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Open Targets Genetics}
+\lhead{Glossario presentazione NAR}
+\rfoot{Pagina \thepage}
+\lfoot{Bioinformatica - A.A. 2021/22}
+\usetikzlibrary{trees}
+\tikzstyle{every node}=[draw=black,thick,anchor=west]
+
+
+\begin{document}
+\newcommand\tab[1][0.3cm]{\hspace*{#1}}
+
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+            
+        \Huge
+        \textbf{Glossario}
+            
+        \vspace{0.5cm}
+        \LARGE
+        Laboratorio di Bioinformatica - Presentazione NAR
+            
+        \vspace{1.5cm}
+            
+        \textbf{Chiara Solito e Aurelia Timis}
+
+        \vspace{0.8cm}
+
+            
+        \Large
+        Corso di Laurea in Bioinformatica\\
+        Università degli studi di Verona\\
+        A.A. 2021/22
+            
+    \end{center}
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\section{Lessico e nozioni di base}
+\subsection*{Nozioni di Statistica}
+\paragraph{Single Evidence Score}
+Tra i livelli di Evidenza, anche definiti come gerarchia dell'evidenza, assegnati agli studi, basandosi sulla qualità metodologica della loro progettazione, validità e applicabilità alla cura del paziente: è il sesto livello di evidenza - Evidenza da un singolo studio descrittivo o qualitativo.
+\paragraph{Proxy}Un proxy è una misura indiretta del risultato desiderato che è esso stesso fortemente correlato a quel risultato. È comunemente usato quando le misure dirette del risultato non sono osservabili e/o non disponibili.
+\paragraph{Credible Sets}\textit{Set Credibili}\\sono l'insieme più piccolo di varianti, selezionate in modo tale che la loro stima di copertura rettificata soddisfi la copertura del target. Ad esempio: in letteratura, gli autori in genere riferiscono di aver trovato un insieme credibile al 90\% di cui sono fiduciosi almeno al 90\% contenga la vera variante causale.
+\paragraph{PP - Posterior Probability}\textit{Probabilità a posteriori}\\In statistica bayesiana, la probabilità a posteriori di un evento aleatorio o di una proposizione incerta, è la probabilità condizionata che è assegnata dopo che si è tenuto conto dell'informazione rilevante o degli antefatti relativi a tale evento aleatorio o a tale proposizione incerta. Similmente, la distribuzione di probabilità a posteriori è la distribuzione di una quantità incognita, trattata come una variabile casuale, condizionata sull'informazione posta in evidenza da un esperimento o da un processo di raccolta di informazione rilevanti (es. un'ispezione, un'indagine conoscitiva, ecc.).
+\paragraph{P-Value}La probabilità, per un'ipotesi supposta vera (ipotesi nulla), di ottenere risultati ugualmetnte o meno compatibili, di quelli osservati durante i test, con la suddetta ipotesi.
+\par\noindent\rule{\textwidth}{0.4pt}
+\subsection*{Nozioni sui GWAS}
+\paragraph{GWAS}\textit{Genome Wide Association Study}\\Un approccio della ricerca genetica per associare, a specifiche variazioni genetiche, particolari malattie.
+\paragraph{Varianti Causali}Nell'ambito degli studi di associazione, le varianti genetiche responsabili del segnale di associazione in un locus sono indicate nella letteratura come VARIANTI CAUSALI. Esse hanno un effetto biologico sul fenotipo.
+\paragraph{Lead Variant}La variante col miglior p-value per combinazioni gene/fenotipo significative.
+\paragraph{Tag Variants}Varianti rappresentative in una regione del genoma con un alto linkage disequilibrium.
+\paragraph{Trait-Associated Loci}\textit{Loci tratto associati}\\Un locus a cui è associao un particolare tratto fenotipico.
+\paragraph{QTL}\textit{Quantitative trait loci}\\
+    Un locus dei caratteri quantitativi (ovvero tratti che possono essere studiati e indagati mediante parametri numerici) è un locus che si correla con la variazione di un tratto quantitativo nel fenotipo di una popolazione di organismi.
+\paragraph{Linkage Disequilibrium} Linkage disequilibrium (LD) è l'associazione non casuale di alleli di diversi loci. Non esiste una singola statistica migliore che quantifica l'entità di LD. Sono state proposte diverse statistiche utili per scopi diversi.
+\paragraph{Fine Mapping}Dal momento che i risultati dei GWAS non sempre ci danno una sintesi completa delle statistiche, e avendo a disposizione solo le Variant Lead, dobbiamo ampliare le informazioni con le Variants Tag, in modo da avere un insieme più completo.\\Il fine mapping è uno dei metodi con quei viene eseguita questa operazione: è una tecnica dei GWAS per identificare la varianti genetiche che possono influenzare causalmente il tratto esaminato, in particolare cerca di determinare la variante genetica responsabile della malattia o del fenotipo analizzato.
+\paragraph{Linkage Disequilibrium Espansione}
+Sappiamo che il genoma viene ereditato a blocchi e ogni blocco è definito da un aplotipo, che a sua volta è definito da un insieme di SNPs. OTG prende in considerazione l'LD perchè pazienti che hanno ereditato lo stesso segmento cromosomico, definito dal medesimo aplotipo, possono aver ereditato anche la stessa mutazione. L'LD ha persmesso nelle analisi di associazioni, di studiare soo gli SNPs necessari a identificare il blocco di DNS in disequilibrium. 
+
+\end{document}
