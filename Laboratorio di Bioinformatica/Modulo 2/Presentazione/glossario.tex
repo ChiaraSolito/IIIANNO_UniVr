@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs, siunitx}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{pifont}
+\usepackage[margin=0.90in]{geometry}
+\usepackage{etoolbox,titling}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{soulutf8}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\definecolor{boxTitle}{HTML}{fff79a}
+\definecolor{boxBackground}{HTML}{fffce0}
+\definecolor{boxFrame}{HTML}{f1e2b8}
+
+
+\definecolor{boxTitle2}{HTML}{b3ffda}
+\definecolor{boxBackground2}{HTML}{e6f2ff}
+\definecolor{boxFrame2}{HTML}{b3d7ff}
+
+\definecolor{boxTitle3}{HTML}{ff794d}
+\definecolor{boxBackground3}{HTML}{ffe6e6}
+\definecolor{boxFrame3}{HTML}{ffb399}
+
+\definecolor{boxTitle4}{HTML}{d7d7c1}
+\definecolor{boxBackground4}{HTML}{ebebe0}
+\definecolor{boxFrame4}{HTML}{c3c3a2}
+
+
+\tcbset{box1/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground, colframe=boxFrame,
+    coltitle=black, colbacktitle=boxTitle,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box1}[1][]{box1, #1}
+
+\tcbset{box2/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground2, colframe=boxFrame2,
+    coltitle=black, colbacktitle=boxTitle2,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box2}[1][]{box2, #1}
+
+\tcbset{box3/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground3, colframe=boxFrame3,
+    coltitle=black, colbacktitle=boxTitle3,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2}
+  }
+}
+\newtcolorbox{box3}[1][]{box3, #1}
+
+\tcbset{box4/.style={
+    enhanced, fonttitle=\bfseries,
+    colback=boxBackground4, colframe=boxFrame4,
+    coltitle=black, colbacktitle=boxTitle4,
+    attach boxed title to top left={xshift=0.3cm,
+                                    yshift*=-\tcboxedtitleheight/2},
+    boxed title style={
+      before upper=\hspace*{0.5cm}, % reserve space for the image
+      overlay={
+       \node at ([xshift=0.1cm]frame.west)
+         {\includegraphics[scale=0.65]{bc-loupe}};
+      }
+    }
+  }
+}
+
+\newtcolorbox{box4}[1][]{box4, #1}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Open Targets Genetics}
+\lhead{Glossario presentazione NAR}
+\rfoot{Pagina \thepage}
+\lfoot{Bioinformatica - A.A. 2021/22}
+\usetikzlibrary{trees}
+\tikzstyle{every node}=[draw=black,thick,anchor=west]
+
+
+\begin{document}
+\newcommand\tab[1][0.3cm]{\hspace*{#1}}
+
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+            
+        \Huge
+        \textbf{Glossario}
+            
+        \vspace{0.5cm}
+        \LARGE
+        Laboratorio di Bioinformatica, Modulo 2 - Presentazione
+            
+        \vspace{1.5cm}
+            
+        \textbf{Alice Rossi, Chiara Solito e Aurelia Timis}
+
+        \vspace{0.8cm}
+
+            
+        \Large
+        Corso di Laurea in Bioinformatica\\
+        Università degli studi di Verona\\
+        A.A. 2021/22
+            
+    \end{center}
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\section{Lessico e nozioni di base}
+\subsection*{Nozioni di ...}
+\paragraph{...} Lorem Ipsum
+\paragraph{...} Lorem Ipsum.
+\end{document}
