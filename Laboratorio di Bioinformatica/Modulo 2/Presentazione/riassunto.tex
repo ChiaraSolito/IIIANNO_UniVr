@@ -128,21 +128,21 @@
 \section{Com'è stato costruito l'algoritmo Check My Blob?}
 Partiamo dalla collezione dei dati, per poi osservare come sono stati raggruppati i ligandi a partire dai dati raccolti e poi com'è stato addestrato il modello.
 \subsection{Data Collection}
-Il training set finale consisteva in ligandi di raggi X esperimenti di diffrazione di almeno 4,0 Å di risoluzione.
+Il training set partiva da tutte le entry PDB scaricate il 19 Gennaio 2020. Dopo una necessaria "pulizia" dei dati, il training set finale consisteva in ligandi derivati da esperimenti di diffrazione a raggi X con almeno 4,0 Å di risoluzione.
 \subsection{Clustering dei Ligandi}
-Diversi ligandi sono indistinguibili dalla sola densità elettronica. Ad esempio, per la maggior parte degli intervalli di risoluzione, è estremamente difficile distinguere tra 6, 7 o 8 elettroni (carbonio, azoto, ossigeno) 
-o distinguere tra legami singoli, doppi o tripli in alcune configurazioni. Per migliorare la robustezza dell'algoritmo di classificazione, abbiamo deciso di raggruppare i ligandi in base alla forma prevista della loro densità elettronica derivata 
-dalle loro definizioni chimiche. Vale a dire, abbiamo considerato la connettività dell'atomo, la chiralità e differenze significative nel numero di elettroni ma abbiamo ignorato il tipo di atomo e l’ordine di legame in qualche equivalente configurazione. La procedura di raggruppamento è stata la seguente:
+Il passo successivo è stato clusterizzare i ligandi.\\Diversi ligandi sono indistinguibili dalla sola densità elettronica. Ad esempio, per la maggior parte degli intervalli di risoluzione, è estremamente difficile distinguere tra 6, 7 o 8 elettroni (carbonio, azoto, ossigeno) 
+o distinguere tra legami singoli, doppi o tripli in alcune configurazioni. Per migliorare la robustezza dell'algoritmo di classificazione, per Check My Blob è stato deciso di raggruppare i ligandi in base alla forma prevista dalla loro densità elettronica derivata 
+dalle loro definizioni chimiche. Vale a dire, che si è considerata la connettività dell'atomo, la chiralità e le differenze significative nel numero di elettroni ma si è ignorato il tipo di atomo e l'ordine di legame in qualche equivalente configurazione. La procedura di raggruppamento è stata la seguente:
 \begin{enumerate}
-  \item Raggruppa le molecole facendo corrispondere il numero di atomi, anelli, e anelli aromatici;
-  \item Raggruppa per connettività (abbinando le sottostrutture, utilizzando atomi generici e legami generici);
-  \item Controlla se la chiralità di tutte le combinazioni corrispondenti convalida;
+  \item Raggruppare le molecole facendo corrispondere il numero di atomi, anelli, e anelli aromatici;
+  \item Raggruppare per connettività (abbinando le sottostrutture, utilizzando atomi generici e legami generici);
+  \item Controllare se la chiralità di tutte le combinazioni corrispondenti convalida;
   \item Verificare se i modelli SMART corrispondono a posizioni equivalenti;
-  \item Controlla se gli atomi equivalenti sono nello stesso gruppo di numeri atomici.
+  \item Controllare se gli atomi equivalenti sono nello stesso gruppo di numeri atomici.
 \end{enumerate}
 \subsection{Modello}
 Il modello di classificazione primario (GBM) è stato addestrato a riconoscere i 219 gruppi di ligandi più popolari (cluster). Questo numero è stato raggiunto limitando la formazione alle classi con almeno 100 esempi nel set di formazione. 
-Tutti i ligandi che non erano in quei 219 gruppi sono stati etichettati come una classe separata chiamato raro. Quando il modello di classificazione primario prevede raro, l'esempio viene ulteriormente elaborato da un secondario modello (algoritmo 1-NN) addestrato solo su ligandi nel gruppo raro.
+Tutti i ligandi che non erano in quei 219 gruppi sono stati etichettati come una classe separata chiamato "rara". Quando il modello di classificazione primario prevede "raro", l'esempio viene ulteriormente elaborato da un secondario modello (algoritmo 1-NN) addestrato solo su ligandi nel gruppo "raro".
 \subsection{Validazione del modello}
 Successivamente vi è stata una validazione del modello.
 \begin{center}
@@ -158,18 +158,18 @@ Successivamente vi è stata una validazione del modello.
     Micro-averaged recall (\%) & 71.2(9) & 58.9 \\
     Micro-averaged precision (\%) & 69.3(11) & 62.7 \\
     Micro-averaged F1 (\%) & 69.3(11) & 55.7 \\
-    Cohen’s kappa (\%) & 64.6(12) & 46.2 \\
+    Cohen's kappa (\%) & 64.6(12) & 46.2 \\
     \bottomrule
   \end{tabular}
 \end{center}
-L’hold out set era più impegnativo perché conteneva una risoluzione inferiore strutture di soluzione, ma i risultati sono comunque superiori a quelli segnalati per ligandi non cluster con almeno due atomi di idrogeno.
+L'hold out set era più impegnativo perché conteneva una risoluzione inferiore strutture di soluzione, ma i risultati sono comunque superiori a quelli segnalati per ligandi non clusterizzati con almeno due atomi di idrogeno.
 
 \section{Come funziona la pipeline di lavoro?}
 Stabilito il modo in cui è stato creato l'algoritmo Check My Blob vediamo cosa succede quando effettivamente si utilizza il web server.
 \paragraph*{Fase di apprendimento:} I blob non interpretati vengono “tagliati” dalle mappe di densità elettronica generate tramite la sezione “polymer-only-portion” di PDB.\\
 I blob vengono trovati automaticamente analizzando tutti i picchi di densità elettronica positivi all'interno della mappa Fo-Fc. Per mitigare il problema dei ligandi divisi in più blob, il sistema rileva i massimi locali e scheletizza la densità elettronica all'interno dell'isosuperficie di ciascun blob e 
 combina i blob adiacenti se la distanza tra i massimi locali o i nodi dello scheletro è inferiore a 2,15 Å. Infine, tutti i frammenti di densità elettronica nell'isosuperficie del blob che si sovrappongono all'isosuperficie degli atomi del biopolimero modellato vengono ritagliati dal blob. In pratica, CheckMyBlob è in grado di rilevare ligandi costituiti da decine di candidati blob.
-\paragraph*{Descrizione del blob:} Ogni blob è descritto tramite un set di feature numeriche, che sono date in pasto all’algoritmo di machine learning (un classificatore). 
+\paragraph*{Descrizione del blob:} Ogni blob è descritto tramite un set di feature numeriche, che sono date in pasto all'algoritmo di machine learning (un classificatore). 
 \paragraph*{Classificazione:} Il classificatore crea una funzione (un modello di classificazione) che predice i migliori ligandi basandosi sulle feature numeriche.
 
 \section{Performance e attendibilità dei risultati}
