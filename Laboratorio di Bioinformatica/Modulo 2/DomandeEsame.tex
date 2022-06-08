@@ -1,0 +1,164 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs, siunitx}
+\usepackage[shortlabels]{enumitem}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+            
+        \Huge
+        \textbf{Laboratorio di Bioinformatica. Modulo 2}
+            
+        \vspace{0.5cm}
+        \LARGE
+        Domande in stile esame
+            
+        \vspace{1.5cm}
+            
+        \textbf{Chiara Solito}
+
+        \vspace{0.8cm}
+
+            
+        \Large
+        Corso di Laurea in Bioinformatica\\
+        Università degli studi di Verona\\
+        A.A. 2021/22
+            
+    \end{center}
+\end{titlepage}
+
+\section*{Definizioni preliminari di ripasso}
+\subsection*{Annotazione Genica}
+Annotare un genoma significa conoscere la localizzazione, la struttura, la funzionalità di tutti gli elementi che compongono l'intero genoma. 
+In pratica l'annotazione è quello che si fa dopo aver sequenziato un genoma, gli elementi che vengono annotati sono:
+\begin{itemize}
+    \item Geni codificanti proteine 
+    \item Geni non codificanti proteine 
+    \item Elementi regolatori 
+    \item Elementi ripetuti 
+    \item Pseudogeni = geni che hanno perso la funzione codifica 
+    \item Altri elementi 
+\end{itemize}
+L'annotazione può essere funzionale (consiste nel caratterizzare ogni singolo gene assegnando una funzione biologica ad ogni proteina da esso codificata) oppure genica (che definisce all'interno del genoma
+la localizzazione e struttura di ogni gene ed eventuali trascritti alternativi).
+
+\subsection*{Genome Browser}
+Con il termine Genome Browser si intendono server con dei tools per la notazione automatica dei genomi, NON si intende una banca dati che raccoglie semplicemente informazioni.
+
+\subsection*{Predizione Genica}
+La predizione genica è volta a trovare i geni di un genoma appena sequenziato. In realtà non si tratta di una vera e propria ricerca dal momento che non abbiamo una certezza assoluta, quindi occorrono dei confronti con le evidenze scientifiche.\\
+La predizione genica è alla base del processo di annotazione, poiché non posso definire il ruolo biologico di una molecola in tutta la sua complessità mappandola nel genoma se prima non conosco quale gene potrebbe essere. Parliamo però sempre di ipotesi che vanno confermate.
+
+\subsection*{HMM}
+Gli Hidden Markov Models sono modelli probabilistici per dati sequenziali (temporali e non). Sono stati utilizzati molto a partire dal rionoscimento del parlato fino ad arrrivare ad una serie di applicazioni, in cui gli stati sequenziali potevano non essere così evidenti.\\
+Si introducono a partire dai Modelli di Markov, definiti tramite 5 assunzioni.
+\begin{enumerate}
+    \item Il sistema evolve in passi discreti.
+    \item Il sistema è in uno stato ad ogni istante di tempo.
+    \item Markovianità del primo ordine: il sistema non ha memoria, lo stato successivo dipende solo da quello corrente.
+    \item Modellazione probabilistica, ovvero la transizione tra gli stati è descritta in modo probabilistico.
+    \item Tutti gli stati sono osservabili.
+\end{enumerate}
+La transizione tra stati viene definita tramite una matrice e le probabilità iniziali mi dicono come rimango negli stati o come passo da uno stato all'altro. La caratteristica principale però è che li stati siano osservabili e questo alle volte è limitante: per passare a un modello a stati nascosti bisogna rimuovere l'ulitma assunzione. \\
+Negli Hidden Markov Models quindi intuisco lo stato dalle condizioni che contornano la situazione, dato che quello che osservo dipende dallo stato in cui mi trovo. Questo aggiunge un livello di incertezza: aggiungo quindi la probabilità che determinate osservazioni accadano in determinati stati.\\
+Tecnicamente: in un modello di Markov se il sistema entra in uno stato si ha l'emissione di un solo simbolo; in un HMM se il sistema entra in uno stato si ha una distribuzione di probabilità che descrive la probabilità di osservare un determinato simbolo.\\
+Queste caratteristiche fanno si che gli HMM possano essere utilizzati, nella "ricerca" di un gene, come "generatori di sequenze". Gli esoni e gli introni di una sequenza da modellare e poi da generare sono identificati da uno stato. La catena di acquisizione degli stati parte dal 5' fino al 3' in cui ogni base è generata grazie ad una matrice di emissione condizionata solo dallo stato corrente.
+
+\subsection*{Variant Calling e Variant Analysis}
+Con Variant Calling (o Variant Analysis) identifichiamo il processo con cui una variante viene identificata a partire dalla sequenza e la successiva analisi della stessa, andando a stabilirne ad esempio la criticità. L'obiettivo è spesso identificare la variante responsabile di una malattia o di un certo fenotipo.
+
+
+\subsection*{Protein Folding}
+Il protein folding è un ri-arrangiamento globulare e compatto della catena polipeptidica. Il modo in cui si ripiega la proteina è determinato dalla sua sequenza primaria. Tale orientamento punta a impacchettare i residui idrofobici all'interno del core della proteina.\\
+L'equazione che regola tale funzionamento è data dalla seconda legge della termodinamica: $ \Delta G = \Delta H - T \Delta S $ cioè l'energia libera di Gibbs è pari all'entalpia (sommatoria delle energie interne, ovvero le energie di legame) meno la temperatura moltiplicata per l'entropia
+(gradi di disordine del sistema). In questa equazione occorre considerare anche l'effetto idrofobico (a favore del ripiegamento: ovvero il fatto che i residui idrofobici tendono a diminuire le interazioni con l'acqua), questo va a diinuire l'entropia dell'acqua, che forma delle gabbie ordinate attorno ai residui. Il risultato
+complessivo è che il folding di una proteina è marginalmente stabile poiché il grado di $\Delta G$ è dell'ordine di poche kcal/mol (l'energia di qualche legame idrogeno), il che costituisce il problema principale del cercare di simulare questo ripiegamento.\\
+Ad oggi infatti non siamo ancora in grado di simulare il folding di una proteina al PC (solo un pc al mondo è in grado di simulare il ripiegamento di proteine molto piccole e compatte) poiché richiede un enorme potenza e precisione di calcolo. Quello che è possibile fare è ricreare il modello strutturale di una proteina tramite il Protein Modeling.
+
+\subsection*{Homology Modeling}
+Con Modellazione per omologia intendiamo una tecnica di modellazione proteica che usi proteine omologhe a quella query. Per essere omologhe ovviamente le proteine devono avere un antenato comune: la proteina con struttura nota verrà chiamata proteina template e sarà usata
+per predire la struttura della proteina chiamata target. 
+
+\subsection*{Docking}
+Con Docking intendiamo lo studio delle interazioni ligando-proteina. Questa area della Bioinformatica è di interesse per la farmaceutica ad esempio,
+perché permette di simulare l'interazione tra il ligando e la proteina, migliorando eventualmente il ligando o trovando ligandi affini alla proteina.\\
+L'obiettivo è, data una struttura proteica (cristallografica o modellata), predire quali ligandi essa lega e dove lega tali ligandi. La modellazione è necessaria nella maggiornaza di casi, e ha varie applicazioni:
+\begin{itemize}
+    \item Predizione funzionale
+    \item Disegno di farmaci, sostituendo ad un approccio brute force, un approccio razionale
+    \item Studio dei meccanismo di interazione
+\end{itemize}
+Per arrivare all'obiettivo dobbiamo trovare una conformazione ligando-proteina tale che minimizzi l'energia totale del complesso. Tutto questo viene riassunto nel concetto di docking molecolare, ovvero tecniche di "attracco molecolare".
+
+
+\section*{Domande tratte dai vecchi esami scritti - Teoria}
+
+\subsection*{Domanda 1}
+Descrivere il ruolo dell'entropia nell'interazione ligando-proteina.
+
+\subsection*{Domanda 2}
+Descrivere il folding delle proteine. Si può provare a ripiegare una proteina al PC? Perché?
+
+\subsection*{Domanda 3}
+Descrivere la predizione di geni in modo indiretto. Quali sono i "comunity experiment" della Gene Prediction?
+
+\subsection*{Domanda 4}
+Descrivere i metodi ab initio della predizione della struttura delle proteine.
+
+\subsection*{Domanda 5}
+Descrivere il termine di van der Waals per i campi di forza. 
+
+\subsection*{Domanda 6}
+Cos'è ENSEMBL? Descriverne il funzionamento.
+
+\subsection*{Domanda 7}
+Descrivere gli elementi di struttura supersecondaria, fornendo alcuni esempi.
+
+\subsection*{Domanda 8}
+Differenza tra profilo e profilo HMM nell'ambito della predizione strutturale di proteine.
+
+\subsection*{Domanda 9}
+Definire l'annotazione genomica e descrivere i passi necessari all'annotazione di un genoma.
+
+\subsection*{Domanda 10}
+Descrivere i passi necessari per costruire modelli per omologia della struttura delle proteine.
+
+\subsection*{Domanda 11}
+Come funziona Modeller?
+
+\subsection*{Domanda 12}
+Cos'è CASP?
+
+\subsection*{Domanda 13}
+Cos'è un genome browser? Fornire un esempio, con la descrizione del suo funzionamento.
+
+\subsection*{Domanda 14}
+Come avviene la validazione della predizione genica e dell'annotazione dei genomi?
+
+\subsection*{Domanda 15}
+Descrivere i potenziali statistici utlizzati nei programmi di validazione della qualità della struttura di proteine.
+
+\subsection*{Domanda 16}
+Descrizione dell'utilizzo degli algoritmi HMM. Caratteristiche, elementi necessari, ecc. (Focalizzarsi sul programma HHPred).
+
+\subsection*{Domanda 17}
+Descrizione della "Modellazione per omologia". Descrivere il metodo "Modeling by satisfaction of spatial restraints".
+
+\subsection*{Domanda 18}
+Cos'è un Campo di Forza? Spiegarne i modelli matematici e dove vengono utilizzati.
+
+\subsection*{Domanda 19}
+Descrivere il metodo utilizzato nella validazione periodica nel campo della modellazione proteica.
+
+\subsection*{Domanda 20}
+Descrivere il docking lingando-proteina: algoritmi, sfide, metodo della griglia, ecc.
+
+
+
+\end{document}
