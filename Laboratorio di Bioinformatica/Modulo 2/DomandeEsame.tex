@@ -150,6 +150,37 @@ Descrizione dell'utilizzo degli algoritmi HMM. Caratteristiche, elementi necessa
 \subsection*{Domanda 17}
 Descrizione della "Modellazione per omologia". Descrivere il metodo "Modeling by satisfaction of spatial restraints".
 
+\subsubsection*{Svolgimento}
+Per "modellazione per omologia" intendiamo una modellazione proteica (quindi della struttura sconosciuta di una proteina di cui conosciamo la sequenza) che si basa sulla conoscenza della struttura di una proteina ad essa omologa.\\
+Per essere omologhe le proteine come sappiamo devono avere un antenato comune: se tali proteine condividono un passato evolutivo allora avranno probabilemente almeno il core proteico simile. La struttura nota viene definita in questo caso template, mentre quella da modellare è il target.\\
+Velocemente abbiamo tre fasi generali per modellare una proteina per omologia:
+\begin{enumerate}
+    \item Ho la proteina target e conosco la sequenza
+    \item Faccio il blast in alcuni database alla ricerca di proteine simili nella famiglia, che abbiano struttura nota.
+    \item Uso la proteina per modellare la struttura
+\end{enumerate}
+Nello specifico però cosa faccio? Vediamo tutto passo-passo:
+\begin{enumerate}
+    \item Cerco stampi nei vari database tramite BLAST e successivamente procedo con lo studio delle sequenze template
+    \item Procedo a un allineamento multiplo di template con il mio target, perché voglio modellarre le mie coordinate x,y e z e inserirle in una matrice di sostituzione. Qui si ha la maggiore fonte di errori:
+    Estraggo il miglior allineamento a coppie trovato dopo l'allineamento multiplo (rimuovendo tutti i membri della famiglia - 1 ogni volta)
+    \item Prelevo le strutture dal PDB del template e procedo a costruire il modello
+    Il modello può essere costruito in più modi, il più banale è quello di mettere aa solo nei match e nulla nei mismatch, uno molto usato è quello di mettere aa della query ma con coordinate random, che rispettino però i vincoli spaziali. E qui parte tutto il discorso sulla funzione obiettivo ecc. ecc. Da questa funzione, minimizzando con gli algoritmi (Montecarlo oppure Steepest Descent o Conjugate Gradient) mi ricavo le coordinate e la configurazione con la quale la mia sequenza query raggiunge il minimo energetico.
+    \item Passo alla fase di valutazione, che vedremo in seguito.
+\end{enumerate}
+Un web server che usa questo tipo di procedura è Modeller, nello specifico Modeller effettua una tecnica chiamata Satisfaction of Spacial Restraints (che anche qui ho un dubbio: ma se noi anche prima stiamo ai vincoli spaziali, perché non chiamare anche quella tecnica allo stesso modo? BOH. Poi: modeller è sempre modellazione per omologia quindi che differenza c'è esattamente?)
+1. Allinea la sequenza con le strutture di una famiglia
+2. Crea una mappa di Vincoli Spaziali
+3. Soddisfa i vincoli: in termini probabilistici crea o delle gaussiane o delle funzioni pseudo-molla
+Come risultato ho anche qui una funzione obiettivo, da minimizzare, che contiene le coordinate e tutti i vincoli. Gli approcci per minimizzare rimangono montecarlo o quelli che calcolano la derivata.
+L'unica differenza di cui sono sicura è che:
+Modeller fa una modellizzazione naif ovvero fa un copia-incolla di tutte le coordinate uguali, lì dove non sono conservate e lì dove non sono conservati mette un copia-incolla del "Bubble(?)" e negli indel mette coordinate casuali (che a me sembra la stessa roba di prima anche qui, ma okay)). L'output è un modello, con la valutazione stereochimica e i potenziali statistici che servono a validare il modello.
+
+POI
+Lui ha detto che non vengono più usate queste cose, ma una roba molto usata sono gli HMM. Questo perché un HMM può essere usato come modello che caratterizza sequenze di una certa famiglia proteica e quindi possono essere coinvolti nei processi generativi di predizione della struttura, massimizzando la likelihood. Infatti programmi come PFAM, HHSearch, SWISSModel e AlphaFold sono basati sugli HMM (anche se poi spiegando AlphaFold non è che abbia proprio parlato di HMM, perché dice che crea delle matrici di interazione e contatto tra amminoacidi, usando il templato per raffinare la mappa e poi inserendo i vincoli della funzione nella mappa stessa)
+
+Vabbé poi ha parlato un po' dei Metodi AB Initio (Fragfold e Rosetta) ma che siamo sicuri che non si usino più tanto.
+
 \subsection*{Domanda 18}
 Cos'è un Campo di Forza? Spiegarne i modelli matematici e dove vengono utilizzati.
 
