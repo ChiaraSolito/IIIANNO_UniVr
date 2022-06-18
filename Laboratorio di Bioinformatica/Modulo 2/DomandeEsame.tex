@@ -143,6 +143,12 @@ Come avviene la validazione della predizione genica e dell'annotazione dei genom
 
 \subsection*{Domanda 15}
 Descrivere i potenziali statistici utlizzati nei programmi di validazione della qualità della struttura di proteine.
+\subsubsection*{Svolgimento}
+Dopo essere arrivati alla creazione di modelli di strutture proteiche, ho bisogno di validarne la qualità. Quello che voglio fare è eseguire più modelli per una stessa proteina e valutare dove le strutture si posizionano nel grafico dell'energia, la percentuale maggiore di modelli nel grafico, corrisponde all'energia minima di modello più probabile.\\
+Per stimare la validità dei modelli utilizziamo i potenziali statistici: si parte da una valutazione dell'ambiente per ogni amminoacido, come essi interagiscono con i vicini e in generale il loro intorno. Per produrre un modello statistico devo tenere conto delle proprietà chimico-fisiche dell'amminoacido e le sue interazioni, confrontandole con quelle dei PDB da cui abbiamo tratto i template. 
+Ad esempio possiamo prendere una specifica interazione, contare quante volte avviene e verificare che per quella famiglia sia statisticamente probabile che sia avvenuta e quante volte. Esistono diversi programmi che si occupano di questa cosa, uno famoso è QMEAN. Questi programmi confrontano sia graficamente che statisticamente i modelli, calcolando anche la root mean square deviation, ovvero lo scarto quadratico medio ottenuto dalla sovrapposizione 
+tra le due strutture, ottimizzata, per poter calcolare la distanza minima tra i carboni $\alpha$: questa infatti è una misura universale di similarità strutturale.\\
+Successivamente al sueperamento della validazione statistica, procedo con un afunzionale e sperimentale: devo cioè verificare che la struttura che ho trovato risponda alle domande biologiche e alle funzioni che la proteina svolge.
 
 \subsection*{Domanda 16}
 Descrizione dell'utilizzo degli algoritmi HMM. Caratteristiche, elementi necessari, ecc. (Focalizzarsi sul programma HHPred).
@@ -165,21 +171,27 @@ Nello specifico però cosa faccio? Vediamo tutto passo-passo:
     \item Procedo a un allineamento multiplo di template con il mio target, perché voglio modellarre le mie coordinate x,y e z e inserirle in una matrice di sostituzione. Qui si ha la maggiore fonte di errori:
     Estraggo il miglior allineamento a coppie trovato dopo l'allineamento multiplo (rimuovendo tutti i membri della famiglia - 1 ogni volta)
     \item Prelevo le strutture dal PDB del template e procedo a costruire il modello
-    Il modello può essere costruito in più modi, il più banale è quello di mettere aa solo nei match e nulla nei mismatch, uno molto usato è quello di mettere aa della query ma con coordinate random, che rispettino però i vincoli spaziali. E qui parte tutto il discorso sulla funzione obiettivo ecc. ecc. Da questa funzione, minimizzando con gli algoritmi (Montecarlo oppure Steepest Descent o Conjugate Gradient) mi ricavo le coordinate e la configurazione con la quale la mia sequenza query raggiunge il minimo energetico.
-    \item Passo alla fase di valutazione, che vedremo in seguito.
+    Il modello può essere costruito in più modi, il più banale è quello di mettere aa solo nei match e nulla nei mismatch, uno molto usato è quello di mettere aa della query ma con coordinate random, che rispettino però i vincoli spaziali. Per rispettare tutti i vincoli è importante costruire un campo di forza: le strutture proteiche minimizzano l'energia libera, è necessario quindi scrivere una funzione matematica, un'equazione matematica, che è appunto il campo di forza, da minimizzare, che rappresenta l'energia libera del sistema, dalla quale dovrò estrapolare il minimo assoluto: essa rappresenta tutte le interazioni del sistema.\\
+    La funzione nello specifico è:
+    $V(R) = E_{(bonded)} + E_{(non-bonded)}$ dove, per i bonded intendiamo i legami covalenti: stretching, bending e rotation, per i non-bonded parliamo di legami non covalenti, ovvero potenziale di van der Waals e potenziale elettrostatico.\\
+    Una volta ottenuta questa funzione dobbiamo estrapolarne il minimo: abbiamo tre metodi per farlo: uno è l'algoritmo di Montecarlo, che non calcola le derivate, ma è in grado di mantenere i cambiamenti che ci fanno arrivare al minimo della funzione, senza trovare l'ottimo ma una buona approssimazione. Gli altri due metodi invece calcolano le derivate: 
+    Steepest Descent ha un problema, che è quello di potersi potenzialmente perdere nei minimi locali, perché non accetta passaggi per sezioni positive della derivata; al contrario Conjugate Gradient accetta passaggi positivi ed è in grado di trovare minimi non solo locali.
+    \item Passo infine alla fase di valutazione, che vedremo in seguito.
 \end{enumerate}
-Un web server che usa questo tipo di procedura è Modeller, nello specifico Modeller effettua una tecnica chiamata Satisfaction of Spacial Restraints (che anche qui ho un dubbio: ma se noi anche prima stiamo ai vincoli spaziali, perché non chiamare anche quella tecnica allo stesso modo? BOH. Poi: modeller è sempre modellazione per omologia quindi che differenza c'è esattamente?)
-1. Allinea la sequenza con le strutture di una famiglia
-2. Crea una mappa di Vincoli Spaziali
-3. Soddisfa i vincoli: in termini probabilistici crea o delle gaussiane o delle funzioni pseudo-molla
-Come risultato ho anche qui una funzione obiettivo, da minimizzare, che contiene le coordinate e tutti i vincoli. Gli approcci per minimizzare rimangono montecarlo o quelli che calcolano la derivata.
-L'unica differenza di cui sono sicura è che:
-Modeller fa una modellizzazione naif ovvero fa un copia-incolla di tutte le coordinate uguali, lì dove non sono conservate e lì dove non sono conservati mette un copia-incolla del "Bubble(?)" e negli indel mette coordinate casuali (che a me sembra la stessa roba di prima anche qui, ma okay)). L'output è un modello, con la valutazione stereochimica e i potenziali statistici che servono a validare il modello.
 
-POI
-Lui ha detto che non vengono più usate queste cose, ma una roba molto usata sono gli HMM. Questo perché un HMM può essere usato come modello che caratterizza sequenze di una certa famiglia proteica e quindi possono essere coinvolti nei processi generativi di predizione della struttura, massimizzando la likelihood. Infatti programmi come PFAM, HHSearch, SWISSModel e AlphaFold sono basati sugli HMM (anche se poi spiegando AlphaFold non è che abbia proprio parlato di HMM, perché dice che crea delle matrici di interazione e contatto tra amminoacidi, usando il templato per raffinare la mappa e poi inserendo i vincoli della funzione nella mappa stessa)
-
-Vabbé poi ha parlato un po' dei Metodi AB Initio (Fragfold e Rosetta) ma che siamo sicuri che non si usino più tanto.
+Un web server che usa questo tipo di procedura è Modeller, nello specifico Modeller effettua una tecnica chiamata "Satisfaction of Spacial Restraints" 
+\begin{enumerate}
+    \item Allinea la sequenza con le strutture di una famiglia
+    \item Crea una mappa di Vincoli Spaziali: questa si basa su più aspetti rispetto a quelli della modellazione che non usa questa tecnica: In generale dobbiamo tenere conto delle distanze C$\alpha$ dal templato, degli angoli diedtri, delle catene laterali, delle interazioni tra i residui, della stereochimica del campo di forza e dei dati sperimentali.
+    \item Soddisfa i vincoli: in termini probabilistici crea o delle gaussiane o delle funzioni pseudo-molla.
+\end{enumerate}
+Come risultato ho anche qui una funzione obiettivo, da minimizzare, che contiene le coordinate e tutti i vincoli. Gli approcci per minimizzare rimangono montecarlo o quelli che calcolano la derivata.\\
+Modeller fa una modellizzazione naif ovvero fa un copia-incolla di tutte le coordinate uguali, lì dove non sono conservate e lì dove non sono conservati mette un copia-incolla del "Bubble" e negli indel mette coordinate casuali. 
+L'output è un modello, con la valutazione stereochimica e i potenziali statistici che servono a validare il modello.\\
+È importante invece tenere conto dei primi programmi sviluppati allo scopo di modellare, che sfruttavano Metodi AB Initio: Fragfold e Rosetta.\\
+Fragfold cerca porzioni della sequenza della proteina che hanno le stesse strutture secondarie, valutando separatamente ogni frammento e poi modellandolo, facendo ottimizzazione e assemblamento dei frammenti.\\
+Rosetta invece divide la proteina in frammenti da 9 aminoacidi, creando una banca dati con PDB da 9 amminoacidi. Da questo database trae i 25 frammenti con la sequenza amminoacidica più simile e li combina, anch'esso ottimizzando e minimizzando la funzione (modificando nello specifico gli angoli diedri
+per trovare l'energia minima). Rosetta ha rappresentato la prima rivoluzione nel mondo della modellazione di strutture proteiche. 
 
 \subsection*{Domanda 18}
 Cos'è un Campo di Forza? Spiegarne i modelli matematici e dove vengono utilizzati.
@@ -189,7 +201,31 @@ Descrivere il metodo utilizzato nella validazione periodica nel campo della mode
 
 \subsection*{Domanda 20}
 Descrivere il docking lingando-proteina: algoritmi, sfide, metodo della griglia, ecc.
-
-
-
+\subsubsection*{Svolgimento}
+Con docking ligando-proteina intendiamo lo studio delle interazioni ligando-proteina, questa area della bioinformatica è di grande interesse ad esempio per la farmaceutica. L'obiettivo che ci si pone, data una struttura proteica,
+è di predire quali ligandi essa lega e dove, nella maniera più veloce possibile. Per farlo devo trovare la conformazione ligando-proteina che minimizza l'energia del complesso.\\
+Sappiamo che ci sono delle configurazioni permesse e alcune che non sono permesse:
+\begin{itemize}
+    \item Posizioni relative: 3 gradi
+    \item Posizioni di orientazione: 3 gradi 
+    \item Legami ruotabili dei ligandi: N gradi 
+    \item Legami della proteina intera in soluzione: M gradi
+\end{itemize}
+Quando una proteina lega un ligando possono succedere due cose:
+\begin{itemize}
+    \item Induced Fit: il ligando promuove un cambiamento conformazionale nella proteina. 
+    \item Conformational Section: la proteina campiona lo spazio conformazionale ovvero esplora diverse configurazioni. 
+\end{itemize}
+Per cui quello che devo fare è:
+\begin{enumerate}
+    \item Trovare metodi per campionare lo spazio conformazionale: un metodo famoso è quello della griglia, ma è molto lento, un algoritmo molto usato è il genetic search. Vediamo entrambi nel dettaglio.
+    \item Usare una funzione di scoring: basata su empirical function, che usa dati sperimentali, oppure knowledge-based ovvero basata su conoscienze a priori.
+    \item Infine effettuo un cluster dei risultati.
+\end{enumerate}
+Il metodo della griglia si basa sulla discretizzazione dello spazio conformazionale in una griglia. Se conosco la posizione della cavità di binding posso limitare la superficie della griglia ad essa, prendo ognuno degli atomi del ligando e lo faccio passare per tutti i punti della griglia.
+Calcolo di ogni punto l'energia e creo delle mappe energetiche, individuando così i punti ad energia favorevole. Ricostruisco quindi il ligando nella conformazione migliore a partire da queste mappe, costruendo per ogni conformazione possibile, la somma delle energie dei punti della griglia.\\
+Come detto, il metodo della griglia è piuttosto lento, per questo si preferisce una tecnica di ricerca casuale di campionamento dello spazio: il genetic search algorithm. Esso crea tanti stati iniziali random, comincia ad incrociarli e da questi prende posizioni e features casuali. Da ogni stato posso produrre un discendente e valutarne l'energia, come per l'evoluzione. Incrocio e produco discendenti finchè non trovo un discendente che migliora l'energia. Ripeto questo procedimento iterativamemte.\\
+Per verificare quali conformazioni sono possibili bisogna tenere conto delle forze che agiscono sul binding e creare delle scoring function: intra e intermolecolari: se ne creo di empiriche mi baso su lunghezze di legame, angoli di legame, angoli diedri, forze elettrostatiche, interazioni dipolari, ecc. I ligandi sono soggetti a forze intermolecolari deboli, tra le più importanti ci sono le forze columbiche di attrazione e repulsione, particolare attenzione viene riposta ad esempio sull'istidina che a seconda della protonazione ha carica negativa o positiva.
+Altre forze deboli importanti sono i legami idrogeno, i ponti salini, gli ioni metallici e le interazioni pi-greco (in cui distinguiamo tra end-to-face e face-to-face). Il campo di forza che vado a creare è un campo empirico, ovvero conosco tutte le foze ottenute da dati sperimentali.\\
+Infine clusterizzo i risultati, in generale tenendo conto di almeno 100 conformazioni, per trovare la migliore.
 \end{document}
