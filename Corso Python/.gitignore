@@ -3,3 +3,5 @@ pictures/*
 *.csv
 *.txt
 *.gz
+ex1.ipynb
+ex2.ipynb
